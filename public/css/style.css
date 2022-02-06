@@ -1,4 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700&display=swap");
+/* Base Structure */
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --link-default-color: var(--black);
+  --main-bg-color: var(--white);
+  --main-color: var(--black);
+  --nav-bg-color: var(--white);
+  --nav-scrolled-bg-color: var(--white);
+  --nav-height: 10%;
+  /*
+    --primary: #cb0c9f;
+    --secondary: #8392ab;
+    --info: #17c1e8;
+    --success: #82d616;
+    --danger: #ea0606;
+    --warning: #f53939;
+    --light: #e9ecef;
+    --dark: #252f40;
+    --neutral-100: #f8f9fa;
+    --neutral-200: #e9ecef;
+    --neutral-300: #dee2e6;
+    --neutral-400: #ced4da;
+    --neutral-500: #adb5bd;
+    --neutral-600: #6c757d;
+    --neutral-700: #495057;
+    --neutral-800: #343a40;
+    --neutral-900: #212529;
+    */
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: black;
+  width: 100vw;
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+button {
+  outline: none;
+}
+
+a {
+  color: var(--link-default-color);
+  text-decoration: none;
+}
+
+h1 {
+  margin-bottom: 0.1em;
+  font-weight: 300;
+  font-size: 2.75rem;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+address {
+  font-style: normal;
+}
+
+.pageOffset {
+  height: var(--nav-height);
+}
+
+.gridWrapper {
+  display: -ms-grid;
+  display: grid;
+  max-width: 100%;
+  -ms-grid-rows: 100vh;
+      grid-template-rows: 100vh;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+}
+
+.center-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@-webkit-keyframes wave {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1280px;
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1280px;
+  }
+}
+
+@-webkit-keyframes wave-reverse {
+  0% {
+    background-position: 1280px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+@keyframes wave-reverse {
+  0% {
+    background-position: 1280px;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+.grid-50 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  -ms-grid-rows: 100%;
+      grid-template-rows: 100%;
+  justify-items: center;
+}
+
+.grid-30 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (calc(100%/3))[3];
+      grid-template-columns: repeat(3, calc(100%/3));
+  -ms-grid-rows: 100%;
+      grid-template-rows: 100%;
+}
+
+.section-white {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 2em;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  padding: 0 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: var(--nav-bg-color);
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+  z-index: 150;
+}
+
+nav.scrolled {
+  background-color: var(--nav-scrolled-bg-color);
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+nav.scrolled #navLogo {
+  background: none;
+}
+
+nav > * {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav > ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+nav > ul > li {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+nav a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+nav .nav-items a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--link-default-color);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: width 0.5s ease;
+  transition: width 0.5s ease;
+}
+
+nav .nav-items a:hover::after {
+  width: 100%;
+}
+
+nav #nav-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+nav .nav-items {
+  gap: 1.5em;
+}
+
+nav .user-links {
+  gap: 2em;
+}
+
+nav .user-links * {
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+nav .user-links > *::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0;
+  border-radius: 50%;
+  background: var(--black);
+  z-index: -1;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+
+nav .user-links > *:hover * {
+  color: var(--white);
+}
+
+nav .user-links > *:hover::before {
+  opacity: 1;
 }
 /*# sourceMappingURL=style.css.map */

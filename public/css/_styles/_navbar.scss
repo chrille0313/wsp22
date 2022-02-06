@@ -1,0 +1,133 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--nav-bg-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+    transition: background-color 0.5s ease;
+    z-index: 150;
+
+    &.scrolled {
+        background-color: var(--nav-scrolled-bg-color);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        
+        #navLogo {
+            background: none;
+        }
+    }
+
+    & > * {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    & > ul {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    & > ul > li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+        text-transform: uppercase;
+
+        transition: all 0.5s ease;
+    }
+    
+    .nav-items a {
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+        
+            background: var(--link-default-color);
+            transform: translateX(-50%);
+        
+            transition: width 0.5s ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+
+    #nav-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .nav-items {
+        gap: 1.5em;
+    }
+
+    .user-links {
+        gap: 2em;
+        
+        * {
+            transition: all 0.15s ease;
+        }
+
+        & > * {
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                width: 2.5rem;
+                height: 2.5rem;
+
+                opacity: 0;
+                border-radius: 50%;
+                background: var(--black);
+                z-index: -1;
+                
+                transition: opacity 0.5s ease;
+            }
+            
+            &:hover {
+                * {
+                    color: var(--white);
+                }
+
+                &::before {
+                    opacity: 1;
+                }                
+            }
+        }
+    }
+
+}
