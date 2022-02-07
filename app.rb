@@ -16,6 +16,7 @@ helpers do
 
 end
 
+
 get('/')  do
   slim(:index)
 end
@@ -68,6 +69,11 @@ end
 post('/logout') do
     session.delete()
     redirect('/login')
+end
+
+
+get('*') do
+    "Din buse, nu har du allt försökt fuska lite för mycket! Aja baja >:("
 end
 
 =begin
