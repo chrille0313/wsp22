@@ -1,15 +1,10 @@
 require 'sinatra'
 require 'slim'
 require 'sqlite3'
+require 'bcrypt'
+require_relative 'model.rb'
 
 enable :sessions
-
-
-def connect_to_db(name, rootDir="db")
-    db = SQLite3::Database.new("#{rootDir}/#{name}.db")
-    db.results_as_hash = true
-    return db
-end
 
 
 helpers do 
@@ -17,115 +12,92 @@ helpers do
 end
 
 
+# TODO - Add before-blocks to authenticate users before certain routes
+# TODO - Add after-blocks to check for redirects 
+
+
 get('/')  do
   slim(:index)
 end
 
 
-get('/register') do
-    slim(:register)
+# FIXME - Check if logged in and if so redirect to "/"
+get('/users/new') do
+    slim(:'users/new')
 end
 
 
-post('/users/new') do 
+post('/users') do
     username = params[:username]
     password = params[:password]
-    confirm_password = params[:confirm_password]
+    confirmPassword = params[:'confirm-password']
 
-    if password = confirm_password
-        password_digest = BCrypt::Password.create(password)
-        db = connect_to_db("database")
-        db.execute('INSERT INTO users (username, password) VALUES (?, ?)', username, password_digest)
-        redirect("/")
+    fname = params[:fname]
+    lname = params[:lname]
+    email = params[:email]
+    address = params[:address]
+    city = params[:city]
+    postalCode = params[:'postal-code']
+
+    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+
+    p success, responseMsg
+
+    if successs
+        authenticate_user(username, password)
+        redirect('/')
     else
-        "Passwords didn't match!"
+        redirect('/users/new')
     end
 end
 
 
+# FIXME - Check if logged in and if so redirect to "/"
 get('/login') do
     slim(:login)
 end
 
 
-post('/login-user') do
+post('/login') do
     username = params[:username]
     password = params[:password]
 
-    db = connect_to_db("database")
-    query = db.execute("SELECT * FROM users WHERE username = ?", username).first
-    qPwd = query["password"]
-    qId = query["id"]
+    success, msg = authenticate_user(username, password)
 
-    if BCrypt::Password.new(qPwd) == password
-        session[:id] = qId
-        redirect("/todos")
+    if success
+        session[:userId] = msg.to_i
+        redirect('/')
     else
-        "Wrong Password!"
+        p msg
+        redirect('/login')
     end
 end
 
 
-post('/logout') do
-    session.delete()
-    redirect('/login')
+get('/logout') do
+    session.destroy()
+    redirect('/')
+end
+
+
+get('/products') do
+    slim(:'/products/index')
+end
+
+
+get('/error/:id') do
+    errors = {
+        401 => 'Unauthorized access.',
+        404 => 'Page not found :('
+    }
+
+    errorId = params['id'].to_i
+    errorMsg = errors[errorId]
+
+    slim(:error, locals: {errorId: errorId, errorMsg: errorMsg})
 end
 
 
 get('*') do
-    "Din buse, nu har du allt försökt fuska lite för mycket! Aja baja >:("
+    redirect('/error/404')
 end
-
-=begin
-
-get("/asdads") do
-  results = session[:results]
-  if results == nil
-      results = []
-      session[:results] = results
-  end
-
-  slim(:calculator, locals:{previous:results})
-end
-
-
-post("/reset") do
-  session.destroy()
-  redirect("/")
-end
-
-
-post("/calculate") do
-  num1 = params[:num0].to_f
-  num2 = params[:num1].to_f
-
-  res = nil
-  operator = params[:operator]
-
-  case operator
-      when "+"
-          res="#{num1} + #{num2} = #{num1+num2}"
-      when "-"
-          res="#{num1} - #{num2} = #{num1-num2}"
-      when "*"
-          res="#{num1} * #{num2} = #{num1*num2}"
-      when "/"
-          if num2 == 0
-              rest="Can't divide by 0!"
-          else
-              res="#{num1} / #{num2} = #{num1/num2}"
-          end
-  end
-
-  if res != nil
-      results = session[:results]
-      if results == nil
-          results = []
-      end
-      results.insert(0,res)
-      session[:results] = results
-  end
-  
-  redirect("/")
-end
-=end

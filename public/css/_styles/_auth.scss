@@ -1,0 +1,130 @@
+.auth-form {
+    width: 500px;
+    margin: 0rem;
+
+    & > * {
+        margin-bottom: 1.5rem;
+    }
+
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+
+    & > header {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .adjacent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .form-field {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column-reverse;
+
+        .input-hint {
+            margin: 0;
+            padding: 3px 8px;
+            width: fit-content;
+            font-size: 0.75rem;
+            font-weight: 400;
+            
+            border-top: 1px solid var(--black);
+            border-left: 1px solid var(--black);
+            border-right: 1px solid var(--black);
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+
+            font-size: 1rem;
+
+            border: 1px solid var(--black);
+            outline-offset: -2px;
+            
+            &:hover {
+                outline: 1px solid var(--black);
+            }
+
+            &:active, &:focus, &:focus-visible {
+                outline: 1px solid var(--black);
+
+                & + .input-hint {
+                    color: var(--white);
+                    background: var(--black);
+                }
+            }
+        }
+    }
+
+    .form-button {
+        width: 100%;
+
+        position: relative;
+
+        &::after, &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: var(--black);
+            z-index: -1;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        &::before {
+            left: 0;
+            transform-origin: left;
+        }
+
+        &::after{
+            right: 0;
+            transform-origin: right;
+        }
+
+        &:hover, &:active, &:focus, &:focus-visible {
+            & * {
+                color: var(--white);
+            }
+            
+            &::before {
+                transform: scaleX(1);
+                transform-origin: right;
+            }
+    
+            &::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+
+        input[type=submit] {
+            width: 100%;
+            padding: 1rem;
+            
+            position: relative;
+
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: 1px solid var(--black);
+            background: none;
+            outline: none;
+        }
+
+    }
+
+    #need-account, #already-have-account {
+        font-weight: 600;
+    }
+}

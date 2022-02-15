@@ -16,34 +16,32 @@ html lang="en"
             li
                 a href="/products" Store
             li
-                a href="#about" About
+                a href="/#about" About
             li
-                a href="#contact" Contact
+                a href="/#contact" Contact
 
-        h1#nav-logo AnyFan
+        a#nav-logo-container href="/"
+            img#nav-logo src="/img/logo/logo.png" alt="Logo"
 
         ul.user-links
             li
                 a href="/cart" 
                     span class="material-icons-outlined" shopping_cart
             
-
-            - if session[:userId] != nil
+            - if session[:userId] == nil
                 li
-                    a href="/account"
+                    a href="/login"
                         span class="material-icons-outlined" person_outline
             - else
                 li
                     a href="/liked"
                         span class="material-icons-outlined" favorite_border
                 li
-                    a href="/account"
+                    a href="/users/#{session[:userId]}"
                         span class="material-icons-outlined" person_outline
                 li
                     a href="/logout"
                         span class="material-icons-outlined" logout
-
-    div.pageOffset
 
     ==yield
   

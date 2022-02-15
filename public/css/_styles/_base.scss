@@ -36,6 +36,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Lato', Arial, sans-serif;
 }
 
 html, body {
@@ -50,7 +51,6 @@ body {
     width: 100vw;
     color: var(--main-color);
     background-color: var(--main-bg-color);
-    font-family: 'Lato', Arial, sans-serif;
 }
 
 img {
@@ -73,13 +73,17 @@ button {
 
 a {
     color: var(--link-default-color);
-    text-decoration: none;
 }
 
 h1 {
     margin-bottom: 0.1em;
     font-weight: 300;
     font-size: 2.75rem;
+}
+
+h2 {
+    margin-bottom: 0.1em;
+    font-weight: 300;
 }
 
 p {
@@ -143,4 +147,12 @@ address {
     background-color: var(--white);
     color: var(--black);
     padding: 2em;
+}
+
+.landing-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
