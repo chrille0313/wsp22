@@ -43,7 +43,7 @@ post('/users') do
 
     p success, responseMsg
 
-    if successs
+    if success
         authenticate_user(username, password)
         redirect('/')
     else
