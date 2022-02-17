@@ -507,4 +507,48 @@ nav .user-links > *:hover::before {
 .auth-form #need-account, .auth-form #already-have-account {
   font-weight: 600;
 }
+
+#alert-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 450px;
+  padding: 1rem;
+  background: none;
+  z-index: 1000;
+}
+
+#alert-container .alert {
+  width: 100%;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 1rem 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 1rem 5px rgba(0, 0, 0, 0.1);
+  background: var(--white);
+}
+
+#alert-container .alert p {
+  margin: 0;
+}
+
+#alert-container .success::before {
+  background-color: #51c451;
+}
+
+#alert-container .warning::before {
+  background-color: #fcfc00;
+}
+
+#alert-container .error::before {
+  background-color: #ff4d4d;
+}
 /*# sourceMappingURL=style.css.map */
