@@ -10,9 +10,26 @@ html lang="en"
     title AnyFan
   body
     div#alert-container
-        div class="alert success" 
+        div class="alert info"
+            span class="icon material-icons-outlined" info
             p This is a test notification.
-            a href="" &#10006 
+            button href="" class="material-icons-outlined" close
+
+        div class="alert success"
+            span class="icon material-icons-outlined" check_circle
+            p This is a test notification.
+            button href="" class="material-icons-outlined" close
+        
+        div class="alert warning"
+            span class="icon material-icons-outlined" error_outline
+            p This is a test notification.
+            button href="" class="material-icons-outlined" close
+
+        div class="alert error"
+            span class="icon material-icons-outlined" cancel
+            p This is a test notification.
+            button href="" class="material-icons-outlined" close
+
     nav
         ul.nav-items
             li
@@ -29,7 +46,7 @@ html lang="en"
 
         ul.user-links
             li
-                a href="/cart" 
+                a href="/cart"
                     span class="material-icons-outlined" shopping_cart
             
             - if session[:userId] == nil
@@ -48,5 +65,5 @@ html lang="en"
                         span class="material-icons-outlined" logout
 
     ==yield
-  
+
   script src="https://kit.fontawesome.com/558fbe7dee.js" crossorigin="anonymous"
