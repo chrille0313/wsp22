@@ -91,9 +91,13 @@ get('/error/:id') do
         404 => 'Page not found :('
     }
 
-    errorId = params['id'].to_i
-    errorMsg = errors[errorId]
-
+    if params[:id].to_i.to_s == params[:id] and errors.has_key?(params[:id].to_i)
+        errorId = params[:id].to_i.to_s == params[:id] ? params[:id].to_i : 404
+        errorMsg = errors[errorId]
+    else
+        redirect('/error/404')
+    end
+    
     slim(:error, locals: {errorId: errorId, errorMsg: errorMsg})
 end
 
