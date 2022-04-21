@@ -1,3 +1,9 @@
+ROLES = { 
+    admin: 0,
+    customer: 1,
+ }
+
+
 def connect_to_db(name, rootDir="db")
     db = SQLite3::Database.new("#{rootDir}/#{name}.db")
     db.results_as_hash = true
@@ -5,7 +11,6 @@ def connect_to_db(name, rootDir="db")
 end
 
 
-# FIXME - Check if it's possible to sql-inject with this
 def is_unique(db, table, attribute, check)
     query = "SELECT * FROM #{table} WHERE #{attribute} = ?"
     result = db.execute(query, check)
@@ -13,9 +18,29 @@ def is_unique(db, table, attribute, check)
 end
 
 
-# TODO - Implement valid password check
+def is_empty(str)
+    return str.length == 0
+end
+
+
+def is_int_string(str)
+    return str.to_i.to_s == str
+end
+
+def combine_urls(*urls)
+    return urls.join('|')
+end
+
+
 def password_is_strong(password)
-    return true
+    # ^                 Start anchor
+    # (?=.*[A-Z])       Ensure string has one uppcercase letter.
+    # (?=.*[!@#$&*])    Ensure string has one special case letter.
+    # (?=.*[0-9])       Ensure string has one digit.
+    # (?=.*[a-z])       Ensure string has three lowercase letters.
+    # (?=.{8,})         Ensure string has atleast 8 characters.
+
+    return password.match("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})")
 end
 
 
@@ -76,6 +101,7 @@ def authenticate_user(username, password)
     db = connect_to_db("database")
     result = db.execute("SELECT * FROM accounts WHERE username = ?", username).first
 
+    # TODO: 
     if result == nil
         return [false, "Username doesn't exist!"]
     elsif BCrypt::Password.new(result["password"]) != password
@@ -83,4 +109,28 @@ def authenticate_user(username, password)
     else
         return [true, result["id"]]
     end
+end
+
+
+def get_account(id, database)
+    db = connect_to_db(database)
+    return db.query("SELECT * FROM accounts WHERE id = ?", id).first
+end
+
+
+def get_customer(account_id, database)
+    db = connect_to_db(database)
+    return db.query("SELECT * FROM customers WHERE account_id = ?", account_id).first
+end
+
+
+def make_notification(type, message)
+    alertIcons = {
+        "info" => "info",
+        "success" => "check_circle",
+        "warning" => "error_outline",
+        "error" => "cancel"
+    }
+
+    return {type: type, message: message, icon: alertIcons[type]}
 end

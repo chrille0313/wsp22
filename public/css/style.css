@@ -609,4 +609,10 @@ nav .user-links > *:hover::before {
 #alert-container .error::before {
   background-color: var(--error-color);
 }
+
+.fadeOut {
+  opacity: 0;
+  -webkit-transition: opacity 1.75s ease;
+  transition: opacity 1.75s ease;
+}
 /*# sourceMappingURL=style.css.map */
