@@ -38,7 +38,6 @@ get('/')  do
 end
 
 
-
 # USERS
 
 before(combine_urls('/login', '/users/new')) do
@@ -49,7 +48,7 @@ before(combine_urls('/login', '/users/new')) do
 end
 
 before("/users/:id") do
-    if params[:id].to_i.to_s == params[:id] && params[:id].to_i != session[:userId].to_i
+    if string_is_int(params[:id]) && params[:id].to_i != session[:userId]
         redirect("/error/401")
     end
 end
@@ -142,7 +141,7 @@ get('/error/:id') do
     }
 
     if errors.has_key?(params[:id].to_i)
-        errorId = params[:id].to_i.to_s == params[:id] ? params[:id].to_i : 404
+        errorId = string_is_int(params[:id]) ? params[:id].to_i : 404
         errorMsg = errors[errorId]
     else
         redirect('/error/404')
@@ -150,7 +149,6 @@ get('/error/:id') do
     
     slim(:error, locals: {errorId: errorId, errorMsg: errorMsg})
 end
-
 
 not_found do
     redirect('/error/404')

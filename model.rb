@@ -23,7 +23,7 @@ def is_empty(str)
 end
 
 
-def is_int_string(str)
+def string_is_int(str)
     return str.to_i.to_s == str
 end
 
