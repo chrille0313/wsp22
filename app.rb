@@ -118,6 +118,12 @@ post('/login') do
     end
 end
 
+before('/logout') do
+    if session[:userId] == nil
+        redirect('/')
+    end
+end
+
 get('/logout') do
     session[:userId] = nil
     session[:alerts] = [make_notification("success", "Successfully logged out!")]
