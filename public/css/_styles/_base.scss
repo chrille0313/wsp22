@@ -116,6 +116,16 @@ address {
     flex-direction: column;
 }
 
+.center-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.center-vertical {
+    display: flex;
+    align-items: center;
+}
+
 @keyframes wave {
     0% {
         background-position: 0;

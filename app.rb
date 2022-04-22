@@ -8,7 +8,9 @@ enable :sessions
 
 
 helpers do 
-
+    def is_authenticated()
+        return session[:userId] != nil
+    end
 end
 
 
@@ -23,6 +25,12 @@ before do
     end
 
     session[:last_alerts] = session[:alerts]
+end
+
+before('/cart') do
+    if !authenticated()
+        redirect('/login')
+    end
 end
 
 after do
@@ -41,14 +49,17 @@ end
 # USERS
 
 before(combine_urls('/login', '/users/new')) do
-    userId = session[:userId]
-    if userId != nil
-        redirect("/users/#{userId}")
+    if is_authenticated()
+        redirect("/users/#{session[:userId]}")
     end
 end
 
-before("/users/:id") do
-    if string_is_int(params[:id]) && params[:id].to_i != session[:userId]
+before('/users/:id*') do
+    if params[:id] == "new"
+        return
+    end
+    
+    if (string_is_int(params[:id]) && params[:id].to_i != session[:userId]) || !is_authenticated()
         redirect("/error/401")
     end
 end
@@ -119,7 +130,7 @@ post('/login') do
 end
 
 before('/logout') do
-    if session[:userId] == nil
+    if !is_authenticated()
         redirect('/')
     end
 end
@@ -129,6 +140,17 @@ get('/logout') do
     session[:alerts] = [make_notification("success", "Successfully logged out!")]
     redirect('/')
 end
+
+
+# CART
+=begin
+get('/cart') do
+    # cart = get_cart(session[:userId], "database")
+    # items = get_cart_items(cart["id"], "database")
+
+    slim(:'cart/index') #, locals:{ cart: cart, items: items })
+end
+=end
 
 
 # PRODUCTS
@@ -143,7 +165,8 @@ end
 get('/error/:id') do
     errors = {
         401 => 'Unauthorized access.',
-        404 => 'Page not found :('
+        404 => 'Page not found :(',
+        500 => 'Internal server error.'
     }
 
     if errors.has_key?(params[:id].to_i)
@@ -159,3 +182,26 @@ end
 not_found do
     redirect('/error/404')
 end
+
+
+
+=begin
+
+
+after("*") do
+    p "after"
+    p session[:next]
+    if session[:next][-1] != nil
+        url = session[:next].pop()
+        redirect(url)
+    end
+end
+
+
+get('/')  do
+    session[:next] = []
+    slim(:index)
+end
+
+
+=end
