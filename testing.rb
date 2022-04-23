@@ -1,2 +1,6 @@
 
-p "401/asdiojasdoiajsd".to_i
+x = nil
+
+if x
+    p "aoinaosd"
+end
