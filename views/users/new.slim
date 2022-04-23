@@ -4,32 +4,53 @@ main class="center-horizontal"
 
         section.adjacent
             section class="form-field"
-                input id="fname" type="text" name="fname" placeholder="First Name" required="" /
+                - if session[:auto_fill] == nil
+                    input id="fname" type="text" name="fname" placeholder="First Name" required="" /
+                - else
+                    input id="fname" type="text" name="fname" placeholder="First Name" value="#{session[:auto_fill][:fname]}" required="" /
                 h4.input-hint First Name *
 
             section class="form-field"
-                input id="lname" type="text" name="lname" placeholder="Last Name" required="" /
+                - if session[:auto_fill] == nil
+                    input id="lname" type="text" name="lname" placeholder="Last Name" required="" /
+                - else
+                    input id="lname" type="text" name="lname" placeholder="Last Name" value="#{session[:auto_fill][:lname]}" required="" /
                 h4.input-hint Last Name *
 
         section class="form-field"
-            input id="email" type="email" name="email" placeholder="E-mail address" required="" /
+            - if session[:auto_fill] == nil
+                input id="email" type="email" name="email" placeholder="E-mail address" required="" /
+            - else
+                input id="email" type="email" name="email" placeholder="E-mail address" value="#{session[:auto_fill][:email]}" required="" /
             h4.input-hint E-mail *
 
         section class="form-field"
-            input id="address" type="text" name="address" placeholder="Address" required="" /
+            - if session[:auto_fill] == nil
+                input id="address" type="text" name="address" placeholder="Address" required="" /
+            - else
+                input id="address" type="text" name="address" placeholder="Address" value="#{session[:auto_fill][:address]}" required="" /
             h4.input-hint Address *
 
         section.adjacent
             section class="form-field"
-                input id="city" type="text" name="city" placeholder="City" required="" /
+                - if session[:auto_fill] == nil
+                    input id="city" type="text" name="city" placeholder="City" required="" /
+                - else
+                    input id="city" type="text" name="city" placeholder="City" value="#{session[:auto_fill][:city]}" required="" /
                 h4.input-hint City *
 
             section class="form-field"
-                input id="postal-code" type="number" name="postal-code" placeholder="Postal code" required="" /
+                - if session[:auto_fill] == nil
+                    input id="postal-code" type="number" name="postal-code" placeholder="Postal code" required="" /
+                - else
+                    input id="postal-code" type="number" name="postal-code" placeholder="Postal code" value="#{session[:auto_fill][:postalCode]}" required="" /
                 h4.input-hint Postal Code *
 
         section class="form-field"
-            input id="username" type="text" name="username" placeholder="Username " required="" /
+            - if session[:auto_fill] == nil
+                input id="username" type="text" name="username" placeholder="Username" required="" /
+            - else
+                input id="username" type="text" name="username" placeholder="Username" value="#{session[:auto_fill][:username]}" required="" /
             h4.input-hint Username *
 
         section.adjacent

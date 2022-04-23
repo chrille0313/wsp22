@@ -59,28 +59,15 @@ before('/users/:id*') do
         return
     end
     
-    if (string_is_int(params[:id]) && params[:id].to_i != session[:userId]) || !is_authenticated()
+    if !is_authenticated()
+        redirect("/login")
+    elsif (string_is_int(params[:id]) && params[:id].to_i != session[:userId])
         redirect("/error/401")
     end
 end
 
 get('/users/new') do
     slim(:'users/new')
-end
-
-get('/users/:id') do
-    id = params[:id].to_i
-    account = get_account(id, "database")
-    role = account["role"]
-
-    if role == ROLES[:admin]
-        data = { fname: account["username"], role: role }
-    elsif role == ROLES[:customer]
-        data = get_customer(account["id"], "database")
-        data[:role] = role
-    end
-    
-    slim(:'users/show', locals:{ user: data })
 end
 
 post('/users') do
@@ -95,18 +82,57 @@ post('/users') do
     city = params[:city]
     postalCode = params[:'postal-code']
 
-    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+    session[:auto_fill] = {
+        username: username,
+        fname: fname,
+        lname: lname,
+        email: email,
+        address: address,
+        city: city,
+        postalCode: postalCode
+    }
 
-    p success, responseMsg
+    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
 
     if success
         authenticate_user(username, password)
         session[:alerts] = [make_notification("success", responseMsg)]
+        session[:auto_fill] = nil
         redirect('/')
     else
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect('/users/new')
     end
+end
+
+get('/users/:id') do
+    id = params[:id].to_i
+    account = get_account(id, "database")
+
+    data = {account: account}
+
+    if account["role"] == ROLES[:customer]
+        data[:user] = get_customer(account["id"], "database")
+    end
+    
+    slim(:'users/show', locals: data)
+end
+
+get('/users/:id/edit') do
+    accountId = params[:id].to_i
+    account = get_account(accountId, "database")
+
+    data = {account: account}
+
+    if account[:role] == ROLES[:customer]
+        data[:user] = get_customer(accountId, "database")
+    end
+
+    slim(:'users/edit', locals: data)
+end
+
+post('/users/:id/update') do
+
 end
 
 get('/login') do

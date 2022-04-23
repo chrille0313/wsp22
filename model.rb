@@ -27,8 +27,21 @@ def string_is_int(str)
     return str.to_i.to_s == str
 end
 
+
 def combine_urls(*urls)
     return urls.join('|')
+end
+
+
+def make_notification(type, message)
+    alertIcons = {
+        "info" => "info",
+        "success" => "check_circle",
+        "warning" => "error_outline",
+        "error" => "cancel"
+    }
+
+    return {type: type, message: message, icon: alertIcons[type]}
 end
 
 
@@ -44,12 +57,16 @@ def password_is_strong(password)
 end
 
 
-def can_register_account(db, username, password, confirmPassword) 
-    if password != confirmPassword
+def check_account_credentials(db, credentials)
+    if credentials[:username] == ""
+        return [false, "No username provided"]
+    elsif credentials[:password] == ""
+        return [false, "No password provided!"]
+    elsif credentials[:password] != credentials[:confirm_password]
         return [false, "Passwords didn't match!"]
-    elsif not password_is_strong(password)
+    elsif not password_is_strong(credentials[:password])
         return [false, "Password is too weak!"]
-    elsif not is_unique(db, "accounts", "username", username)
+    elsif not is_unique(db, "accounts", "username", credentials[:username])
         return [false, "Username already taken!"]
     else
         return [true, "Account creation possible."]
@@ -65,8 +82,26 @@ def register_account(db, username, password, admin=false)
 end
 
 
-def can_register_customer(db, email)
-    if not is_unique(db, "customers", "email", email)
+def check_customer_credentials(db, credentials)
+    empty = ""
+    
+    if credentials[:fname] == ""
+        empty = "first name"]
+    elsif credentials[:lname] == ""
+        empty = "last name"
+    elsif credentials[:email] == ""
+        empty = "email"
+    elsif credentials[:address] == ""
+        empty = "address"
+    elsif credentials[:city] == ""
+        empty = "city"
+    elsif credentials[:postal_code] == ""
+        empty = "postal code"
+    end
+    
+    if empty != ""
+        return [false, "No #{empty} provided!"]
+    elsif not is_unique(db, "customers", "email", credentials[:email])
         return [false, "E-mail already in use!"]
     else
         return [true, "Customer creation possible."]
@@ -81,13 +116,13 @@ end
 
 def register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
     db = connect_to_db("database")
-    accountSuccess, accountMsg = can_register_account(db, username, password, confirmPassword)
-    customerSuccess, customerMsg = can_register_customer(db, email)
+    accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword})
+    customerSuccess, customerMsg = check_customer_credentials(db, {fname: fname, lname: lname, email: email, address: address, city: city, postal_code: postalCode})
     
     if not accountSuccess
         return accountSuccess, accountMsg
     elsif not customerSuccess
-        return  customerSuccess, customerMsg
+        return customerSuccess, customerMsg
     end
 
     accountId = register_account(db, username, password)
@@ -121,16 +156,4 @@ end
 def get_customer(account_id, database)
     db = connect_to_db(database)
     return db.query("SELECT * FROM customers WHERE account_id = ?", account_id).first
-end
-
-
-def make_notification(type, message)
-    alertIcons = {
-        "info" => "info",
-        "success" => "check_circle",
-        "warning" => "error_outline",
-        "error" => "cancel"
-    }
-
-    return {type: type, message: message, icon: alertIcons[type]}
 end
