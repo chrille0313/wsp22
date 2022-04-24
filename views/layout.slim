@@ -35,7 +35,7 @@ html lang="en"
                 a href="/cart"
                     span class="material-icons-outlined" shopping_cart
             
-            - if session[:userId] == nil
+            - if !is_authenticated()
                 li
                     a href="/login"
                         span class="material-icons-outlined" person_outline
