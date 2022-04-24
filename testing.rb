@@ -1,6 +1,6 @@
 
-x = nil
+x = 0
 
-if x
+if 0
     p "aoinaosd"
 end
