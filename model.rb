@@ -10,7 +10,6 @@ def connect_to_db(name, rootDir="db")
     return db
 end
 
-
 def count_db(db, table, attribute, check)
     query = "SELECT * FROM #{table} WHERE #{attribute} = ?"
     result = db.execute(query, check)
@@ -21,21 +20,13 @@ def is_unique(db, table, attribute, check)
     return count_db(db, table, attribute, check) == 0
 end
 
-
-def is_empty(str)
-    return str.length == 0
-end
-
-
 def string_is_int(str)
     return str.to_i.to_s == str
 end
 
-
 def combine_urls(*urls)
     return urls.join('|')
 end
-
 
 def make_notification(type, message)
     alertIcons = {
@@ -48,7 +39,6 @@ def make_notification(type, message)
     return {type: type, message: message, icon: alertIcons[type]}
 end
 
-
 def password_is_strong(password)
     # ^                 Start anchor
     # (?=.*[a-z])       Ensure string has one lowercase letter.
@@ -60,17 +50,20 @@ def password_is_strong(password)
     return password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})/)
 end
 
-
 def email_is_valid(email)
     return email.match(/([-!#-'*+-9=?A-Z^-~]+(\.[-!#-'*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/)
+end
+
+def is_empty(str)
+    return str.match(/^.*[^\s].*$/)
 end
 
 
 # TODO: limit lengths
 def check_account_credentials(db, credentials, updating=false)
-    if credentials[:username] == ""
+    if is_empty(credentials[:username])
         return [false, "No username provided"]
-    elsif credentials[:password] == "" and not updating
+    elsif is_empty(credentials[:password]) and not updating
         return [false, "No password provided!"]
     elsif credentials[:password] != credentials[:confirm_password]
         return [false, "Passwords didn't match!"]
@@ -102,17 +95,17 @@ end
 def check_customer_credentials(db, credentials, updating=false)
     empty = ""
     
-    if credentials[:fname] == ""
+    if is_empty(credentials[:fname])
         empty = "first name"
-    elsif credentials[:lname] == ""
+    elsif is_empty(credentials[:lname])
         empty = "last name"
-    elsif credentials[:email] == ""
+    elsif is_empty(credentials[:email])
         empty = "email"
-    elsif credentials[:address] == ""
+    elsif is_empty(credentials[:address])
         empty = "address"
-    elsif credentials[:city] == ""
+    elsif is_empty(credentials[:city])
         empty = "city"
-    elsif credentials[:postal_code] == ""
+    elsif is_empty(credentials[:postal_code])
         empty = "postal code"
     end
     
@@ -212,11 +205,14 @@ def delete_user(accountId)
 
     role = db.execute('SELECT role FROM accounts WHERE id = ?', accountId).first["role"]
 
-    db.execute('DELETE FROM accounts WHERE id = ?', accountId)
-
     if role == ROLES[:customer]
+        db.execute('DELETE FROM reviews WHERE customer_id = (SELECT id FROM customers WHERE account_id = ?)', accountId)
+        db.execute('DELETE FROM likes WHERE customer_id = (SELECT id FROM customers WHERE account_id = ?)', accountId)
+        db.execute('DELETE FROM carts WHERE customer_id = (SELECT id FROM customers WHERE account_id = ?)', accountId)
         db.execute('DELETE FROM customers WHERE account_id = ?', accountId)
     end
+    
+    db.execute('DELETE FROM accounts WHERE id = ?', accountId)
 
     return [true, "User successfully deleted!"]
 end
