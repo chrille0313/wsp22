@@ -78,7 +78,7 @@ def check_account_credentials(db, credentials, updating=false)
         return [false, "Password is too weak!"]
     elsif not is_unique(db, "accounts", "username", credentials[:username])
         if updating
-            accountId = db.execute('SELECT id FROM accounts WHERE username = ?', credentials[:username]).first
+            accountId = db.execute('SELECT id FROM accounts WHERE username = ?', credentials[:username]).first["id"]
             wrongId = accountId != credentials[:account_id]
         end
 
