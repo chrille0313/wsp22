@@ -7,15 +7,11 @@ require_relative 'model.rb'
 enable :sessions
 
 
-helpers do 
+helpers do
     def is_authenticated()
         return session[:userId] != nil
     end
 end
-
-
-# TODO - Add before-blocks to authenticate users before certain routes
-# TODO - Add after-blocks to check for redirects 
 
 
 before do
@@ -122,18 +118,70 @@ get('/users/:id/edit') do
     accountId = params[:id].to_i
     account = get_account(accountId, "database")
 
+
     data = {account: account}
 
-    if account[:role] == ROLES[:customer]
+    if account["role"].to_i == ROLES[:customer]
         data[:user] = get_customer(accountId, "database")
     end
-
+    
     slim(:'users/edit', locals: data)
 end
 
+# TODO: In htlm, use auto-fill to fill in the form
 post('/users/:id/update') do
+    id = params[:id].to_i
+    username = params[:username]
+    password = params[:password]
+    confirmPassword = params[:'confirm-password']
 
+    fname = params[:fname]
+    lname = params[:lname]
+    email = params[:email]
+    address = params[:address]
+    city = params[:city]
+    postalCode = params[:'postal-code']
+
+    session[:auto_fill] = {
+        username: username,
+        fname: fname,
+        lname: lname,
+        email: email,
+        address: address,
+        city: city,
+        postalCode: postalCode
+    }
+
+    success, responseMsg = update_user(id, username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+
+    if success
+        session[:alerts] = [make_notification("success", responseMsg)]
+        session[:auto_fill] = nil
+    else
+        session[:alerts] = [make_notification("error", responseMsg)]
+    end
+
+    redirect("/users/#{id}/edit")
 end
+
+
+get('/users/:id/delete') do
+    accountId = params[:id].to_i
+    success, responseMsg = delete_user(accountId)
+
+    puts "deleted user"
+
+    if success
+        session[:alerts] = [make_notification("success", responseMsg)]
+        puts "success"
+        redirect("/logout")
+    else
+        session[:alerts] = [make_notification("error", responseMsg)]
+        puts "error"
+        redirect("/users/#{id}/edit")
+    end
+end
+
 
 get('/login') do
     slim(:login)

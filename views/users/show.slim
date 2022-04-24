@@ -1,14 +1,11 @@
 // TODO - Add user profile
+== slim :"users/layout", locals: locals
+    - if account["role"] == ROLES[:admin]
+        h2 Hello, #{account["username"]}!
+    - else
+        h2 Hello, #{user["fname"]}!
 
-aside
-    ul 
-
-- if account["role"] == ROLES[:admin]
-    h2 Hello, #{account["username"]}!
-- else
-    h2 Hello, #{user["fname"]}!
-
-h2 Order history
+    h2 Order history
 
 
-h2 Your liked products
+    h2 Your liked products

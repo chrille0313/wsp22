@@ -1,1 +1,81 @@
-h1 #{account["id"]}
+== slim :"users/layout", locals: locals
+    div class="center-horizontal"
+        form action="/users/#{account["id"]}/update" method="POST" class="auth-form"
+            header Account Details
+
+            - if account["role"] == ROLES[:admin]
+                section class="form-field"
+                    input id="username" type="text" name="username" placeholder="Username" value="#{account["username"]}" required="" /
+                    h4.input-hint Username *
+
+                section.adjacent
+                    section class="form-field"
+                        input id="password" type="password" name="password" placeholder="Password" required="" /
+                        h4.input-hint Password *
+
+                    section class="form-field"
+                        input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm password" required="" /
+                        h4.input-hint Confirm Password *
+
+            - else
+                section.adjacent
+                    section class="form-field"
+                        input id="fname" type="text" name="fname" placeholder="First Name" value="#{user["fname"]}" required="" /
+                        h4.input-hint First Name *
+
+                    section class="form-field"
+                        input id="lname" type="text" name="lname" placeholder="Last Name" value="#{user["lname"]}" required="" /
+                        h4.input-hint Last Name *
+
+                section class="form-field"
+                    input id="email" type="email" name="email" placeholder="E-mail address" value="#{user["email"]}" required="" /
+                    h4.input-hint E-mail *
+
+                section class="form-field"
+                    input id="address" type="text" name="address" placeholder="Address" value="#{user["address"]}" required="" /
+                    h4.input-hint Address *
+
+                section.adjacent
+                    section class="form-field"
+                        input id="city" type="text" name="city" placeholder="City" value="#{user["city"]}" required="" /
+                        h4.input-hint City *
+
+                    section class="form-field"
+                        input id="postal-code" type="number" name="postal-code" placeholder="Postal code" value="#{user["postal_code"]}" required="" /
+                        h4.input-hint Postal Code *
+
+                section class="form-field"
+                    input id="username" type="text" name="username" placeholder="Username" value="#{account["username"]}" required="" /
+                    h4.input-hint Username *
+
+                section.adjacent
+                    section class="form-field"
+                        input id="password" type="password" name="password" placeholder="Password" /
+                        h4.input-hint Password *
+
+                    section class="form-field"
+                        input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm password" /
+                        h4.input-hint Confirm Password *
+
+                section.adjacent
+                    section class="form-button"
+                        span
+                            input type="submit" value="Save Changes"
+
+                    section class="form-button"
+                        span
+                            button type="button" class="popup-trigger" Delete Account
+
+    div.popup
+        form class="popup-content" action="/users/#{account["id"]}/delete" method="POST"
+            h2 Are you sure?
+            p Are you sure you want to delete your account?
+            p This action cannot be undone.
+            section.adjacent
+                section.button
+                    span
+                        button type="submit" Delete Account
+
+                section.button
+                    span
+                        button type="button" class="popup-close" Cancel

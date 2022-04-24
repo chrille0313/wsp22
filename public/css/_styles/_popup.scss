@@ -1,0 +1,129 @@
+.popup {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    visibility: hidden;
+    opacity: 0;
+
+    background-color: rgba(0, 0, 0, 0.75);
+
+    transition: all 0.25s ease;
+
+    .popup-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+        padding: 3rem;
+        
+        color: var(--white);
+        text-shadow: 0 0 1px var(--black);
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+
+        transition: all 0.25s ease;
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .adjacent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .button {
+            width: 100%;
+            position: relative;
+            flex: 1;
+    
+            &::after, &::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                width: 50%;
+                height: 100%;
+                background-color: var(--white);
+                z-index: -1;
+                transform: scaleX(0);
+                transition: transform 0.5s ease;
+            }
+    
+            &::before {
+                left: 0;
+                transform-origin: left;
+            }
+    
+            &::after{
+                right: 0;
+                transform-origin: right;
+            }
+    
+            &:hover, &:active, &:focus, &:focus-visible {
+                & * {
+                    color: var(--black);
+                }
+                
+                &::before {
+                    transform: scaleX(1);
+                    transform-origin: right;
+                }
+        
+                &::after {
+                    transform: scaleX(1);
+                    transform-origin: left;
+                }
+            }
+    
+            button {
+                width: 100%;
+                padding: 1rem;
+                
+                position: relative;
+    
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--white);
+                text-transform: uppercase;
+                border: 1px solid var(--white);
+                background: none;
+                outline: none;
+            }
+    
+        }
+    }
+}
+
+
+
+.popup.visible {
+    visibility: visible;
+    opacity: 1;
+
+    .popup-content {
+        visibility: visible;
+        opacity: 1;
+    }
+}
