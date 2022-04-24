@@ -11,16 +11,41 @@ helpers do
     def is_authenticated()
         return session[:userId] != nil
     end
+
+    def log_time()
+        session[:rate_limit] = Time.now.to_i
+    end
+
+    def is_rate_limited(diff)
+        return Time.now.to_i - session[:rate_limit] < diff
+    end
 end
 
 
 before do
     # Alerts
-    if not session[:alerts]
+    if session[:alerts] == nil
         session[:alerts] = []
     end
 
+    if session[:rate_limit] == nil
+        log_time()
+    end
+
     session[:last_alerts] = session[:alerts]
+end
+
+["/login", "/users", "/users/:id/update"].each do |path|
+    before(path) do
+        if request.request_method == "POST"
+            if is_rate_limited(3)
+                session[:alerts] = [make_notification("error", "You're doing that too much. Try again in a few seconds.")]
+                redirect("/users/#{params[:id]}")
+            end
+
+            log_time()
+        end
+    end
 end
 
 before('/cart') do
