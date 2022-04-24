@@ -190,19 +190,15 @@ post('/users/:id/update') do
 end
 
 
-get('/users/:id/delete') do
+post('/users/:id/delete') do
     accountId = params[:id].to_i
     success, responseMsg = delete_user(accountId)
 
-    puts "deleted user"
-
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
-        puts "success"
         redirect("/logout")
     else
         session[:alerts] = [make_notification("error", responseMsg)]
-        puts "error"
         redirect("/users/#{id}/edit")
     end
 end
