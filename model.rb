@@ -47,15 +47,15 @@ def password_is_strong(password)
     # (?=.*[!@#$&*_])   Ensure string has one special case letter.
     # (?=.{8,})         Ensure string has atleast 8 characters.
 
-    return password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})/)
+    return (password =~ /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})/) != nil
 end
 
 def email_is_valid(email)
-    return email.match(/([-!#-'*+-9=?A-Z^-~]+(\.[-!#-'*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/)
+    return (email =~ /([-!#-'*+-9=?A-Z^-~]+(\.[-!#-'*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/) != nil
 end
 
 def is_empty(str)
-    return str.match(/^.*[^\s].*$/)
+    return (str =~ /^.*[^\s].*$/) == nil
 end
 
 
