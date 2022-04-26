@@ -18,6 +18,6 @@ def is_empty(str)
 end
 
 
-x = "    "
-
-p is_empty(x)
+if 2
+    p " asda"
+end
