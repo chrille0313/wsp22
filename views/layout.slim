@@ -9,7 +9,7 @@ html lang="en"
 
     title AnyFan
   body
-    div#alert-container
+    div id="alert-container"
         - session[:alerts].each do |alert|
             div class="alert #{alert[:type]}"
                 span class="icon material-icons-outlined" #{alert[:icon]}
@@ -27,8 +27,8 @@ html lang="en"
             li
                 a href="/#contact" Contact
 
-        a#nav-logo-container href="/"
-            img#nav-logo src="/img/logo/logo.png" alt="Logo"
+        a id="nav-logo-container" href="/"
+            img id="nav-logo" src="/img/logo/logo.png" alt="Logo"
 
         ul.user-links
             - if is_authenticated()

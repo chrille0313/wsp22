@@ -2,14 +2,17 @@ div class="profile-container"
     aside class="profile-links-container"
         h2 Your Account
         ul 
-            li 
-                a href='/users/#{account["id"]}' Overview
+            - if !is_admin(get_user_role(account["id"]))
+                li 
+                    a href='/users/#{account["id"]}' Overview
             li 
                 a href='/users/#{account["id"]}/edit' Account Details
-            li 
-                a href='/users/#{account["id"]}/orders' Orders
-            li 
-                a href='/users/#{account["id"]}/likes' Liked Products
+            
+            - if !is_admin(get_user_role(account["id"]))
+                li 
+                    a href='/users/#{account["id"]}/orders' Orders
+                li 
+                    a href='/users/#{account["id"]}/likes' Liked Products
 
     div.divider
 

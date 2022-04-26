@@ -57,14 +57,14 @@
                         input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm password" /
                         h4.input-hint Confirm Password *
 
-                section.adjacent
-                    section class="form-button"
-                        span
-                            input type="submit" value="Save Changes"
+            section.adjacent
+                section class="form-button"
+                    span
+                        input type="submit" value="Save Changes"
 
-                    section class="form-button"
-                        span
-                            button type="button" class="popup-trigger" Delete Account
+                section class="form-button"
+                    span
+                        button type="button" class="popup-trigger" Delete Account
 
     div.popup
         form class="popup-content" action="/users/#{account["id"]}/delete" method="POST"

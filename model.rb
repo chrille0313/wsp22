@@ -65,7 +65,7 @@ def check_account_credentials(db, credentials, updating=false)
         return [false, "No username provided"]
     elsif is_empty(credentials[:password]) and not updating
         return [false, "No password provided!"]
-    elsif is_empty(credentials[:role]) or !string_is_int(credentials[:role]) or ROLES.has_value?(credentials[:role].to_i)
+    elsif is_empty(credentials[:role]) or !string_is_int(credentials[:role]) or !ROLES.has_value?(credentials[:role].to_i)
         return [false, "Invalid role provided!"]
     elsif credentials[:password] != credentials[:confirm_password]
         return [false, "Passwords didn't match!"]
@@ -139,21 +139,23 @@ def register_user(username, password, confirmPassword, fname, lname, email, addr
     db = connect_to_db("database")
     accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword, role: role})
     
-    if role != ROLES[:admin]
+    if not accountSuccess
+        return accountSuccess, accountMsg
+    end
+
+    if role.to_i != ROLES[:admin]
         customerSuccess, customerMsg = check_customer_credentials(db, {fname: fname, lname: lname, email: email, address: address, city: city, postal_code: postalCode})
     else
         customerSuccess = true
     end
 
-    if not accountSuccess
-        return accountSuccess, accountMsg
-    elsif not customerSuccess
+    if not customerSuccess
         return customerSuccess, customerMsg
     end
 
     accountId = register_account(db, username, password, role.to_i)
 
-    if role != ROLES[:admin]
+    if role.to_i != ROLES[:admin]
         register_customer(db, accountId, fname, lname, email, address, city, postalCode)
     end
 
@@ -245,3 +247,52 @@ def get_users(database)
     customers = db.execute("SELECT * from accounts INNER JOIN customers ON accounts.id = customers.account_id")
     return {admins: admins, customers: customers}
 end
+
+
+def get_user_role(accountId)
+    db = connect_to_db("database")
+    return db.execute("SELECT role FROM accounts WHERE id = ?", accountId).first["role"].to_i
+end
+
+
+def check_product_credentials(credentials, updating=false)
+    if is_empty(credentials[:name])
+        return [false, "Product name cannot be empty!"]
+    elsif is_empty(credentials[:description])
+        return [false, "Product description cannot be empty!"]
+    elsif is_empty(credentials[:price])
+        return [false, "Product price cannot be empty!"]
+    # TODO: Validate image, specifications, price
+    elsif credentials[:image]
+        return [false, "Product image cannot be empty!"]
+    end
+
+    # if image && image[:filename] 
+
+    return [true, "Product creation possible."]
+end
+
+
+def create_product(db, name, description, specifications, image, price)
+    
+    success, msg = check_product_credentials(db, {name: name, description: description, specifications: specifications, price: price, image: image})
+
+    if not success
+        return success, msg
+    end
+
+    filename = image[:filename]
+    file = image[:tempfile]
+    path = "./public/uploads/#{filename}"
+
+    File.open(path, 'wb') do |f|
+        f.write(file.read)
+    end
+
+    db.execute('INSERT INTO products (name, description, specification, image_url, price) VALUES (?, ?, ?, ?, ?)', name, description, specifications, path, price)
+
+
+    return [true, "Product successfully created!"]
+end
+
+

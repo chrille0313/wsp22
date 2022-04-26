@@ -1,0 +1,16 @@
+main 
+    form action="/products" method="POST" enctype="multipart/form-data"
+        - if session[:auto_fill] == nil
+            input type="text" name="name" placeholder="Product name"
+            input type="text" name="desc" placeholder="Product description"
+            input type="text" name="spec" placeholder="Product specification"
+            input type="file" name="image" placeholder="Product image"
+            input type="numeric" name="price" placeholder="Product price"
+        - else
+            input type="text" name="name" placeholder="Product name" value="#{session[:auto_fill][:name]}"
+            input type="text" name="desc" placeholder="Product description" value="#{session[:auto_fill][:desc]}"
+            input type="text" name="spec" placeholder="Product specification" value="#{session[:auto_fill][:spec]}"
+            input type="file" name="image" placeholder="Product image" value="#{session[:auto_fill][:image]}"
+            input type="numeric" name="price" placeholder="Product price" value="#{session[:auto_fill][:price]}"
+            
+        input type="submit" value="Upload"

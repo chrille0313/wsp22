@@ -12,8 +12,8 @@ helpers do
         return session[:userId] != nil
     end
 
-    def is_admin()
-        return session[:userRole] == ROLES[:admin]
+    def is_admin(role=nil)
+        return (role == nil ? session[:userRole] : role) == ROLES[:admin]
     end
 
     def log_time()
@@ -48,13 +48,11 @@ end
             end
 
             log_time()
+        elsif request.request_method == "GET" and request.path_info == "/users"
+            if !is_authenticated() or !is_admin()
+                redirect("/error/401")
+            end
         end
-    end
-end
-
-before('/cart') do
-    if !authenticated()
-        redirect('/login')
     end
 end
 
@@ -75,7 +73,7 @@ end
 
 before(combine_urls('/login', '/users/new')) do
     if is_authenticated()
-        if !(session[:userRole] == ROLES[:admin] && request.path_info == '/users/new')
+        if !(is_admin() && request.path_info == '/users/new')
             redirect("/users/#{session[:userId]}")
         end
     end 
@@ -88,14 +86,13 @@ before('/users/:id*') do
     
     if !is_authenticated()
         redirect("/login")
-    elsif session[:userRole] != ROLES[:admin] && string_is_int(params[:id]) && params[:id].to_i != session[:userId]
+    elsif !is_admin() && string_is_int(params[:id]) && params[:id].to_i != session[:userId]
         redirect("/error/401")
     end
 end
 
 get('/users') do
     users = get_users("database")
-    p users
     slim(:'users/index', locals: {users: users})
 end
 
@@ -108,7 +105,6 @@ post('/users') do
     password = params[:password]
     confirmPassword = params[:'confirm-password']
     role = params[:role]
-    p role
 
     fname = params[:fname]
     lname = params[:lname]
@@ -128,10 +124,13 @@ post('/users') do
         role: role
     }
 
-    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, session[:userRole] == ROLES[:admin] ? role : ROLES[:customer])
+    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, is_admin() ? role : ROLES[:customer])
 
     if success
-        authenticate_user(username, password)
+        if !is_authenticated()
+            authenticate_user(username, password)
+        end
+        
         session[:alerts] = [make_notification("success", responseMsg)]
         session[:auto_fill] = nil
         redirect('/')
@@ -168,7 +167,6 @@ get('/users/:id/edit') do
     slim(:'users/edit', locals: data)
 end
 
-# TODO: In htlm, use auto-fill to fill in the form
 post('/users/:id/update') do
     id = params[:id].to_i
     username = params[:username]
@@ -211,7 +209,10 @@ post('/users/:id/delete') do
 
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
-        redirect("/logout")
+
+        if !is_admin() or session[:userId] == accountId
+            redirect("/logout")
+        end
     else
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect("/users/#{id}/edit")
@@ -287,6 +288,37 @@ get('/products') do
     slim(:'/products/index', locals:{ products: products, categories: ["Category1", "Category2"], brands: ["Brand1", "Brand2"]}, )
 end
 
+get('/products/new') do
+    slim(:'/products/new')
+end
+
+post('/products') do
+    name = params[:name]
+    image = params[:image]
+    price = params[:price]
+    desc = params[:desc]
+    spec = params[:spec]
+
+    success, responseMsg = create_product(name, image, price, desc, spec)
+
+    session[:auto_fill] = {
+        name: name,
+        price: price,
+        desc: desc,
+        spec: spec,
+        image: image
+    }
+
+
+    if success
+        session[:alerts] = [make_notification("success", responseMsg)]
+        session[:auto_fill] = nil
+        redirect('/products')
+    else
+        session[:alerts] = [make_notification("error", responseMsg)]
+        redirect('/products/new')
+    end
+end
 
 # ERRORS
 
@@ -303,7 +335,7 @@ get('/error/:id') do
     else
         redirect('/error/404')
     end
-    
+
     slim(:error, locals: {errorId: errorId, errorMsg: errorMsg})
 end
 

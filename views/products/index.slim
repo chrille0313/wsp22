@@ -81,6 +81,12 @@ main id="product-page-container"
             h3 Loaded #{products.length} products.
 
         section id="product-container"
+            - if is_admin()
+                article class="new-product"
+                    a href="/products/new"
+                        h3 Add
+                        span class="material-icons-outlined" add
+                    
 
             - products.each do |product|
                 article class="product"
@@ -92,3 +98,9 @@ main id="product-page-container"
                             h3.brand #{product["brand"]}
                             h3.name #{product["name"]}
                             p.price #{product["price"]}
+                        /
+                            - if is_authenticated() and is_admin()
+                                a href="/products/#{product["id"]}/edit"
+                                    button class="material-icons-outlined" edit
+                                a href="/products/#{product["id"]}/delete"
+                                    button class="material-icons-outlined" delete
