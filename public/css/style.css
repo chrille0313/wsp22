@@ -1026,7 +1026,7 @@ nav .user-links > *:hover::before {
   outline: 1px solid #e0e0e0;
 }
 
-.product {
+.product > a {
   width: 250px;
   height: 350px;
   display: -webkit-box;
@@ -1039,6 +1039,7 @@ nav .user-links > *:hover::before {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  text-decoration: none;
 }
 
 .product .product-image {

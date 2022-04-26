@@ -84,16 +84,11 @@ main id="product-page-container"
 
             - products.each do |product|
                 article class="product"
-                    div.product-image
-                        img src="#{product["image"]}"
-                    div.rating #{product["rating"]}
-                    div.product-info
-                        h3.brand #{product["brand"]}
-                        h3.name #{product["name"]}
-                        p.price #{product["price"]}
-                    /
-                        p= product.description
-                        p= product.price
-                        p= product.created_at
-                        p= product.updated_at
-                        p= product.id
+                    a href="/products/#{product["id"]}"
+                        div.product-image
+                            img src="/img/products/#{product["id"]}/1.jpg" alt="Product"
+                        div.rating #{product["rating"]}
+                        div.product-info
+                            h3.brand #{product["brand"]}
+                            h3.name #{product["name"]}
+                            p.price #{product["price"]}

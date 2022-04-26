@@ -257,6 +257,7 @@ get('/products') do
     products = []
     10.times do |i|
         products << {
+            "id"=> i,
             "image"=>"src",
             "brand"=>"Brand",
             "name"=>"Product #{i}",
