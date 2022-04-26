@@ -266,7 +266,7 @@ get('/products') do
     end
 
     
-    slim(:'/products/index', locals:{ products: products, categories: ["Category1", "Category2"] })
+    slim(:'/products/index', locals:{ products: products, categories: ["Category1", "Category2"], brands: ["Brand1", "Brand2"]}, )
 end
 
 

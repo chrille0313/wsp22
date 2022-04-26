@@ -54,6 +54,11 @@ main id="product-page-container"
         
         section
             h3 Brand
+            ul
+                - brands.each do |brand|
+                        li
+                            input type="checkbox" name="category" id="#{brand}" value="#{brand}"
+                            label for="#{brand}" #{brand}
 
     div.divider
 
