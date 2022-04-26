@@ -1,1 +1,94 @@
-h2 PRODUCTS
+main id="product-page-container"
+    section id="filter-section"
+        h2 Filters
+
+        section id="price-filter"
+            h3 Price
+            section
+                input type="text" name="min-price" id="min-price" placeholder="$0"
+                span -
+                input type="text" name="max-prince" id="max-price" placeholder="$999"
+
+        section
+            h3 Category
+            ul
+                - categories.each do |category|
+                    li
+                        input type="checkbox" name="category" id="#{category}" value="#{category}"
+                        label for="#{category}" #{category}
+                
+        section id="size-filter"
+            h3 Size
+            ul
+                li
+                    input type="checkbox" name="size" id="small" value="small"
+                    label for="small" Small (S)
+                li
+                    input type="checkbox" name="size" id="medium" value="medium"
+                    label for="medium" Medium (M)
+                li
+                    input type="checkbox" name="size" id="large" value="large"
+                    label for="large" Large (L)
+
+        section id="color-filter"
+            h3 Color
+            ul
+                li
+                    input type="checkbox" name="color" id="white" value="white"
+                    label for="white" White
+                li
+                    input type="checkbox" name="color" id="black" value="black"
+                    label for="black" Black
+                li 
+                    input type="checkbox" name="color" id="gray" value="gray"
+                    label for="gray" Gray
+                li
+                    input type="checkbox" name="color" id="red" value="red"
+                    label for="red" Red
+                li
+                    input type="checkbox" name="color" id="blue" value="blue"
+                    label for="blue" Blue       
+                li
+                    input type="checkbox" name="color" id="green" value="green"
+                    label for="green" Green         
+        
+        section
+            h3 Brand
+
+    div.divider
+
+    section id="product-section"
+        section id="sorting-container"
+            section.search-container
+                input id="search" type="text" placeholder="Search for products"
+
+            section id="sort-by-container"
+                p Sort by:
+                select id="sort-by"
+                    option value="name-ascending" Name (A-Z)
+                    option value="name-descending" Name (Z-A)
+                    option value="price-ascending" Price (Lowest)
+                    option value="price-descending" Price (Highest)
+                    option value="rating-ascending" Rating (Lowest)
+                    option value="rating-descending" Rating (Highest)  
+            
+        section.info
+            h3 Loaded #{products.length} products.
+
+        section id="product-container"
+
+            - products.each do |product|
+                article class="product"
+                    div.product-image
+                        img src="#{product["image"]}"
+                    div.rating #{product["rating"]}
+                    div.product-info
+                        h3.brand #{product["brand"]}
+                        h3.name #{product["name"]}
+                        p.price #{product["price"]}
+                    /
+                        p= product.description
+                        p= product.price
+                        p= product.created_at
+                        p= product.updated_at
+                        p= product.id

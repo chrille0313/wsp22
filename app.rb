@@ -238,20 +238,35 @@ end
 
 
 # CART
-=begin
-get('/cart') do
+
+get('/users/:id/cart') do
     # cart = get_cart(session[:userId], "database")
     # items = get_cart_items(cart["id"], "database")
 
     slim(:'cart/index') #, locals:{ cart: cart, items: items })
 end
-=end
+
 
 
 # PRODUCTS
 
 get('/products') do
-    slim(:'/products/index')
+    products = [{"name"=>"Product 1", "type"=> "type", "price"=>"10.00"}, {"name"=>"Product 1", "type"=> "type", "price"=>"20.00"}]
+
+    # Create a list of 10 products containing the name, type, and price
+    products = []
+    10.times do |i|
+        products << {
+            "image"=>"src",
+            "brand"=>"Brand",
+            "name"=>"Product #{i}",
+            "rating"=>"5",
+            "price"=>"$10.00",
+        }
+    end
+
+    
+    slim(:'/products/index', locals:{ products: products, categories: ["Category1", "Category2"] })
 end
 
 
