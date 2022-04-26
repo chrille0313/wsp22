@@ -1,7 +1,6 @@
 #product-page-container {
-    width: 75%;
-    margin: auto;
-    padding: 2rem;
+    width: 100%;
+    padding: 2rem 12%;
     position: relative;
 
     display: flex;
@@ -10,6 +9,10 @@
     #filter-section {
         display: flex;
         flex-direction: column;
+
+        & > h2 {
+            font-weight: 600;
+        }
 
         & > section > ul {
             padding: 0 0 0 0.5rem;

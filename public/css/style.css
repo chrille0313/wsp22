@@ -854,9 +854,8 @@ nav .user-links > *:hover::before {
 }
 
 #product-page-container {
-  width: 75%;
-  margin: auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 2rem 12%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -872,6 +871,10 @@ nav .user-links > *:hover::before {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+#product-page-container #filter-section > h2 {
+  font-weight: 600;
 }
 
 #product-page-container #filter-section > section > ul {
