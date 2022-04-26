@@ -289,6 +289,8 @@ def create_product(db, name, description, specifications, image, price)
         f.write(file.read)
     end
 
+    # File.delete(path) if File.exist?(path)
+
     db.execute('INSERT INTO products (name, description, specification, image_url, price) VALUES (?, ?, ?, ?, ?)', name, description, specifications, path, price)
 
 
