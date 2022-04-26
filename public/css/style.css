@@ -962,6 +962,7 @@ nav .user-links > *:hover::before {
   font-weight: 600;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 #product-page-container #product-section #sorting-container .search-container {
