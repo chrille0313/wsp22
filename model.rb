@@ -290,6 +290,9 @@ def create_product(db, name, description, specifications, image, price)
     end
 
     # File.delete(path) if File.exist?(path)
+    # path = File.join("./public/img/",params[:file][:filename])
+    # path_for_db = File.join("img/",params[:file][:filename])
+
 
     db.execute('INSERT INTO products (name, description, specification, image_url, price) VALUES (?, ?, ?, ?, ?)', name, description, specifications, path, price)
 
