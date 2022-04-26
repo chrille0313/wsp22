@@ -12,6 +12,10 @@ helpers do
         return session[:userId] != nil
     end
 
+    def is_admin()
+        return session[:userRole] == ROLES[:admin]
+    end
+
     def log_time()
         session[:rate_limit] = Time.now.to_i
     end
@@ -71,8 +75,10 @@ end
 
 before(combine_urls('/login', '/users/new')) do
     if is_authenticated()
-        redirect("/users/#{session[:userId]}")
-    end
+        if !(session[:userRole] == ROLES[:admin] && request.path_info == '/users/new')
+            redirect("/users/#{session[:userId]}")
+        end
+    end 
 end
 
 before('/users/:id*') do
@@ -82,9 +88,15 @@ before('/users/:id*') do
     
     if !is_authenticated()
         redirect("/login")
-    elsif (string_is_int(params[:id]) && params[:id].to_i != session[:userId])
+    elsif session[:userRole] != ROLES[:admin] && string_is_int(params[:id]) && params[:id].to_i != session[:userId]
         redirect("/error/401")
     end
+end
+
+get('/users') do
+    users = get_users("database")
+    p users
+    slim(:'users/index', locals: {users: users})
 end
 
 get('/users/new') do
@@ -95,6 +107,8 @@ post('/users') do
     username = params[:username]
     password = params[:password]
     confirmPassword = params[:'confirm-password']
+    role = params[:role]
+    p role
 
     fname = params[:fname]
     lname = params[:lname]
@@ -110,10 +124,11 @@ post('/users') do
         email: email,
         address: address,
         city: city,
-        postalCode: postalCode
+        postalCode: postalCode,
+        role: role
     }
 
-    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+    success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, session[:userRole] == ROLES[:admin] ? role : ROLES[:customer])
 
     if success
         authenticate_user(username, password)
@@ -215,7 +230,8 @@ post('/login') do
     success, msg = authenticate_user(username, password)
 
     if success
-        session[:userId] = msg.to_i
+        session[:userId] = msg[:id].to_i
+        session[:userRole] = msg[:role].to_i
         session[:alerts] = [make_notification("success", "Successfully logged in!")]
         redirect('/')
     else
@@ -232,6 +248,7 @@ end
 
 get('/logout') do
     session[:userId] = nil
+    session[:userRole] = nil
     session[:alerts] = [make_notification("success", "Successfully logged out!")]
     redirect('/')
 end

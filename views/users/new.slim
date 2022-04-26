@@ -46,12 +46,21 @@ main class="center-horizontal"
                     input id="postal-code" type="number" name="postal-code" placeholder="Postal code" value="#{session[:auto_fill][:postalCode]}" required="" /
                 h4.input-hint Postal Code *
 
-        section class="form-field"
-            - if session[:auto_fill] == nil
-                input id="username" type="text" name="username" placeholder="Username" required="" /
-            - else
-                input id="username" type="text" name="username" placeholder="Username" value="#{session[:auto_fill][:username]}" required="" /
-            h4.input-hint Username *
+        section.adjacent
+            section class="form-field"
+                - if session[:auto_fill] == nil
+                    input id="username" type="text" name="username" placeholder="Username" required="" /
+                - else
+                    input id="username" type="text" name="username" placeholder="Username" value="#{session[:auto_fill][:username]}" required="" /
+                h4.input-hint Username *
+
+            - if is_admin()
+                section class="form-field"
+                    - if session[:auto_fill] == nil
+                        input id="role" type="number" name="role" placeholder="Role" value="#{ROLES[:customer]}" min="0" required="" /
+                    - else
+                        input id="role" type="number" name="role" placeholder="Role" value="#{session[:auto_fill][:role]}" min="0" required="" /
+                    h4.input-hint Role *
 
         section.adjacent
             section class="form-field"

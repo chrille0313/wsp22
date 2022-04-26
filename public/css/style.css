@@ -643,6 +643,81 @@ nav .user-links > *:hover::before {
   font-size: 2rem;
 }
 
+#admin-tables {
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+}
+
+#admin-tables > section > header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+#admin-tables > section > header .align-right, #admin-tables > section > header .group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+
+#admin-tables > section > header .align-right {
+  margin-left: auto;
+  gap: 1rem;
+}
+
+#admin-tables > section > header h2, #admin-tables > section > header p {
+  display: inline;
+  margin: 0;
+}
+
+#admin-tables > section > header input, #admin-tables > section > header select {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+#admin-tables > section > header input:focus, #admin-tables > section > header select:focus {
+  outline: 1px solid #e0e0e0;
+}
+
+#admin-tables > section table {
+  width: 100%;
+  margin-bottom: 2rem;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+#admin-tables > section td, #admin-tables > section th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+#admin-tables > section tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#admin-tables > section tr:not(:first-child) {
+  cursor: pointer;
+}
+
+#admin-tables > section tr:not(:first-child):hover {
+  background-color: #aaa;
+}
+
 .auth-form {
   width: 500px;
   padding: 2rem 0;
@@ -855,7 +930,7 @@ nav .user-links > *:hover::before {
 
 #product-page-container {
   width: 100%;
-  padding: 2rem 12%;
+  padding: 2rem;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;

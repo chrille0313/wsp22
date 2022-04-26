@@ -1,0 +1,68 @@
+main id="admin-tables"
+    section 
+        header
+            h2 Admins
+            section.align-right
+                a href="users/new"
+                    span class="material-icons-outlined" person_add
+
+                section class="search-container group"
+                    p Search:
+                    input id="search" type="text" placeholder="Search for users..."
+
+                section id="sort-by-container" class="group"
+                    p Sort by:
+                    select id="sort-by"
+                        option value="name-ascending" Name (A-Z)
+                        option value="name-descending" Name (Z-A)
+                        option value="price-ascending" Price (Lowest)
+                        option value="price-descending" Price (Highest)
+                        option value="rating-ascending" Rating (Lowest)
+                        option value="rating-descending" Rating (Highest)
+        table id="admin-table"
+            tr
+                th Account Id
+                th Username
+            
+            - users[:admins].each do |user|
+                tr
+                    td #{user["id"]}
+                    td #{user["username"]}
+
+    section 
+        header
+            h2 Customers
+            section.align-right
+                a href="users/new"
+                        span class="material-icons-outlined" person_add
+                section class="search-container group"
+                    p Search:
+                    input id="search" type="text" placeholder="Search for users..."
+                section id="sort-by-container" class="group"
+                    p Sort by:
+                    select id="sort-by"
+                        option value="name-ascending" Name (A-Z)
+                        option value="name-descending" Name (Z-A)
+                        option value="price-ascending" Price (Lowest)
+                        option value="price-descending" Price (Highest)
+                        option value="rating-ascending" Rating (Lowest)
+                        option value="rating-descending" Rating (Highest)
+        table id="user-table"
+            tr
+                th Account Id
+                th User Id
+                th Username
+                th First Name
+                th Last Name
+                th Email
+            
+            - users[:customers].each do |user|
+                tr
+                    td #{user["account_id"]}
+                    td #{user["id"]}
+                    td #{user["username"]}
+                    td #{user["fname"]}
+                    td #{user["lname"]}
+                    td #{user["email"]}
+
+script src="/js/user_tables.js" crossorigin="anonymous"

@@ -65,6 +65,8 @@ def check_account_credentials(db, credentials, updating=false)
         return [false, "No username provided"]
     elsif is_empty(credentials[:password]) and not updating
         return [false, "No password provided!"]
+    elsif is_empty(credentials[:role]) or !string_is_int(credentials[:role]) or ROLES.has_value?(credentials[:role].to_i)
+        return [false, "Invalid role provided!"]
     elsif credentials[:password] != credentials[:confirm_password]
         return [false, "Passwords didn't match!"]
     elsif not password_is_strong(credentials[:password]) and credentials[:password] != ""
@@ -133,23 +135,30 @@ end
 
 
 # TODO: role
-def register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+def register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role=ROLES[:customer])
     db = connect_to_db("database")
-    accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword})
-    customerSuccess, customerMsg = check_customer_credentials(db, {fname: fname, lname: lname, email: email, address: address, city: city, postal_code: postalCode})
+    accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword, role: role})
     
+    if role != ROLES[:admin]
+        customerSuccess, customerMsg = check_customer_credentials(db, {fname: fname, lname: lname, email: email, address: address, city: city, postal_code: postalCode})
+    else
+        customerSuccess = true
+    end
+
     if not accountSuccess
         return accountSuccess, accountMsg
     elsif not customerSuccess
         return customerSuccess, customerMsg
     end
 
-    accountId = register_account(db, username, password)
-    register_customer(db, accountId, fname, lname, email, address, city, postalCode)
+    accountId = register_account(db, username, password, role.to_i)
+
+    if role != ROLES[:admin]
+        register_customer(db, accountId, fname, lname, email, address, city, postalCode)
+    end
 
     return [true, "User successfully created!"]
 end
-
 
 def update_account(db, accountId, username, password, role)
     db.execute('UPDATE accounts SET username = ?, role = ? WHERE id = ?', username, role, accountId)
@@ -195,7 +204,7 @@ def authenticate_user(username, password)
     elsif BCrypt::Password.new(result["password"]) != password
         return [false, "Wrong Password!"]
     else
-        return [true, result["id"]]
+        return [true, {id: result["id"], role: result["role"]}]
     end
 end
 
@@ -227,4 +236,12 @@ end
 def get_customer(account_id, database)
     db = connect_to_db(database)
     return db.execute("SELECT * FROM customers WHERE account_id = ?", account_id).first
+end
+
+
+def get_users(database)
+    db = connect_to_db(database)
+    admins = db.execute("SELECT * FROM accounts WHERE role = ?", ROLES[:admin])
+    customers = db.execute("SELECT * from accounts INNER JOIN customers ON accounts.id = customers.account_id")
+    return {admins: admins, customers: customers}
 end
