@@ -55,6 +55,8 @@
     }
 
     #product-section {
+        width: 100%;
+
         display: flex;
         flex-direction: column;
 
@@ -131,3 +133,7 @@
     }
 }
 
+
+#new-product-form {
+    padding: 2rem 20%;
+}
