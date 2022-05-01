@@ -1,0 +1,55 @@
+main id="product-display"
+    section.adjacent id="product-details"
+        div id="product-image"
+            img src="#{product["image_url"]}" alt="Product Image"
+        
+        section id="product-info"
+            h3.brand #{product["brand"]}
+            h3.name #{product["name"]}
+            section.rating.adjacent
+                div.rating-stars
+                    - product["rating"].floor.times do
+                        span class="material-icons-outlined star" star
+                    - if product["rating"].ceil > product["rating"]
+                        span class="material-icons-outlined star" star_half
+                    - (5 - product["rating"].ceil).times do
+                        span class="material-icons-outlined star" grade
+
+                a href="#reviews" Read reviews (#{reviews.length})
+                
+
+            p.price $#{product["price"]}
+            p.description #{product["description"]}
+
+            form id="add-to-cart-form"
+                section.form-field
+                    input type="number" name="quantity" placeholder="Quantity" min="0" value="1" 
+                section.form-button
+                    input type="submit" value="Add to Cart"
+                - if is_admin()
+                    section.adjacent
+                        section.form-button
+                            a href="/products/#{product["id"]}/edit" Edit
+                        section.form-button
+                            a href="/products/#{product["id"]}/delete" Delete
+
+    section id="specification"
+        h2 Specifications
+        p #{product["specification"]}
+
+    section.reviews
+        span class="review-title"
+            header Reviews
+            - if is_authenticated()
+                a href="/products/#{product["id"]}/reviews/new" class="material-icons-outlined add-btn" add
+
+        - if reviews.length == 0
+            p No reviews yet.
+
+        - reviews.each do |review|
+            article.review
+                div.review-info
+                    h4.reviewer #{review["reviewer"]["fname"]} #{review["reviewer"]["lname"]}
+                    p.review-date #{review["date"]}
+                p.review-rating #{review["rating"]}
+                p.review-text #{review["comment"]}
