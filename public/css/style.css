@@ -227,6 +227,16 @@ address {
           align-items: center;
 }
 
+.adjacent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -630,6 +640,152 @@ nav .user-links > *:hover::before {
   opacity: 1;
 }
 
+form > * {
+  margin-bottom: 1.5rem;
+}
+
+form > *:last-child {
+  margin-bottom: 0;
+}
+
+form > header {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+form .adjacent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+form .form-field {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+form .form-field .input-hint {
+  margin: 0;
+  padding: 3px 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+}
+
+form .form-field input, form .form-field textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--black);
+  outline-offset: -2px;
+}
+
+form .form-field input:hover, form .form-field textarea:hover {
+  outline: 1px solid var(--black);
+}
+
+form .form-field input:active, form .form-field input:focus, form .form-field input:focus-visible, form .form-field textarea:active, form .form-field textarea:focus, form .form-field textarea:focus-visible {
+  outline: 1px solid var(--black);
+}
+
+form .form-field input:active + .input-hint, form .form-field input:focus + .input-hint, form .form-field input:focus-visible + .input-hint, form .form-field textarea:active + .input-hint, form .form-field textarea:focus + .input-hint, form .form-field textarea:focus-visible + .input-hint {
+  color: var(--white);
+  background: var(--black);
+}
+
+form .form-button {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form .form-button::after, form .form-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: var(--black);
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+form .form-button::before {
+  left: 0;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+form .form-button::after {
+  right: 0;
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+form .form-button:hover *, form .form-button:active *, form .form-button:focus *, form .form-button:focus-visible * {
+  color: var(--white);
+}
+
+form .form-button:hover::before, form .form-button:active::before, form .form-button:focus::before, form .form-button:focus-visible::before {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+form .form-button:hover::after, form .form-button:active::after, form .form-button:focus::after, form .form-button:focus-visible::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+form .form-button input[type=submit], form .form-button button, form .form-button a {
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--black);
+  background: none;
+  outline: none;
+}
+
 .page-error {
   height: 100%;
   text-align: center;
@@ -721,141 +877,6 @@ nav .user-links > *:hover::before {
 .auth-form {
   width: 500px;
   padding: 2rem 0;
-}
-
-.auth-form > * {
-  margin-bottom: 1.5rem;
-}
-
-.auth-form > *:last-child {
-  margin-bottom: 0;
-}
-
-.auth-form > header {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.auth-form .adjacent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 1rem;
-}
-
-.auth-form .form-field {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
-}
-
-.auth-form .form-field .input-hint {
-  margin: 0;
-  padding: 3px 8px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-size: 0.75rem;
-  font-weight: 400;
-  border-top: 1px solid var(--black);
-  border-left: 1px solid var(--black);
-  border-right: 1px solid var(--black);
-}
-
-.auth-form .form-field input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  border: 1px solid var(--black);
-  outline-offset: -2px;
-}
-
-.auth-form .form-field input:hover {
-  outline: 1px solid var(--black);
-}
-
-.auth-form .form-field input:active, .auth-form .form-field input:focus, .auth-form .form-field input:focus-visible {
-  outline: 1px solid var(--black);
-}
-
-.auth-form .form-field input:active + .input-hint, .auth-form .form-field input:focus + .input-hint, .auth-form .form-field input:focus-visible + .input-hint {
-  color: var(--white);
-  background: var(--black);
-}
-
-.auth-form .form-button {
-  width: 100%;
-  position: relative;
-}
-
-.auth-form .form-button::after, .auth-form .form-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background-color: var(--black);
-  z-index: -1;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transition: -webkit-transform 0.5s ease;
-  transition: -webkit-transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-}
-
-.auth-form .form-button::before {
-  left: 0;
-  -webkit-transform-origin: left;
-          transform-origin: left;
-}
-
-.auth-form .form-button::after {
-  right: 0;
-  -webkit-transform-origin: right;
-          transform-origin: right;
-}
-
-.auth-form .form-button:hover *, .auth-form .form-button:active *, .auth-form .form-button:focus *, .auth-form .form-button:focus-visible * {
-  color: var(--white);
-}
-
-.auth-form .form-button:hover::before, .auth-form .form-button:active::before, .auth-form .form-button:focus::before, .auth-form .form-button:focus-visible::before {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-  -webkit-transform-origin: right;
-          transform-origin: right;
-}
-
-.auth-form .form-button:hover::after, .auth-form .form-button:active::after, .auth-form .form-button:focus::after, .auth-form .form-button:focus-visible::after {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-  -webkit-transform-origin: left;
-          transform-origin: left;
-}
-
-.auth-form .form-button input[type=submit], .auth-form .form-button button {
-  width: 100%;
-  padding: 1rem;
-  position: relative;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  border: 1px solid var(--black);
-  background: none;
-  outline: none;
 }
 
 .auth-form #need-account, .auth-form #already-have-account {
@@ -1000,6 +1021,7 @@ nav .user-links > *:hover::before {
 }
 
 #product-page-container #product-section {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1101,7 +1123,11 @@ nav .user-links > *:hover::before {
   outline: 1px solid #e0e0e0;
 }
 
-.product > a {
+#new-product-form {
+  padding: 2rem 20%;
+}
+
+.product-item > a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1114,7 +1140,7 @@ nav .user-links > *:hover::before {
           justify-content: space-between;
 }
 
-.product .product-image {
+.product-item .product-image {
   width: 100%;
   height: 75%;
   display: -webkit-box;
@@ -1128,8 +1154,7 @@ nav .user-links > *:hover::before {
           align-items: center;
 }
 
-.product .rating {
-  width: 100%;
+.product-item .rating-stars {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1139,54 +1164,53 @@ nav .user-links > *:hover::before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 1rem 0;
 }
 
-.product .rating .rating-stars {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.product-item .rating-stars .star {
+  font-size: 1.5rem;
+  color: #ffc107;
 }
 
-.product .rating .rating-stars .star {
-  width: 1rem;
-  height: 1rem;
-  margin: 0.5rem;
-  background-color: #ffc107;
-}
-
-.product .product-info .brand {
+.product-item .product-info .brand {
   margin: 0;
   font-size: 0.875rem;
 }
 
-.product .product-info .name {
+.product-item .product-info .name {
   font-size: 1rem;
   font-weight: 400;
   margin: 0 0 0.5rem 0;
 }
 
-.product .product-info .price {
+.product-item .product-info .price {
   font-size: 0.875rem;
   margin: 0;
 }
 
-.new-product {
+.product-item .admin-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.new-product-item {
   border: 6px dashed #cecece;
 }
 
-.new-product:hover {
+.new-product-item:hover {
   background-color: #f5f5f5;
 }
 
-.new-product > a {
+.new-product-item > a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1204,18 +1228,179 @@ nav .user-links > *:hover::before {
   color: #cecece;
 }
 
-.new-product > a > h3 {
+.new-product-item > a > h3 {
   font-size: 1.25rem;
   margin: 0;
 }
 
-.new-product > a > span {
+.new-product-item > a > span {
   font-size: 2rem;
 }
 
-.product > a, .new-product > a {
+.product-item > a, .new-product-item > a {
   width: 250px;
   height: 350px;
   text-decoration: none;
+}
+
+#product-display {
+  width: 100%;
+  height: auto;
+  padding: 2rem 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+#product-display > section {
+  height: 100%;
+  width: 100%;
+}
+
+#product-display > section > * {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#product-display > section:nth-child(even) {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#product-display #product-details {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  gap: 2rem;
+}
+
+#product-display #product-details > * {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#product-display #product-details #product-info {
+  height: 100%;
+}
+
+#product-display #product-details #product-info .brand {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#product-display #product-details #product-info .name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+#product-display #product-details #product-info .rating .rating-stars .star {
+  color: #ffc107;
+  font-size: 1.25rem;
+  -webkit-transform: translate(0, 2px);
+          transform: translate(0, 2px);
+}
+
+#product-display #product-details #product-info .rating a {
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+#product-display #product-details #product-info .price {
+  margin: 1rem 0 0 0;
+  font-size: 1.75rem;
+}
+
+#product-display #product-details #product-info .description {
+  padding: 1rem 0;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#product-display #product-details #product-image {
+  border: 1px solid #e5e5e5;
+}
+
+#product-display #specification {
+  padding: 2rem 0;
+}
+
+#product-display .review-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+
+#product-display .review-title > header {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+#product-display .review-title > a {
+  text-decoration: none;
+  -webkit-transform: translate(0, 1px);
+          transform: translate(0, 1px);
+}
+
+#product-display #edit-product-form #product-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#product-display #edit-product-form #product-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+#product-display #edit-product-form #product-info .price, #product-display #edit-product-form #product-info .name {
+  margin: 0;
+}
+
+#product-display #edit-product-form #product-info .form-field {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#product-display #edit-product-form #product-info .form-field input {
+  font-size: 1rem;
+}
+
+#product-page-container {
+  width: 100%;
+  height: auto;
+  padding: 2rem 10%;
 }
 /*# sourceMappingURL=style.css.map */
