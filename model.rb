@@ -3,6 +3,9 @@ ROLES = {
     customer: 1,
 }
 
+def round_to_nearst_half(number)
+    return (number * 2).round / 2.0
+end
 
 def connect_to_db(name, rootDir="db")
     db = SQLite3::Database.new("#{rootDir}/#{name}.db")
@@ -21,7 +24,7 @@ def is_unique(db, table, attribute, check)
 end
 
 def string_is_int(str)
-    return str.to_i.to_s == str
+    return str.to_i.to_s == str || str.to_f.to_s == str
 end
 
 def combine_urls(*urls)
@@ -37,6 +40,33 @@ def make_notification(type, message)
     }
 
     return {type: type, message: message, icon: alertIcons[type]}
+end
+
+# TODO: MAKE BETTER -> args(image, dir, filename)
+
+def get_image_path(image)
+    return "/uploads/img/products/#{image["filename"]}"
+end
+
+def download_image(image, path=nil)
+    file = image["tempfile"]
+    path = path == nil ? get_image_path(image) : path
+
+    File.open("./public" + path, 'wb') do |f|
+        f.write(file.read)
+    end
+
+    return path
+end
+
+def update_image(path, newImage=nil)
+    if newImage != nil
+        return download_image(newImage, path)
+    else
+        File.delete(path)
+    end
+
+    return false
 end
 
 def password_is_strong(password)
@@ -137,7 +167,7 @@ end
 # TODO: role
 def register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role=ROLES[:customer])
     db = connect_to_db("database")
-    accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword, role: role})
+    accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword, role: role.to_s})
     
     if not accountSuccess
         return accountSuccess, accountMsg
@@ -177,10 +207,10 @@ def update_customer(db, accountId, fname, lname, email, address, city, postalCod
 end
 
 
-def update_user(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+def update_user(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role=ROLES[:customer])
     db = connect_to_db("database")
 
-    accountSuccess, accountMsg = check_account_credentials(db, {account_id: accountId, username: username, password: password, confirm_password: confirmPassword}, true)
+    accountSuccess, accountMsg = check_account_credentials(db, {account_id: accountId, username: username, password: password, confirm_password: confirmPassword, role: role.to_s}, true)
     customerSuccess, customerMsg = check_customer_credentials(db, {account_id: accountId, fname: fname, lname: lname, email: email, address: address, city: city, postal_code: postalCode}, true)
     
     if not accountSuccess
@@ -189,8 +219,11 @@ def update_user(accountId, username, password, confirmPassword, fname, lname, em
         return customerSuccess, customerMsg
     end
 
-    update_account(db, accountId, username, password, ROLES[:customer])  # TODO: role
-    update_customer(db, accountId, fname, lname, email, address, city, postalCode)
+    update_account(db, accountId, username, password, role)  # TODO: role
+    
+    if role.to_i != ROLES[:admin]
+        update_customer(db, accountId, fname, lname, email, address, city, postalCode)
+    end
 
     return [true, "User successfully updated!"]
 end
@@ -200,7 +233,6 @@ def authenticate_user(username, password)
     db = connect_to_db("database")
     result = db.execute("SELECT * FROM accounts WHERE username = ?", username).first
 
-    # TODO: 
     if result == nil
         return [false, "Username doesn't exist!"]
     elsif BCrypt::Password.new(result["password"]) != password
@@ -211,8 +243,8 @@ def authenticate_user(username, password)
 end
 
 
-def delete_user(accountId)
-    db = connect_to_db("database")
+def delete_user(database, accountId)
+    db = connect_to_db(database)
 
     role = db.execute('SELECT role FROM accounts WHERE id = ?', accountId).first["role"]
 
@@ -258,46 +290,107 @@ end
 def check_product_credentials(credentials, updating=false)
     if is_empty(credentials[:name])
         return [false, "Product name cannot be empty!"]
+    elsif is_empty(credentials[:brand])
+        return [false, "Product brand cannot be empty!"]
     elsif is_empty(credentials[:description])
         return [false, "Product description cannot be empty!"]
-    elsif is_empty(credentials[:price])
-        return [false, "Product price cannot be empty!"]
-    # TODO: Validate image, specifications, price
-    elsif credentials[:image]
+    elsif is_empty(credentials[:specification])
+        return [false, "Product specification cannot be empty!"]
+    elsif is_empty(credentials[:price]) or !string_is_int(credentials[:price]) or credentials[:price].to_i < 0
+        return [false, "Product price invalid!"]
+    elsif credentials[:image] == nil and !updating
         return [false, "Product image cannot be empty!"]
+    elsif credentials[:image] != nil and credentials[:image]["type"] != "image/jpeg" and credentials[:image]["type"] != "image/png"
+        return [false, "Product image must be a jpeg or png!"]
     end
-
-    # if image && image[:filename] 
 
     return [true, "Product creation possible."]
 end
 
 
-def create_product(db, name, description, specifications, image, price)
-    
-    success, msg = check_product_credentials(db, {name: name, description: description, specifications: specifications, price: price, image: image})
+def add_product(db, imagePath, name, brand, description, specification, price)
+    db.execute('INSERT INTO products (image_url, name, brand, description, specification, price) VALUES (?, ?, ?, ?, ?, ?)', imagePath, name, brand, description, specification, price)
+end
+
+
+def create_product(database, image, name, brand, description, specification, price)
+    db = connect_to_db(database)
+
+    success, msg = check_product_credentials({image: image, name: name, brand: brand, description: description, specification: specification, price: price})
 
     if not success
         return success, msg
     end
 
-    filename = image[:filename]
-    file = image[:tempfile]
-    path = "./public/uploads/#{filename}"
+    path = download_image(image)
 
-    File.open(path, 'wb') do |f|
-        f.write(file.read)
-    end
-
-    # File.delete(path) if File.exist?(path)
-    # path = File.join("./public/img/",params[:file][:filename])
-    # path_for_db = File.join("img/",params[:file][:filename])
-
-
-    db.execute('INSERT INTO products (name, description, specification, image_url, price) VALUES (?, ?, ?, ?, ?)', name, description, specifications, path, price)
-
+    add_product(db, path, name, brand, description, specification, price)
 
     return [true, "Product successfully created!"]
 end
 
+def update_product(database, productId, image, name, brand, description, specification, price)
+    db = connect_to_db(database)
 
+    success, msg = check_product_credentials({image: image, name: name, brand: brand, description: description, specification: specification, price: price}, true)
+    
+    if not success
+        return success, msg
+    end
+
+    if !is_empty(image)
+        path = update_image(image)
+        db.execute('UPDATE products SET image_url = ? WHERE id = ?', path, productId)
+    end
+
+    db.execute('UPDATE products SET name = ?, brand = ?, description = ?, specification = ?, price = ? WHERE id = ?', name, brand, description, specification, price, productId)
+
+    return [true, "Product successfully updated!"]
+end
+
+def delete_product(database, productId)
+    db = connect_to_db(database)
+
+    db.execute('DELETE FROM reviews WHERE product_id = ?', productId)
+    db.execute('DELETE FROM likes WHERE product_id = ?', productId)
+    db.execute('DELETE FROM carts WHERE product_id = ?', productId)
+
+    # TODO: delete image corresponding to productId correctly
+
+    product = get_product(database, productId)
+
+    # update_image(product["image_url"], "images/products/", "product_#{productId}")
+    update_image(product["image_url"])
+
+
+    db.execute('DELETE FROM products WHERE id = ?', productId)
+
+    return [true, "Product successfully deleted!"]
+end
+
+def get_products(database)
+    db = connect_to_db(database)
+    products = db.execute("SELECT * FROM products")
+    products.each do |product|
+        product["price"] = product["price"].round == product["price"] ? product["price"].to_i : product["price"]
+    end
+    return products
+end
+
+def get_product(database, id)
+    db = connect_to_db(database)
+    product = db.execute("SELECT * FROM products WHERE id = ?", id).first
+    product["price"] = product["price"].round == product["price"] ? product["price"].to_i : product["price"]
+    return product
+end
+
+def get_product_rating(database, productId)
+    db = connect_to_db(database)
+    result = db.execute("SELECT AVG(rating) FROM reviews WHERE product_id = ?", productId).first["AVG(rating)"]
+    return result == nil ? 0 : result.to_f
+end
+
+def get_reviews(database, productId)
+    db = connect_to_db(database)
+    return db.execute("SELECT * FROM reviews WHERE product_id = ?", productId)
+end
