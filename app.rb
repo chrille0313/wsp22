@@ -7,13 +7,17 @@ require_relative 'model.rb'
 enable :sessions
 
 
+set :port, 80
+set :bind, '192.168.10.157'
+
+
 helpers do
     def is_authenticated()
         return session[:userId] != nil
     end
 
     def is_admin(role=nil)
-        return (role == nil ? session[:userRole] : role) == ROLES[:admin]
+        return (is_authenticated() and (role == nil ? session[:userRole] : role) == ROLES[:admin])
     end
 
     def log_time()
@@ -76,7 +80,7 @@ before(combine_urls('/login', '/users/new')) do
         if !(is_admin() && request.path_info == '/users/new')
             redirect("/users/#{session[:userId]}")
         end
-    end 
+    end
 end
 
 before('/users/:id*') do
@@ -86,7 +90,9 @@ before('/users/:id*') do
     
     if !is_authenticated()
         redirect("/login")
-    elsif !is_admin() && string_is_int(params[:id]) && params[:id].to_i != session[:userId]
+    elsif !string_is_int(params[:id])
+        redirect('/error/404')
+    elsif !is_admin() && params[:id].to_i != session[:userId]
         redirect("/error/401")
     end
 end
@@ -172,6 +178,7 @@ post('/users/:id/update') do
     username = params[:username]
     password = params[:password]
     confirmPassword = params[:'confirm-password']
+    role = params[:role]
 
     fname = params[:fname]
     lname = params[:lname]
@@ -187,10 +194,11 @@ post('/users/:id/update') do
         email: email,
         address: address,
         city: city,
-        postalCode: postalCode
+        postalCode: postalCode,
+        role: role
     }
 
-    success, responseMsg = update_user(id, username, password, confirmPassword, fname, lname, email, address, city, postalCode)
+    success, responseMsg = update_user(id, username, password, confirmPassword, fname, lname, email, address, city, postalCode, is_admin() ? role : ROLES[:customer])
 
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
@@ -204,8 +212,8 @@ end
 
 
 post('/users/:id/delete') do
-    accountId = params[:id].to_i
-    success, responseMsg = delete_user(accountId)
+    accountId = params[:id]
+    success, responseMsg = delete_user("database", accountId)
 
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
@@ -213,6 +221,8 @@ post('/users/:id/delete') do
         if !is_admin() or session[:userId] == accountId
             redirect("/logout")
         end
+
+        redirect("/users")
     else
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect("/users/#{id}/edit")
@@ -265,27 +275,36 @@ get('/users/:id/cart') do
 end
 
 
-
 # PRODUCTS
 
-get('/products') do
-    products = [{"name"=>"Product 1", "type"=> "type", "price"=>"10.00"}, {"name"=>"Product 1", "type"=> "type", "price"=>"20.00"}]
+['/products/new', '/products/:id/edit', '/products/:id/update', '/products/:id/delete'].each do |path|
+    before(path) do
+        if !is_admin()
+            redirect("/error/401")
+        end
+    end
+end
 
-    # Create a list of 10 products containing the name, type, and price
-    products = []
-    10.times do |i|
-        products << {
-            "id"=> i,
-            "image"=>"src",
-            "brand"=>"Brand",
-            "name"=>"Product #{i}",
-            "rating"=>"5",
-            "price"=>"$10.00",
-        }
+before('/products/:id') do
+    if params[:id] == "new"
+        return
+    end
+    
+    if !string_is_int(params[:id])
+        redirect("/error/404")
+    end
+end
+
+get('/products') do
+    products = get_products("database")
+    brands = products.map { |product| product["brand"] }.uniq
+
+    products.each_with_index do |product, index|
+        rating = round_to_nearst_half(get_product_rating("database", product["id"]))
+        products[index]["rating"] = rating
     end
 
-    
-    slim(:'/products/index', locals:{ products: products, categories: ["Category1", "Category2"], brands: ["Brand1", "Brand2"]}, )
+    slim(:'/products/index', locals:{ products: products, brands: brands, categories: ["Category1", "Category2"]})
 end
 
 get('/products/new') do
@@ -293,22 +312,22 @@ get('/products/new') do
 end
 
 post('/products') do
-    name = params[:name]
     image = params[:image]
-    price = params[:price]
+    name = params[:name]
+    brand = params[:brand]
     desc = params[:desc]
     spec = params[:spec]
+    price = params[:price]
 
-    success, responseMsg = create_product(name, image, price, desc, spec)
+    success, responseMsg = create_product("database", image, name, brand, desc, spec, price)
 
     session[:auto_fill] = {
         name: name,
-        price: price,
+        brand: brand,
         desc: desc,
         spec: spec,
-        image: image
+        price: price,
     }
-
 
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
@@ -319,6 +338,82 @@ post('/products') do
         redirect('/products/new')
     end
 end
+
+get('/products/:id') do
+    id = params[:id]
+    product = get_product("database", id)
+    
+    reviews = get_reviews("database", id)
+    rating = round_to_nearst_half(get_product_rating("database", id))
+    product["rating"] = rating
+
+    slim(:"/products/show", locals: { product: product, reviews: reviews })
+end
+
+get('/products/:id/edit') do
+    id = params[:id]
+    product = get_product("database", id)
+
+    slim(:'/products/edit', locals: { product: product })
+end
+
+post('/products/:id/update') do
+    id = params[:id]
+    image = params[:image]
+    name = params[:name]
+    brand = params[:brand]
+    desc = params[:desc]
+    spec = params[:spec]
+    price = params[:price]
+
+    success, responseMsg = update_product("database", id, image, name, brand, desc, spec, price)
+
+    session[:auto_fill] = {
+        name: name,
+        brand: brand,
+        desc: desc,
+        spec: spec,
+        price: price,
+    }
+
+    if success
+        session[:alerts] = [make_notification("success", responseMsg)]
+        session[:auto_fill] = nil
+        redirect("/products/#{id}")
+    else
+        session[:alerts] = [make_notification("error", responseMsg)]
+        redirect("/products/#{id}/edit")
+    end
+end
+
+post('/products/:id/delete') do
+    id = params[:id]
+    success, responseMsg = delete_product("database", id)
+
+    if success
+        session[:alerts] = [make_notification("success", responseMsg)]
+        redirect('/products')
+    else
+        session[:alerts] = [make_notification("error", responseMsg)]
+        redirect("/products/#{id}/edit")
+    end
+end
+
+
+# PRODUCT REVIEWS
+
+before('/products/:id/reviews') do
+    if !is_authenticated()
+        redirect('/error/401')
+    end
+end
+
+get('/products/:id/reviews/new') do
+    product = get_product("database", params[:id])
+
+    slim(:'/reviews/new')
+end
+
 
 # ERRORS
 
@@ -346,7 +441,6 @@ end
 
 
 =begin
-
 
 after("*") do
     p "after"
