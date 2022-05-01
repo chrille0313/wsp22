@@ -56,9 +56,9 @@ main id="product-page-container"
             h3 Brand
             ul
                 - brands.each do |brand|
-                        li
-                            input type="checkbox" name="category" id="#{brand}" value="#{brand}"
-                            label for="#{brand}" #{brand}
+                    li
+                        input type="checkbox" name="category" id="#{brand}" value="#{brand}"
+                        label for="#{brand}" #{brand}
 
     div.divider
 
@@ -82,25 +82,30 @@ main id="product-page-container"
 
         section id="product-container"
             - if is_admin()
-                article class="new-product"
+                article class="new-product-item"
                     a href="/products/new"
                         h3 Add
                         span class="material-icons-outlined" add
                     
 
             - products.each do |product|
-                article class="product"
+                article class="product-item"
                     a href="/products/#{product["id"]}"
                         div.product-image
-                            img src="/img/products/#{product["id"]}/1.jpg" alt="Product"
-                        div.rating #{product["rating"]}
+                            img src="#{product["image_url"]}" alt="Product Image"
+                        div.rating-stars
+                            - product["rating"].floor.times do
+                                span class="material-icons-outlined star" star
+                            - if product["rating"].ceil > product["rating"]
+                                span class="material-icons-outlined star" star_half
+                            - (5 - product["rating"].ceil).times do
+                                span class="material-icons-outlined star" grade
                         div.product-info
                             h3.brand #{product["brand"]}
                             h3.name #{product["name"]}
-                            p.price #{product["price"]}
-                        /
-                            - if is_authenticated() and is_admin()
-                                a href="/products/#{product["id"]}/edit"
-                                    button class="material-icons-outlined" edit
-                                a href="/products/#{product["id"]}/delete"
-                                    button class="material-icons-outlined" delete
+                            p.price $#{product["price"]}
+                        
+                    - if is_authenticated() and is_admin()
+                        div.admin-buttons
+                            a href="/products/#{product["id"]}/edit" class="material-icons-outlined" edit
+                            / a href="/products/#{product["id"]}/delete" class="material-icons-outlined" delete
