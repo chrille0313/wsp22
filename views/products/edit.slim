@@ -1,0 +1,51 @@
+main id="product-display"
+    - if session[:auto_fill] != nil
+        - product["name"] = session[:auto_fill][:name]
+        - product["brand"] = session[:auto_fill][:brand]
+        - product["description"] = session[:auto_fill][:desc]
+        - product["specifications"] = session[:auto_fill][:spec]
+        - product["price"] = session[:auto_fill][:price]
+
+    form id="edit-product-form" action="/products/#{product["id"]}/update" method="POST" enctype="multipart/form-data"
+        section.adjacent id="product-details"
+            div id="product-image"
+                section class="form-field"
+                    input type="file" name="image" placeholder="Product image"
+                    h4.input-hint Image *
+                /img src="#{product["image_url"]}" alt="Product Image"
+            
+            section id="product-info"
+                section.form-field
+                    input.brand name="brand" value="#{product["brand"]}"
+                    h4.input-hint Brand *
+                section.form-field
+                    input.name name="name" value="#{product["name"]}"
+                    h4.input-hint Name *
+                section.form-field
+                    input.price name="price" value="#{product["price"]}"
+                    h4.input-hint Price *
+                section.form-field
+                    textarea form="edit-product-form" name="desc" placeholder="Product description" #{product["description"]}
+                    h4.input-hint Description *
+                    
+        section.form-field id="specification"
+            textarea form="edit-product-form" name="spec" placeholder="Product specification" #{product["specification"]}
+            h4.input-hint Specification *
+
+        section.adjacent
+            section.form-button
+                input type="submit" value="Update"
+            section.form-button
+                button type="button" class="popup-trigger" Delete
+    
+    div.popup
+        form class="popup-content" action="/products/#{product["id"]}/delete" method="POST"
+            h2 Are you sure?
+            p Are you sure you want to delete this product?
+            p This action cannot be undone.
+            section.adjacent
+                section.button
+                    button type="submit" Delete Product
+
+                section.button
+                    button type="button" class="popup-close" Cancel
