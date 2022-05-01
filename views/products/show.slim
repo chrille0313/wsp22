@@ -31,7 +31,7 @@ main id="product-display"
                         section.form-button
                             a href="/products/#{product["id"]}/edit" Edit
                         section.form-button
-                            a href="/products/#{product["id"]}/delete" Delete
+                            button type="button" class="popup-trigger" Delete
 
     section id="specification"
         h2 Specifications
@@ -53,3 +53,15 @@ main id="product-display"
                     p.review-date #{review["date"]}
                 p.review-rating #{review["rating"]}
                 p.review-text #{review["comment"]}
+
+    div.popup
+        form class="popup-content" action="/products/#{product["id"]}/delete" method="POST"
+            h2 Are you sure?
+            p Are you sure you want to delete this product?
+            p This action cannot be undone.
+            section.adjacent
+                section.button
+                    button type="submit" Delete Product
+
+                section.button
+                    button type="button" class="popup-close" Cancel

@@ -63,7 +63,7 @@ def update_image(path, newImage=nil)
     if newImage != nil
         return download_image(newImage, path)
     else
-        File.delete(path)
+        File.delete("./public/" + path)
     end
 
     return false
