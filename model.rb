@@ -1,3 +1,6 @@
+require "securerandom"
+require "set"
+
 ROLES = { 
     admin: 0,
     customer: 1,
@@ -31,6 +34,15 @@ def combine_urls(*urls)
     return urls.join('|')
 end
 
+def generate_random_str(used=nil, length=16)
+    str = SecureRandom.urlsafe_base64(length)
+    while used != nil and used.include?(str)
+        str = SecureRandom.urlsafe_base64
+    end
+    
+    return str
+end
+
 def make_notification(type, message)
     alertIcons = {
         "info" => "info",
@@ -44,8 +56,14 @@ end
 
 # TODO: MAKE BETTER -> args(image, dir, filename)
 
+def get_file_size_mb(file)
+    return (File.size(file).to_f / 1024000).round(2) 
+end
+
 def get_image_path(image)
-    return "/uploads/img/products/#{image["filename"]}"
+    existingFiles = Set.new()
+    fileName = generate_random_str(existingFiles)
+    return "/uploads/img/products/#{fileName}"
 end
 
 def download_image(image, path=nil)
@@ -322,6 +340,7 @@ def create_product(database, image, name, brand, description, specification, pri
         return success, msg
     end
 
+    image[]
     path = download_image(image)
 
     add_product(db, path, name, brand, description, specification, price)
@@ -393,4 +412,9 @@ end
 def get_reviews(database, productId)
     db = connect_to_db(database)
     return db.execute("SELECT * FROM reviews WHERE product_id = ?", productId)
+end
+
+def get_cart(database, customerId)
+    db = connect_to_db(database)
+    return db.execute("SELECT product_id FROM carts WHERE customer_id = ?", customerId)
 end
