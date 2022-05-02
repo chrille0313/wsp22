@@ -7,8 +7,8 @@ require_relative 'model.rb'
 enable :sessions
 
 
-set :port, 80
-set :bind, '192.168.10.157'
+# set :port, 80
+# set :bind, '192.168.10.157'
 
 
 helpers do
@@ -265,16 +265,6 @@ get('/logout') do
 end
 
 
-# CART
-
-get('/users/:id/cart') do
-    # cart = get_cart(session[:userId], "database")
-    # items = get_cart_items(cart["id"], "database")
-
-    slim(:'cart/index') #, locals:{ cart: cart, items: items })
-end
-
-
 # PRODUCTS
 
 ['/products/new', '/products/:id/edit', '/products/:id/update', '/products/:id/delete'].each do |path|
@@ -412,6 +402,19 @@ get('/products/:id/reviews/new') do
     product = get_product("database", params[:id])
 
     slim(:'/reviews/new')
+end
+
+
+# CART
+
+get('/users/:id/cart') do
+    cart = get_cart("database", session[:userId])
+
+    slim(:'carts/show', locals: { cart: cart })
+end
+
+post("/carts") do
+
 end
 
 
