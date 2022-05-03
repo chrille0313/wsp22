@@ -1127,6 +1127,16 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   padding: 2rem 20%;
 }
 
+.product-item {
+  position: relative;
+  /*
+    &:hover {
+        //box-shadow: 0 0 2rem 1rem rgba(0,0,0,0.1);
+        outline: 5px solid black;
+    }
+    */
+}
+
 .product-item > a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1135,9 +1145,7 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  gap: 1rem;
 }
 
 .product-item .product-image {
@@ -1164,7 +1172,7 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 .product-item .rating-stars .star {
@@ -1189,6 +1197,9 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
 }
 
 .product-item .admin-buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1199,7 +1210,6 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
       -ms-flex-align: center;
           align-items: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .new-product-item {
@@ -1243,6 +1253,12 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   text-decoration: none;
 }
 
+#product-page-container {
+  width: 100%;
+  height: auto;
+  padding: 2rem 10%;
+}
+
 #product-display {
   width: 100%;
   height: auto;
@@ -1273,6 +1289,10 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+#product-display > section * {
+  word-wrap: anywhere;
 }
 
 #product-display > section:nth-child(even) {
@@ -1396,11 +1416,5 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
 
 #product-display #edit-product-form #product-info .form-field input {
   font-size: 1rem;
-}
-
-#product-page-container {
-  width: 100%;
-  height: auto;
-  padding: 2rem 10%;
 }
 /*# sourceMappingURL=style.css.map */

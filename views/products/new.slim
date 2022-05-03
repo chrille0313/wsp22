@@ -43,7 +43,7 @@ main
                 h4.input-hint Description *
 
             section class="form-field"
-                textarea form="new-product-form" name="spec" rows="5" placeholder="Product specification"
+                textarea form="new-product-form" name="spec" rows="5" placeholder="Product specification" #{session[:auto_fill][:spec]}
                 h4.input-hint Specification *
 
             section class="form-field"

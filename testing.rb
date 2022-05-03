@@ -1,23 +1,14 @@
-def password_is_strong(password)
-    # ^                 Start anchor
-    # (?=.*[a-z])       Ensure string has one lowercase letter.
-    # (?=.*[A-Z])       Ensure string has one uppcercase letter.
-    # (?=.*[0-9])       Ensure string has one digit.
-    # (?=.*[!@#$&*_])   Ensure string has one special case letter.
-    # (?=.{8,})         Ensure string has atleast 8 characters.
+# create strings
+str1 = "welcome"
+str2 = "to"
+str3 = "Edpresso"
 
-    return (password =~ /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})/) != nil
-end
+# delete prefix
+a = str1.delete_prefix!("wel")
+b = str2.delete_prefix("o")
+c = str3.delete_prefix("Ed")
 
-def email_is_valid(email)
-    return (email =~ /([-!#-'*+-9=?A-Z^-~]+(\.[-!#-'*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/) != nil
-end
-
-def is_empty(str)
-    return (str =~ /^.*[^\s].*$/) == nil
-end
-
-
-if 2
-    p " asda"
-end
+# print results
+puts a
+puts b
+puts c

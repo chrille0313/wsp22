@@ -2,9 +2,18 @@ require 'sinatra'
 require 'slim'
 require 'sqlite3'
 require 'bcrypt'
+
 require_relative 'model.rb'
 
-enable :sessions
+
+=begin
+configure do
+    enable :sessions
+    set :session_secret, "713a5b64aab63c9a039390f4b6057438b6c24cf68203dbadb7d59aa36196b14b5931d39220a90faa6481d41a2699a5aa56d0d98a5f4a78764efc22331f84d169f1566663428f4c7aed2be028fbf11b84bc1e41bce228f3c07b16d931e813b2804e16b7eae04dc55f19de1dd2cc497cfbb3492afa052a3672e72d33a66355956b"
+end
+=end
+
+use Rack::Session::Pool  # Multi-process session (to handle large data in session)
 
 
 # set :port, 80
@@ -119,28 +128,24 @@ post('/users') do
     city = params[:city]
     postalCode = params[:'postal-code']
 
-    session[:auto_fill] = {
-        username: username,
-        fname: fname,
-        lname: lname,
-        email: email,
-        address: address,
-        city: city,
-        postalCode: postalCode,
-        role: role
-    }
-
     success, responseMsg = register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, is_admin() ? role : ROLES[:customer])
 
     if success
-        if !is_authenticated()
-            authenticate_user(username, password)
-        end
-        
         session[:alerts] = [make_notification("success", responseMsg)]
         session[:auto_fill] = nil
-        redirect('/')
+        redirect('/login')
     else
+        session[:auto_fill] = {
+            username: username,
+            fname: fname,
+            lname: lname,
+            email: email,
+            address: address,
+            city: city,
+            postalCode: postalCode,
+            role: role
+        }
+
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect('/users/new')
     end
@@ -187,23 +192,23 @@ post('/users/:id/update') do
     city = params[:city]
     postalCode = params[:'postal-code']
 
-    session[:auto_fill] = {
-        username: username,
-        fname: fname,
-        lname: lname,
-        email: email,
-        address: address,
-        city: city,
-        postalCode: postalCode,
-        role: role
-    }
-
     success, responseMsg = update_user(id, username, password, confirmPassword, fname, lname, email, address, city, postalCode, is_admin() ? role : ROLES[:customer])
 
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
         session[:auto_fill] = nil
     else
+        session[:auto_fill] = {
+            username: username,
+            fname: fname,
+            lname: lname,
+            email: email,
+            address: address,
+            city: city,
+            postalCode: postalCode,
+            role: role
+        }
+
         session[:alerts] = [make_notification("error", responseMsg)]
     end
 
@@ -311,26 +316,26 @@ post('/products') do
 
     success, responseMsg = create_product("database", image, name, brand, desc, spec, price)
 
-    session[:auto_fill] = {
-        name: name,
-        brand: brand,
-        desc: desc,
-        spec: spec,
-        price: price,
-    }
-
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
         session[:auto_fill] = nil
         redirect('/products')
     else
+        session[:auto_fill] = {
+            name: name,
+            brand: brand,
+            desc: desc,
+            spec: spec,
+            price: price,
+        }
+
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect('/products/new')
     end
 end
 
 get('/products/:id') do
-    id = params[:id]
+    id = params[:id].to_i
     product = get_product("database", id)
     
     reviews = get_reviews("database", id)
@@ -341,14 +346,14 @@ get('/products/:id') do
 end
 
 get('/products/:id/edit') do
-    id = params[:id]
+    id = params[:id].to_i
     product = get_product("database", id)
 
     slim(:'/products/edit', locals: { product: product })
 end
 
 post('/products/:id/update') do
-    id = params[:id]
+    id = params[:id].to_i
     image = params[:image]
     name = params[:name]
     brand = params[:brand]
@@ -358,26 +363,26 @@ post('/products/:id/update') do
 
     success, responseMsg = update_product("database", id, image, name, brand, desc, spec, price)
 
-    session[:auto_fill] = {
-        name: name,
-        brand: brand,
-        desc: desc,
-        spec: spec,
-        price: price,
-    }
-
     if success
         session[:alerts] = [make_notification("success", responseMsg)]
         session[:auto_fill] = nil
         redirect("/products/#{id}")
     else
+        session[:auto_fill] = {
+            name: name,
+            brand: brand,
+            desc: desc,
+            spec: spec,
+            price: price,
+        }
+
         session[:alerts] = [make_notification("error", responseMsg)]
         redirect("/products/#{id}/edit")
     end
 end
 
 post('/products/:id/delete') do
-    id = params[:id]
+    id = params[:id].to_i
     success, responseMsg = delete_product("database", id)
 
     if success
@@ -462,3 +467,12 @@ end
 
 
 =end
+
+get('/test') do
+    slim(:test)
+end
+
+post('/test') do 
+    p params["image"]
+    p params["image"][:filename].partition(".").last
+end

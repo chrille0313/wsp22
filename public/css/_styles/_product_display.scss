@@ -3,3 +3,137 @@
     height: auto;
     padding: 2rem 10%;
 }
+
+#product-display {
+    width: 100%;
+    height: auto;
+    padding: 2rem 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+
+    & > section {
+        height: 100%;
+        width: 100%;
+        
+        & > * {
+            width: 100%;
+            flex: 1;
+        }
+
+        & * {
+            word-wrap: anywhere;
+        }
+
+        &:nth-child(even) {
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+    }
+
+    #product-details {
+        align-items: stretch;
+        gap: 2rem;
+
+        & > * {
+            width: 100%;
+            flex: 1;
+        }
+
+        #product-info {
+            height: 100%;
+
+            .brand {
+                margin: 0;
+                font-size: 1rem;
+            }
+
+            .name {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.5rem;
+            }
+
+            .rating {
+                .rating-stars {
+                    .star {        
+                        color: #ffc107;
+                        font-size: 1.25rem;
+                        transform: translate(0, 2px);
+                    }
+                }
+
+                a {
+                    font-size: 0.875rem;
+                    text-decoration: none;
+                }
+            }
+
+            .price {
+                margin: 1rem 0 0 0;
+                font-size: 1.75rem;
+            }
+
+            .description {
+                padding: 1rem 0;
+
+                border-top: 1px solid #e5e5e5;
+                border-bottom: 1px solid #e5e5e5;
+            }
+        }
+
+        #product-image {
+            border: 1px solid #e5e5e5;
+        }
+    }
+
+    #specification {
+        padding: 2rem 0;
+    }
+
+    .review-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        & > header {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        & > a {
+            text-decoration: none;
+            transform: translate(0, 1px);
+        }
+    }
+
+    #edit-product-form {
+        #product-image {
+            display: flex;
+            align-items: center;
+        }
+
+        #product-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            .price, .name {
+                margin: 0;
+            }
+
+            .form-field {
+                flex: 1;
+
+                input {
+                    font-size: 1rem;
+                }
+            }
+        }
+        
+    }
+}
