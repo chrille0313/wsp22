@@ -94,7 +94,7 @@ def download_image(image, subDir="", filename="")
     file = image["tempfile"]
     path = get_image_path(image, subDir, filename)
 
-    File.open("./public#{path}", 'wb') do |f|
+    File.open("./public" + path, 'wb') do |f|
         f.write(file.read)
     end
 
@@ -427,7 +427,7 @@ def update_product(database, productId, image, name, brand, description, specifi
         product = get_product(database, productId)
         filename = product["image_url"].delete_prefix("/uploads/img/products/")
         path = update_image("products", filename, image)
-        # db.execute('UPDATE products SET image_url = ? WHERE id = ?', path, productId)
+        db.execute('UPDATE products SET image_url = ? WHERE id = ?', path, productId)
     end
 
     db.execute('UPDATE products SET name = ?, brand = ?, description = ?, specification = ?, price = ? WHERE id = ?', name, brand, description, specification, price, productId)
