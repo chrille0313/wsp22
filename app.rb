@@ -16,8 +16,8 @@ end
 use Rack::Session::Pool  # Multi-process session (to handle large data in session)
 
 
-# set :port, 80
-# set :bind, '192.168.10.157'
+set :port, 80
+set :bind, '192.168.10.157'
 
 
 helpers do
@@ -33,7 +33,7 @@ helpers do
         session[:rate_limit] = Time.now.to_i
     end
 
-    def is_rate_limited(diff)
+    def is_rate_limited(diff=RATE_LIMIT)
         return Time.now.to_i - session[:rate_limit] < diff
     end
 end
@@ -55,9 +55,11 @@ end
 ["/login", "/users", "/users/:id/update"].each do |path|
     before(path) do
         if request.request_method == "POST"
-            if is_rate_limited(3)
+            if is_rate_limited()
                 session[:alerts] = [make_notification("error", "You're doing that too much. Try again in a few seconds.")]
-                redirect("/users/#{params[:id]}")
+                log_time()
+
+                redirect("/")
             end
 
             log_time()
@@ -153,7 +155,11 @@ end
 
 get('/users/:id') do
     id = params[:id].to_i
-    account = get_account(id, "database")
+    success, account = get_account(id, "database")
+
+    if !success
+        redirect("/error/404")
+    end
 
     data = {account: account}
 
@@ -166,8 +172,11 @@ end
 
 get('/users/:id/edit') do
     accountId = params[:id].to_i
-    account = get_account(accountId, "database")
+    success, account = get_account(accountId, "database")
 
+    if !success
+        redirect("/error/404")
+    end
 
     data = {account: account}
 
@@ -290,6 +299,18 @@ before('/products/:id') do
     end
 end
 
+before('/products') do
+    if request.request_method == "POST"
+        if is_rate_limited()
+            session[:alerts] = [make_notification("error", "You're doing that too much. Try again in a few seconds.")]
+            log_time()
+            redirect("/products")
+        end
+
+        log_time()
+    end
+end
+
 get('/products') do
     products = get_products("database")
     brands = products.map { |product| product["brand"] }.uniq
@@ -336,8 +357,12 @@ end
 
 get('/products/:id') do
     id = params[:id].to_i
-    product = get_product("database", id)
+    success, product = get_product("database", id)
     
+    if !success
+        redirect("/error/404")
+    end
+
     reviews = get_reviews("database", id)
     rating = round_to_nearst_half(get_product_rating("database", id))
     product["rating"] = rating
@@ -347,7 +372,11 @@ end
 
 get('/products/:id/edit') do
     id = params[:id].to_i
-    product = get_product("database", id)
+    success, product = get_product("database", id)
+
+    if !success
+        redirect("/error/404")
+    end
 
     slim(:'/products/edit', locals: { product: product })
 end
@@ -404,7 +433,7 @@ before('/products/:id/reviews') do
 end
 
 get('/products/:id/reviews/new') do
-    product = get_product("database", params[:id])
+    success, product = get_product("database", params[:id])
 
     slim(:'/reviews/new')
 end

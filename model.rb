@@ -50,7 +50,7 @@ def generate_random_str(used=nil, length=16)
 end
 
 def get_file_size_mb(file)
-    return (File.size(file).to_f / 1024000).round(2) 
+    return (File.size(file).to_f / 1024000).round(2)
 end
 
 def get_file_ext(file)
@@ -337,7 +337,13 @@ end
 
 def get_account(id, database)
     db = connect_to_db(database)
-    return db.execute("SELECT * FROM accounts WHERE id = ?", id).first
+    user = db.execute("SELECT * FROM accounts WHERE id = ?", id).first
+    
+    if user == nil
+        return [false, "User doesn't exist!"]
+    else
+        return [true, user]
+    end
 end
 
 
@@ -357,7 +363,13 @@ end
 
 def get_user_role(accountId)
     db = connect_to_db("database")
-    return db.execute("SELECT role FROM accounts WHERE id = ?", accountId).first["role"].to_i
+    user = db.execute("SELECT role FROM accounts WHERE id = ?", accountId).first
+    
+    if user == nil
+        return [false, "User doesn't exist!"]
+    else
+        return [true, user["role"].to_i]
+    end
 end
 
 
@@ -380,6 +392,8 @@ def check_product_credentials(credentials, updating=false)
         return [false, "Product specification cannot be longer than #{MAX_PRODUCT_SPECIFICATION_LENGTH} characters!"]
     elsif is_empty(credentials[:price]) or !string_is_int(credentials[:price]) or credentials[:price].to_i < 0
         return [false, "Product price invalid!"]
+    elsif credentials[:price].length > MAX_PRODUCT_PRICE_LENGTH
+        return [false, "Product price cannot be longer than #{MAX_PRODUCT_PRICE_LENGTH} characters!"]
     elsif credentials[:image] != nil
         success, msg = check_image(credentials[:image])
         if not success
@@ -424,7 +438,12 @@ def update_product(database, productId, image, name, brand, description, specifi
     end
 
     if image != nil
-        product = get_product(database, productId)
+        success, product = get_product(database, productId)
+        
+        if not success
+            return success, product
+        end
+
         filename = product["image_url"].delete_prefix("/uploads/img/products/")
         path = update_image("products", filename, image)
         db.execute('UPDATE products SET image_url = ? WHERE id = ?', path, productId)
@@ -444,7 +463,11 @@ def delete_product(database, productId)
 
     # TODO: delete image corresponding to productId correctly
 
-    product = get_product(database, productId)
+    success, product = get_product(database, productId)
+
+    if !success
+        return success, product
+    end
 
     subDir = "/products"
     fileName = product["image_url"].split("/").last
@@ -468,8 +491,14 @@ end
 def get_product(database, id)
     db = connect_to_db(database)
     product = db.execute("SELECT * FROM products WHERE id = ?", id).first
+    
+    if product == nil
+        return [false, "Product doesn't exist!"]
+    end
+    
     product["price"] = product["price"].round == product["price"] ? product["price"].to_i : product["price"]
-    return product
+
+    return [true, product]
 end
 
 def get_product_rating(database, productId)
