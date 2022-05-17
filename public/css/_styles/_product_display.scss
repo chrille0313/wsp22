@@ -93,20 +93,36 @@
         padding: 2rem 0;
     }
 
-    .review-title {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        
+    .reviews {
         & > header {
-            margin: 0;
+            margin: 0 0 1rem 0;
             font-size: 1.5rem;
             font-weight: 300;
         }
 
-        & > a {
-            text-decoration: none;
-            transform: translate(0, 1px);
+        #review-form {
+            margin-bottom: 3rem;
+        }
+
+        .review {
+            header {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin: 1rem 0;
+
+                h4 {
+                    margin: 0;
+                }
+            }
+
+            .rating-stars {
+                color: #ffc107;
+            }
+
+            & > p {
+                margin-top: 0.5rem;
+            }
         }
     }
 

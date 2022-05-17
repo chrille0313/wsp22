@@ -38,21 +38,56 @@ main id="product-display"
         p #{product["specification"]}
 
     section.reviews
-        span class="review-title"
-            header Reviews
-            - if is_authenticated()
-                a href="/products/#{product["id"]}/reviews/new" class="material-icons-outlined add-btn" add
+        header Reviews
+            
+        - if is_authenticated() and !is_admin()
+            form id="review-form" action="/products/#{product["id"]}/reviews" method="POST"
+                - customer = get_customer("database", session[:userId])
+                - if user_has_reviewed_product("database", customer["id"], product["id"])
+                    - userReview = get_user_review("database", customer["id"], product["id"])
+                    section.form-field
+                        input type="number" name="rating" min="0" max="5" placeholder="Rating" value="#{userReview["rating"]}"
+                    section.form-field
+                        textarea form="review-form" name="comment" placeholder="Review" #{userReview["comment"]}
+                    section.adjacent
+                        section.form-button
+                            input type="submit" value="Update review"
+                        section.form-button
+                            button type="button" class="popup-trigger" Delete
+                - else
+                    - if session[:auto_fill] != nil
+                        section.form-field
+                            input type="number" name="rating" min="0" max="5" placeholder="Rating" value="#{session[:auto_fill][:rating]}"
+                        section.form-field
+                            textarea form="review-form" name="comment" placeholder="Review" #{session[:auto_fill][:comment]}
+                    - else
+                        section.form-field
+                            input type="number" name="rating" min="0" max="5" placeholder="Rating"
+                        section.form-field
+                            textarea form="review-form" name="comment" placeholder="Review"
+                    section.form-button
+                        input type="submit" value="Add review"
 
         - if reviews.length == 0
             p No reviews yet.
-
-        - reviews.each do |review|
-            article.review
-                div.review-info
-                    h4.reviewer #{review["reviewer"]["fname"]} #{review["reviewer"]["lname"]}
-                    p.review-date #{review["date"]}
-                p.review-rating #{review["rating"]}
-                p.review-text #{review["comment"]}
+        - else
+            - reviews.each_with_index do |review, index|
+                article.review
+                    - reviewer = get_customer_details("database", review["customer_id"])
+                    header 
+                        h4.reviewer #{reviewer["fname"] + " " + reviewer["lname"]}
+                        span -
+                        span.review-date #{review["date"]}
+                    div.rating-stars
+                        - p review 
+                        - review["rating"].floor.times do
+                            span class="material-icons-outlined star" star
+                        - if review["rating"].ceil > review["rating"]
+                            span class="material-icons-outlined star" star_half
+                        - (5 - review["rating"].ceil).times do
+                            span class="material-icons-outlined star" grade
+                    p.review-text #{review["comment"]}
+                div.divider-horizontal
 
     div.popup
         form class="popup-content" action="/products/#{product["id"]}/delete" method="POST"

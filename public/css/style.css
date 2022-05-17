@@ -213,6 +213,12 @@ address {
   background-color: #e5e5e5;
 }
 
+.divider-horizontal {
+  width: auto;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
 .landing-page {
   width: 100%;
   height: 100%;
@@ -1359,7 +1365,17 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
   padding: 2rem 0;
 }
 
-#product-display .review-title {
+#product-display .reviews > header {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+#product-display .reviews #review-form {
+  margin-bottom: 3rem;
+}
+
+#product-display .reviews .review header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1367,18 +1383,19 @@ form .form-button input[type=submit], form .form-button button, form .form-butto
       -ms-flex-align: center;
           align-items: center;
   gap: 0.5rem;
+  margin: 1rem 0;
 }
 
-#product-display .review-title > header {
+#product-display .reviews .review header h4 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 300;
 }
 
-#product-display .review-title > a {
-  text-decoration: none;
-  -webkit-transform: translate(0, 1px);
-          transform: translate(0, 1px);
+#product-display .reviews .review .rating-stars {
+  color: #ffc107;
+}
+
+#product-display .reviews .review > p {
+  margin-top: 0.5rem;
 }
 
 #product-display #edit-product-form #product-image {

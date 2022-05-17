@@ -16,8 +16,8 @@ end
 use Rack::Session::Pool  # Multi-process session (to handle large data in session)
 
 
-set :port, 80
-set :bind, '192.168.10.157'
+# set :port, 80
+# set :bind, '192.168.10.157'
 
 
 helpers do
@@ -64,7 +64,7 @@ end
 
             log_time()
         elsif request.request_method == "GET" and request.path_info == "/users"
-            if !is_authenticated() or !is_admin()
+            if !is_admin()
                 redirect("/error/401")
             end
         end
@@ -105,6 +105,13 @@ before('/users/:id*') do
         redirect('/error/404')
     elsif !is_admin() && params[:id].to_i != session[:userId]
         redirect("/error/401")
+    else
+        id = params[:id].to_i
+        success, account = get_account(id, "database")
+
+        if !success
+            redirect("/error/404")
+        end
     end
 end
 
@@ -157,14 +164,10 @@ get('/users/:id') do
     id = params[:id].to_i
     success, account = get_account(id, "database")
 
-    if !success
-        redirect("/error/404")
-    end
-
     data = {account: account}
 
     if account["role"] == ROLES[:customer]
-        data[:user] = get_customer(account["id"], "database")
+        data[:user] = get_customer("database", account["id"])
     end
     
     slim(:'users/show', locals: data)
@@ -174,14 +177,10 @@ get('/users/:id/edit') do
     accountId = params[:id].to_i
     success, account = get_account(accountId, "database")
 
-    if !success
-        redirect("/error/404")
-    end
-
     data = {account: account}
 
     if account["role"].to_i == ROLES[:customer]
-        data[:user] = get_customer(accountId, "database")
+        data[:user] = get_customer("database", accountId)
     end
     
     slim(:'users/edit', locals: data)
@@ -432,10 +431,35 @@ before('/products/:id/reviews') do
     end
 end
 
-get('/products/:id/reviews/new') do
-    success, product = get_product("database", params[:id])
+post('/products/:id/reviews') do
+    customerId = get_customer("database", session[:userId])["id"]
 
-    slim(:'/reviews/new')
+    rating = params[:rating]
+    comment = params[:comment]
+
+    success, msg = add_review("database", customerId, params[:id], rating, comment)
+    session[:alerts] = [make_notification(success ? "success" : "error", msg)]
+
+    if !success
+        session[:auto_fill] = {
+            rating: rating,
+            comment: comment
+        }
+    else
+        session[:auto_fill] = nil
+    end
+
+    redirect("/products/#{params[:id]}")
+end
+
+post('/products/:id/reviews/delete') do
+    customerId = get_customer("database", session[:userId])["id"]
+    productId = params[:id]
+
+    success, msg = delete_review("database", customerId, productId)
+    session[:alerts] = [make_notification(success ? "success" : "error", msg)]
+
+    redirect("/products/#{productId}")
 end
 
 
@@ -473,35 +497,4 @@ end
 
 not_found do
     redirect('/error/404')
-end
-
-
-
-=begin
-
-after("*") do
-    p "after"
-    p session[:next]
-    if session[:next][-1] != nil
-        url = session[:next].pop()
-        redirect(url)
-    end
-end
-
-
-get('/')  do
-    session[:next] = []
-    slim(:index)
-end
-
-
-=end
-
-get('/test') do
-    slim(:test)
-end
-
-post('/test') do 
-    p params["image"]
-    p params["image"][:filename].partition(".").last
 end

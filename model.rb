@@ -347,11 +347,15 @@ def get_account(id, database)
 end
 
 
-def get_customer(account_id, database)
+def get_customer(database, account_id)
     db = connect_to_db(database)
     return db.execute("SELECT * FROM customers WHERE account_id = ?", account_id).first
 end
 
+def get_customer_details(database, customer_id)
+    db = connect_to_db(database)
+    return db.execute("SELECT * FROM customers WHERE id = ?", customer_id).first
+end
 
 def get_users(database)
     db = connect_to_db(database)
@@ -507,12 +511,63 @@ def get_product_rating(database, productId)
     return result == nil ? 0 : result.to_f
 end
 
+
+def check_review_credentials(credentials)
+    if credentials[:rating] == nil or !string_is_int(credentials[:rating]) or credentials[:rating].to_i < 0 or credentials[:rating].to_i > 5
+        return [false, "Rating invalid!"]
+    elsif is_empty(credentials[:comment])
+        return [false, "Review cannot be empty!"]
+    elsif credentials[:comment].length > MAX_REVIEW_LENGTH
+        return [false, "Review cannot be longer than #{MAX_REVIEW_LENGTH} characters!"]
+    end
+
+    return [true, "Review creation possible."]
+end
+
+def user_has_reviewed_product(database, customerId, productId)
+    db = connect_to_db(database)
+    return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).any?
+end
+
+
+def add_review(database, customerId, productId, rating, comment)
+    success, msg = check_review_credentials({rating: rating, comment: comment})
+
+    if !success
+        return [false, msg]
+    else
+        db = connect_to_db(database)
+        date = Time.now.strftime("%Y-%m-%d")
+
+        if user_has_reviewed_product(database, customerId, productId)
+            db.execute('UPDATE reviews SET date = ?, rating = ?, comment = ? WHERE customer_id = ? AND product_id = ?', date, rating, comment, customerId, productId)
+            return [true, "Review successfully updated!"]
+        else
+            db.execute('INSERT INTO reviews (customer_id, product_id, date, rating, comment) VALUES (?, ?, ?, ?, ?)', customerId, productId, date, rating, comment)
+            return [true, "Review successfully added!"]
+        end
+    end
+end
+
+def delete_review(database, customerId, productId)
+    db = connect_to_db(database)
+    db.execute('DELETE FROM reviews WHERE customer_id = ? AND product_id = ?', customerId, productId)
+    return [true, "Review successfully deleted!"]
+end
+
 def get_reviews(database, productId)
     db = connect_to_db(database)
     return db.execute("SELECT * FROM reviews WHERE product_id = ?", productId)
+end
+
+def get_user_review(database, customerId, productId)
+    db = connect_to_db(database)
+    return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).first
 end
 
 def get_cart(database, customerId)
     db = connect_to_db(database)
     return db.execute("SELECT product_id FROM carts WHERE customer_id = ?", customerId)
 end
+
+
