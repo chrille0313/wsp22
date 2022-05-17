@@ -5,6 +5,7 @@ require 'bcrypt'
 
 require_relative 'model.rb'
 
+include Model
 
 =begin
 configure do
@@ -79,6 +80,8 @@ after do
 end
 
 
+# Display landing page
+# 
 get('/')  do
   slim(:index)
 end
@@ -115,15 +118,34 @@ before('/users/:id*') do
     end
 end
 
+
+# Display all users (only available for admins)
+#
 get('/users') do
     users = get_users("database")
     slim(:'users/index', locals: {users: users})
 end
 
+# Display form to add a new user
+#
 get('/users/new') do
     slim(:'users/new')
 end
 
+# Creates a new user. Redirects to '/login' if registration was successful, otherwise redirects to '/users/new'
+#
+# @param [String] username The username of the user account
+# @param [String] password The password of the user account
+# @param [String] confirm-password The password of the user account again
+# @param [Integer] role The role of the user account (only available for admins)
+# @param [String] fname The first name of the user
+# @param [String] lname The last name of the user
+# @param [String] email The email of the user
+# @param [String] address The address of the user
+# @param [String] city The city of the user
+# @param [Integer] postal-code The postal code of the user
+# 
+# @see Model#register_user
 post('/users') do
     username = params[:username]
     password = params[:password]
@@ -160,6 +182,13 @@ post('/users') do
     end
 end
 
+
+# Display a single user
+#
+# @param [Integer] :id the id of the user account
+#
+# @see Model#get_account
+# @see Model#get_customer
 get('/users/:id') do
     id = params[:id].to_i
     success, account = get_account(id, "database")
@@ -173,6 +202,11 @@ get('/users/:id') do
     slim(:'users/show', locals: data)
 end
 
+
+# Display form for editing user-credentials
+#
+# @see Model#get_acount
+# @see Model#get_customer
 get('/users/:id/edit') do
     accountId = params[:id].to_i
     success, account = get_account(accountId, "database")
@@ -186,6 +220,22 @@ get('/users/:id/edit') do
     slim(:'users/edit', locals: data)
 end
 
+
+# Updates an existing users credentials and redirects to '/users/:id/edit'
+#
+# @param [Integer] :id The id of the user account
+# @param [String] username The username of the user account
+# @param [String] password The password of the user account
+# @param [String] confirm-password The password of the user account again
+# @param [Integer] role The role of the user account (only available for admins)
+# @param [String] fname The first name of the user
+# @param [String] lname The last name of the user
+# @param [String] email The email of the user
+# @param [String] address The address of the user
+# @param [String] city The city of the user
+# @param [Integer] postal-code The postal code of the user
+# 
+# @see Model#update_user
 post('/users/:id/update') do
     id = params[:id].to_i
     username = params[:username]
@@ -224,6 +274,11 @@ post('/users/:id/update') do
 end
 
 
+# Delete an existing user
+#
+# @param [Integer] :id The id of the user
+#
+# @see Model#delete_user
 post('/users/:id/delete') do
     accountId = params[:id]
     success, responseMsg = delete_user("database", accountId)
@@ -243,10 +298,19 @@ post('/users/:id/delete') do
 end
 
 
+# Display form for logging in a user
+#
 get('/login') do
     slim(:login)
 end
 
+
+# Log in a user. Redirects to '/' if successful, otherwise redirects to '/login'
+#
+# @param [String] username The username of the user account
+# @param [String] password The password of the user account
+#
+# @see Model#authenticate_user
 post('/login') do
     username = params[:username]
     password = params[:password]
@@ -270,12 +334,16 @@ before('/logout') do
     end
 end
 
+
+# Log out user. Redirects to '/'
+#
 get('/logout') do
     session[:userId] = nil
     session[:userRole] = nil
     session[:alerts] = [make_notification("success", "Successfully logged out!")]
     redirect('/')
 end
+
 
 
 # PRODUCTS
@@ -310,22 +378,42 @@ before('/products') do
     end
 end
 
+
+# Display all products
+# 
+# @see Model#get_products
+# @see Model#get_product_rating
+# @see Model#round_to_nearest_half
 get('/products') do
     products = get_products("database")
     brands = products.map { |product| product["brand"] }.uniq
 
     products.each_with_index do |product, index|
-        rating = round_to_nearst_half(get_product_rating("database", product["id"]))
+        rating = round_to_nearest_half(get_product_rating("database", product["id"]))
         products[index]["rating"] = rating
     end
 
     slim(:'/products/index', locals:{ products: products, brands: brands, categories: ["Category1", "Category2"]})
 end
 
+
+# Display form for adding a new product
+#
 get('/products/new') do
     slim(:'/products/new')
 end
 
+
+# Create a new product. Redirects to '/products' if successful, otherwise redirects to '/products/new'
+#
+# @param [File] image The product-image
+# @param [String] name The products name
+# @param [String] brand The brand of the product
+# @param [String] desc The description of the product
+# @param [String] spec The specification of the product
+# @param [Float] price The price of the product
+#
+# @see Model#create_product
 post('/products') do
     image = params[:image]
     name = params[:name]
@@ -354,6 +442,15 @@ post('/products') do
     end
 end
 
+
+# Display a single product. Redirects to /error/404 if product doesn't exist
+#
+# @param [Integer] :id The id of the product
+#
+# @see Model#get_product
+# @see Model#get_reviews
+# @see Model#get_product_rating
+# @see Model#round_to_nearest_half
 get('/products/:id') do
     id = params[:id].to_i
     success, product = get_product("database", id)
@@ -363,12 +460,18 @@ get('/products/:id') do
     end
 
     reviews = get_reviews("database", id)
-    rating = round_to_nearst_half(get_product_rating("database", id))
+    rating = round_to_nearest_half(get_product_rating("database", id))
     product["rating"] = rating
 
     slim(:"/products/show", locals: { product: product, reviews: reviews })
 end
 
+
+# Show form for editing a single product
+#
+# @param [Integer] :id The id of the product
+#
+# @see Model#get_product
 get('/products/:id/edit') do
     id = params[:id].to_i
     success, product = get_product("database", id)
@@ -380,6 +483,18 @@ get('/products/:id/edit') do
     slim(:'/products/edit', locals: { product: product })
 end
 
+
+# Update a single product. Redirects to '/products/:id' if successful, otherwise redirects to '/products/:id/edit'
+#
+# @param [Integer] :id The id of the product
+# @param [File] image The product-image
+# @param [String] name The products name
+# @param [String] brand The brand of the product
+# @param [String] desc The description of the product
+# @param [String] spec The specification of the product
+# @param [Float] price The price of the product
+#
+# @see Model#update_product
 post('/products/:id/update') do
     id = params[:id].to_i
     image = params[:image]
@@ -409,6 +524,12 @@ post('/products/:id/update') do
     end
 end
 
+
+# Delete a single product. Redirects to '/products' if successful, otherwise redirects to'/products/:id/edit'
+#
+# @param [Integer] id The id of the product
+# 
+# @see Model#delete_product
 post('/products/:id/delete') do
     id = params[:id].to_i
     success, responseMsg = delete_product("database", id)
@@ -431,6 +552,14 @@ before('/products/:id/reviews') do
     end
 end
 
+
+# Create a review from a user for a product (only allowed for logged in users). Reirects to '/products/:id'
+#
+# @param [Integer] :id The id of the products
+# @param [Integer] :userId The id of the logged in user.
+#
+# @see Model#add_review
+# @see Model#get_customer
 post('/products/:id/reviews') do
     customerId = get_customer("database", session[:userId])["id"]
 
@@ -452,6 +581,14 @@ post('/products/:id/reviews') do
     redirect("/products/#{params[:id]}")
 end
 
+
+# Delete a review. Redirects to '/products/:id'
+#
+# @param [Integer] :id The id of the product
+# @param [Integer] :userId The user id of the logged in user
+#
+# @see Model#delete_review
+# @see Model#get_customer
 post('/products/:id/reviews/delete') do
     customerId = get_customer("database", session[:userId])["id"]
     productId = params[:id]
@@ -463,21 +600,14 @@ post('/products/:id/reviews/delete') do
 end
 
 
-# CART
-
-get('/users/:id/cart') do
-    cart = get_cart("database", session[:userId])
-
-    slim(:'carts/show', locals: { cart: cart })
-end
-
-post("/carts") do
-
-end
-
-
 # ERRORS
 
+# Display error page.
+#
+# @param [Integer] :id The id of the error
+# @param [String] message
+#
+# @see Model#string_is_int
 get('/error/:id') do
     errors = {
         401 => 'Unauthorized access.',
@@ -495,6 +625,9 @@ get('/error/:id') do
     slim(:error, locals: {errorId: errorId, errorMsg: errorMsg})
 end
 
+
+# Handles routes that doesn't exists. Redirects to '/error/404'
+#
 not_found do
     redirect('/error/404')
 end
