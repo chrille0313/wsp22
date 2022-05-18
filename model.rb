@@ -52,6 +52,8 @@ module Model
     # @param [String] check The value to check the attribute against
     #
     # @return [Boolean] True if the count of the database entry is 0 else False
+    #
+    # @see Model#count_db
     def is_unique(db, table, attribute, check)
         return count_db(db, table, attribute, check) == 0
     end
@@ -89,7 +91,7 @@ module Model
 
     # Combines urls to use in before-blocks
     #
-    # @params [Array] urls An array of urls to combine
+    # @param [Array] urls An array of urls to combine
     #
     # @return [String] A string with the combined urls
     def combine_urls(*urls)
@@ -171,6 +173,8 @@ module Model
     # @return [Array] 
     #   * [Boolean] success True if the image passed all checks else False
     #   * [String] message The error message of the validation
+    #
+    # @see Model#get_file_size_mb
     def check_image(image)
         if image == nil
             return [false, "No image provided!"]
@@ -187,10 +191,14 @@ module Model
     # Get the image path of a file on the server
     #
     # @param [Hash] image The image submitted by the user
-    # @params [String] subDir The subdirectory of the image file
-    # @params [String] filename The name of the image file
+    # @param [String] subDir The subdirectory of the image file
+    # @param [String] filename The name of the image file
     #
     # @return [String] The path to the image file on the server
+    #
+    # @see Model#get_files_in_dir
+    # @see Model#generate_random_str
+    # @see Model#get_file_ext
     def get_image_path(image, subDir="", filename="")
         existingFiles = Set.new(get_files_in_dir("./public/uploads/img"))
         fileName = filename == "" ? "#{generate_random_str(existingFiles)}.#{get_file_ext(image["filename"])}" : filename
@@ -198,7 +206,15 @@ module Model
     end
 
 
-    
+    # Downloads an image to the server
+    #
+    # @param [Hash] image The user-submitted image to be downloaded
+    # @param [String] subDir The subdirectory to download the image to
+    # @param [String] filename The name of the image file
+    #
+    # @return [String] The path to the image on the server
+    #
+    # @see Model#get_image_path
     def download_image(image, subDir="", filename="")
         file = image["tempfile"]
         path = get_image_path(image, subDir, filename)
@@ -210,6 +226,15 @@ module Model
         return path
     end
 
+
+    # Updates an image on the server
+    #
+    # @param [String] subDir The subdirectory that the image lies in on the server
+    # @param [String] filename The name of the file on the server
+    # @param [Hash] newImage Whether to replace the image with a new one. If set to nil, the old image will be deleted.
+    #
+    # @return [String] The path to the image on the server
+    # @return [Boolean] False if no new image is provided
     def update_image(subDir, filename, newImage=nil)
         if newImage != nil
             return download_image(newImage, subDir, filename)
@@ -220,6 +245,12 @@ module Model
         return false
     end
 
+
+    # Checks if a given password is strong
+    #
+    # @param [String] password
+    #
+    # @return [Boolean] True if the password is strong else False
     def password_is_strong(password)
         # ^                 Start anchor
         # (?=.*[a-z])       Ensure string has one lowercase letter.
@@ -231,16 +262,40 @@ module Model
         return (password =~ /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])(?=.{8,})/) != nil
     end
 
+
+    # Checks if a given email addres is valid
+    # 
+    # @param [String] email The email to check
+    #
+    # @return [Boolean] True if the email is valid else False
     def email_is_valid(email)
         return (email =~ /([-!#-'*+-9=?A-Z^-~]+(\.[-!#-'*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/) != nil
     end
 
+
+    # Checks if a string is empty
+    #
+    # @param [String] str The string to check
+    #
+    # @return [Boolean] True if the string is empty else False
     def is_empty(str)
         return str == nil || (str =~ /^.*[^\s].*$/) == nil
     end
 
 
-    # TODO: limit lengths
+    # Validates user inputed acount credentials
+    # 
+    # @param [Database Object] db
+    # @param [Hash] credentials The user inputed credentials
+    #  
+    # @return [Array]
+    #   * [Boolean] True if all credentials passede the tests else False
+    #   * [String] The error message
+    #
+    # @see Model#is_empty
+    # @see Model#string_is_int
+    # @see Model#password_is_strong
+    # @see Model#is_unique
     def check_account_credentials(db, credentials, updating=false)
         if is_empty(credentials[:username])
             return [false, "No username provided"]
@@ -268,6 +323,15 @@ module Model
         return [true, "Account creation possible."]
     end
 
+
+    # Registers a user to the provided database
+    #
+    # @param [Database Object] db The database to register the user to
+    # @param [String] username The username of the user
+    # @param [String] password The password of the user
+    # @param [Integer] role The role of the user
+    # 
+    # @return [Integer] The id of the created user
     def register_account(db, username, password, role=ROLES[:customer]) 
         passwordDigest = BCrypt::Password.create(password)
         db.execute('INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)', username, passwordDigest, role)
@@ -275,6 +339,14 @@ module Model
         return accountId["id"]
     end
 
+
+    # Validates the customer credentials
+    # 
+    # @param [Database Object] 
+    # @param [Hash] 
+    # @param [Boolean] 
+    #
+    # @return [Hash]
     def check_customer_credentials(db, credentials, updating=false)
         empty = ""
         
