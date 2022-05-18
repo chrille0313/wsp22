@@ -342,11 +342,20 @@ module Model
 
     # Validates the customer credentials
     # 
-    # @param [Database Object] 
-    # @param [Hash] 
-    # @param [Boolean] 
+    # @param [Database Object] The database to validate the credentials to
+    # @param [Hash] credentials The credentials to validate
+    # @param [Boolean] updating Whether the user is updating their credentials
     #
-    # @return [Hash]
+    # @return [Array]
+    #   * [Boolean] True if all credentials passede the tests else False
+    #   * [String] The error message
+    #
+    # @see Model#is_empty
+    # @see Model#str_contains_nr
+    # @see Model#email_is_valid
+    # @see Model#is_unique
+    # @see Model#string_is_int
+    # @see Model#str_contains_special_char
     def check_customer_credentials(db, credentials, updating=false)
         empty = ""
         
@@ -415,10 +424,42 @@ module Model
     end
 
 
+    # Registers a customer to the provided database
+    #
+    # @param [Database Object] db The database to register the customer to
+    # @param [Integer] accountId The id of the account to register the customer to
+    # @param [String] fname The first name of the customer
+    # @param [String] lname The last name of the customer
+    # @param [String] email The email of the customer
+    # @param [String] address The address of the customer
+    # @param [String] city The city of the customer
+    # @param [String] postalCode The postal code of the customer
     def register_customer(db, accountId, fname, lname, email, address, city, postalCode) 
         db.execute('INSERT INTO customers (account_id, fname, lname, email, address, city, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)', accountId, fname, lname, email, address, city, postalCode)
     end
 
+
+    # Registers a user
+    #
+    # @param [String] username The username of the user
+    # @param [String] password The password of the user
+    # @param [String] confirmPassword The confirmation of the password
+    # @param [String] fname The first name of the user
+    # @param [String] lname The last name of the user
+    # @param [String] email The email of the user
+    # @param [String] address The address of the user
+    # @param [String] city The city of the user
+    # @param [String] postalCode The postal code of the user
+    # @param [Integer] role The role of the user
+    #
+    # @return [Array]
+    #   * [Boolean] True if all credentials passede the tests else False
+    #   * [String] The error message
+    #
+    # @see Model#check_account_credentials
+    # @see Model#check_customer_credentials
+    # @see Model#register_account
+    # @see Model#register_customer
     def register_user(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role=ROLES[:customer])
         db = connect_to_db("database")
         accountSuccess, accountMsg = check_account_credentials(db, {username: username, password: password, confirm_password: confirmPassword, role: role.to_s})
@@ -444,6 +485,14 @@ module Model
         return [true, "User successfully created!"]
     end
 
+
+    # Updates an account
+    #
+    # @param [Database Object] db The database to update the account in
+    # @param [Integer] accountId The id of the account to update
+    # @param [String] username The username of the account
+    # @param [String] password The password of the account
+    # @param [Integer] role The role of the account
     def update_account(db, accountId, username, password, role)
         db.execute('UPDATE accounts SET username = ?, role = ? WHERE id = ?', username, role, accountId)
 
@@ -454,11 +503,44 @@ module Model
     end
 
 
+    # Updates a customer
+    #
+    # @param [Database Object] db The database to update the customer in
+    # @param [Integer] accountId The id of the customer to update
+    # @param [String] fname The first name of the customer
+    # @param [String] lname The last name of the customer
+    # @param [String] email The email of the customer
+    # @param [String] address The address of the customer
+    # @param [String] city The city of the customer
+    # @param [String] postalCode The postal code of the customer
     def update_customer(db, accountId, fname, lname, email, address, city, postalCode)
         db.execute('UPDATE customers SET fname = ?, lname = ?, email = ?, address = ?, city = ?, postal_code = ? WHERE account_id = ?', fname, lname, email, address, city, postalCode, accountId)
     end
 
 
+    # Updates a user
+    #
+    # @param [Integer] accountId The id of the user to update
+    # @param [String] username The username of the user
+    # @param [String] password The password of the user
+    # @param [String] confirmPassword The confirmation of the password
+    # @param [String] fname The first name of the user
+    # @param [String] lname The last name of the user
+    # @param [String] email The email of the user
+    # @param [String] address The address of the user
+    # @param [String] city The city of the user
+    # @param [String] postalCode The postal code of the user
+    # @param [Integer] role The role of the user
+    #
+    # @return [Array]
+    #   * [Boolean] True if all credentials passede the tests else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
+    # @see Model#check_account_credentials
+    # @see Model#check_customer_credentials
+    # @see Model#update_account
+    # @see Model#update_customer
     def update_user(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role=ROLES[:customer])
         db = connect_to_db("database")
 
@@ -484,6 +566,21 @@ module Model
     end
 
 
+    # Authenticates a user
+    #
+    # @param [String] username The username of the user
+    # @param [String] password The password of the user
+    #
+    # @return [Array]
+    #   * [Boolean] False if the user could not be authenticated
+    #   * [String] The error message
+    # @return [Array]
+    #   * [Boolean] True if the user could be authenticated 
+    #   * [Hash]
+    #       * [Integer] id The id of the user
+    #       * [Integer] role The role of the user
+    #
+    # @see Model#connect_to_db
     def authenticate_user(username, password)
         db = connect_to_db("database")
         result = db.execute("SELECT * FROM accounts WHERE username = ?", username).first
@@ -498,6 +595,16 @@ module Model
     end
 
 
+    # Deletes a user
+    #
+    # @param [String] database The name of the database to delete the user from
+    # @param [Integer] accountId The id of the user to delete
+    #
+    # @return [Array]
+    #   * [Boolean] True if the user is deleted else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
     def delete_user(database, accountId)
         db = connect_to_db(database)
 
@@ -516,6 +623,19 @@ module Model
     end
 
 
+    # Gets an account from the database
+    #
+    # @param [String] database The name of the database to get the account from
+    # @param [Integer] accountId The id of the account to get
+    #
+    # @return [Array]
+    #   * [Boolean] False if the account doesn't exist
+    #   * [String] The error message
+    # @return [Array]
+    #   * [Boolean] True if the account is found
+    #   * [Hash] The user credentials
+    #
+    # @see Model#connect_to_db
     def get_account(id, database)
         db = connect_to_db(database)
         user = db.execute("SELECT * FROM accounts WHERE id = ?", id).first
@@ -528,16 +648,45 @@ module Model
     end
 
 
+    # Gets a customer from the database
+    #
+    # @param [String] database The name of the database to get the customer from
+    # @param [Integer] customerId The id of the customer to get
+    #
+    # @return [Hash] The customer details
+    # @return nil If the customer doesn't exist
+    #
+    # @see Model#connect_to_db
     def get_customer(database, account_id)
         db = connect_to_db(database)
         return db.execute("SELECT * FROM customers WHERE account_id = ?", account_id).first
     end
 
+
+    # Gets a customer from the database
+    #
+    # @param [String] database The name of the database to get the customer from
+    # @param [Integer] customerId The id of the customer to get
+    #
+    # @return [Hash] The user details
+    # @return nil If the customer doesn't exist
+    #
+    # @see Model#connect_to_db
     def get_customer_details(database, customer_id)
         db = connect_to_db(database)
         return db.execute("SELECT * FROM customers WHERE id = ?", customer_id).first
     end
 
+
+    # Gets all users from the database
+    #
+    # @param [String] database The name of the database to get the users from
+    #
+    # @return [Hash]
+    #   * [:admins] The admins
+    #   * [:customers] The customers
+    #
+    # @see Model#connect_to_db
     def get_users(database)
         db = connect_to_db(database)
         admins = db.execute("SELECT * FROM accounts WHERE role = ?", ROLES[:admin])
@@ -546,6 +695,18 @@ module Model
     end
 
 
+    # Gets the role of a user
+    #
+    # @param [Integer] accountId The id of the user
+    #
+    # @return [Array]
+    #   * [Boolean] False if the user doesn't exist
+    #   * [String] The error message
+    # @return [Array]
+    #   * [Boolean] True if the user is found
+    #   * [Integer] The role of the user
+    #
+    # @see Model#connect_to_db
     def get_user_role(accountId)
         db = connect_to_db("database")
         user = db.execute("SELECT role FROM accounts WHERE id = ?", accountId).first
@@ -558,6 +719,19 @@ module Model
     end
 
 
+    # Validates product credentials
+    #
+    # @param [Hash] credentials The credentials of the product
+    # @option credentials [String] :name The name of the product
+    # @option credentials [String] :description The description of the product
+    # @option credentials [String] :price The price of the product
+    # @option credentials [String] :image The image of the product
+    # @option credentials [String] :specification The specification of the product
+    # @option credentials [String] :brand The brand of the product
+    #
+    # @return [Array]
+    #   * [Boolean] True if the credentials are valid else False
+    #   * [String] The error message
     def check_product_credentials(credentials, updating=false)
         if is_empty(credentials[:name])
             return [false, "Product name cannot be empty!"]
@@ -592,11 +766,38 @@ module Model
     end
 
 
+    # Adds a product to the database
+    #
+    # @param [Database Object] db The database object
+    # @param [String] imagePath The path to the image on the server
+    # @param [String] name The name of the product
+    # @param [String] brand The brand of the product
+    # @param [String] description The description of the product
+    # @param [String] specification The specification of the product
+    # @param [String] price The price of the product
     def add_product(db, imagePath, name, brand, description, specification, price)
         db.execute('INSERT INTO products (image_url, name, brand, description, specification, price) VALUES (?, ?, ?, ?, ?, ?)', imagePath, name, brand, description, specification, price)
     end
 
 
+    # Creates a product
+    #
+    # @param [String] database The name of the database to create the product in
+    # @param [Hash] image The image of the product
+    # @param [String] name The name of the product
+    # @param [String] brand The brand of the product
+    # @param [String] description The description of the product
+    # @param [String] specification The specification of the product
+    # @param [String] price The price of the product
+    #
+    # @return [Array]
+    #   * [Boolean] True if the product was created else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
+    # @see Model#check_product_credentials
+    # @see Model#download_image
+    # @see Model#add_product
     def create_product(database, image, name, brand, description, specification, price)
         db = connect_to_db(database)
 
@@ -613,6 +814,26 @@ module Model
         return [true, "Product successfully created!"]
     end
 
+
+    # Updates a product
+    #
+    # @param [String] database The name of the database to update the product in    
+    # @param [Integer] productId The id of the product to update
+    # @param [Hash] image The image of the product
+    # @param [String] name The name of the product
+    # @param [String] brand The brand of the product
+    # @param [String] description The description of the product
+    # @param [String] specification The specification of the product
+    # @param [String] price The price of the product
+    #
+    # @return [Array]
+    #   * [Boolean] True if the product was updated else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
+    # @see Model#check_product_credentials
+    # @see Model#get_product
+    # @see Model#update_image
     def update_product(database, productId, image, name, brand, description, specification, price)
         db = connect_to_db(database)
 
@@ -639,14 +860,25 @@ module Model
         return [true, "Product successfully updated!"]
     end
 
+
+    # Deletes a product
+    #
+    # @param [String] database The name of the database to delete the product from
+    # @param [Integer] productId The id of the product to delete
+    #
+    # @return [Array]
+    #   * [Boolean] True if the product was deleted else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
+    # @see Model#get_product
+    # @see Model#update_image
     def delete_product(database, productId)
         db = connect_to_db(database)
 
         db.execute('DELETE FROM reviews WHERE product_id = ?', productId)
         db.execute('DELETE FROM likes WHERE product_id = ?', productId)
         db.execute('DELETE FROM carts WHERE product_id = ?', productId)
-
-        # TODO: delete image corresponding to productId correctly
 
         success, product = get_product(database, productId)
 
@@ -664,6 +896,14 @@ module Model
         return [true, "Product successfully deleted!"]
     end
 
+
+    # Gets all products
+    #
+    # @param [String] database The name of the database to get the products from
+    #
+    # @return [Array] The products
+    #
+    # @see Model#connect_to_db
     def get_products(database)
         db = connect_to_db(database)
         products = db.execute("SELECT * FROM products")
@@ -673,6 +913,20 @@ module Model
         return products
     end
 
+
+    # Gets a product
+    #
+    # @param [String] database The name of the database to get the product from
+    # @param [Integer] id The id of the product to get
+    #
+    # @return [Array]
+    #   * [Boolean] False if the product was not found
+    #   * [String] The error message
+    # @return [Array]
+    #   * [Boolean] True if the product was found
+    #   * [Hash] The product details
+    #
+    # @see Model#connect_to_db
     def get_product(database, id)
         db = connect_to_db(database)
         product = db.execute("SELECT * FROM products WHERE id = ?", id).first
@@ -686,6 +940,13 @@ module Model
         return [true, product]
     end
 
+
+    # Gets a products rating
+    #
+    # @param [String] database The name of the database to get the product from
+    # @param [Integer] productId The id of the product to get
+    #
+    # @return [Integer] The rating of the product
     def get_product_rating(database, productId)
         db = connect_to_db(database)
         result = db.execute("SELECT AVG(rating) FROM reviews WHERE product_id = ?", productId).first["AVG(rating)"]
@@ -693,6 +954,16 @@ module Model
     end
 
 
+    # Validates review credentials
+    #
+    # @param [Hash] credentials The review to validate
+    #
+    # @return [Array]
+    #   * [Boolean] True if the review is valid else False
+    #   * [String] The error message
+    #
+    # @see Model#string_is_int
+    # @see Model#is_empty
     def check_review_credentials(credentials)
         if credentials[:rating] == nil or !string_is_int(credentials[:rating]) or credentials[:rating].to_i < 0 or credentials[:rating].to_i > 5
             return [false, "Rating invalid!"]
@@ -705,12 +976,37 @@ module Model
         return [true, "Review creation possible."]
     end
 
+
+    # Checks if a user has already reviewed a product
+    #
+    # @param [String] database The name of the database to get the product from
+    # @param [Integer] customerId The id of the customer to check
+    # @param [Integer] productId The id of the product to check
+    #
+    # @return [Boolean] True if the user has already reviewed the product else False
+    #
+    # @see Model#connect_to_db
     def user_has_reviewed_product(database, customerId, productId)
         db = connect_to_db(database)
         return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).any?
     end
 
 
+    # Creates a review
+    #
+    # @param [String] database The name of the database to create the review in
+    # @param [Integer] customerId The id of the customer who created the review
+    # @param [Integer] productId The id of the product the review is for
+    # @param [Integer] rating The rating of the review
+    # @param [String] comment The comment of the review
+    #
+    # @return [Array]
+    #   * [Boolean] True if the review was created else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
+    # @see Model#check_review_credentials
+    # @see Model#user_has_reviewed_product
     def add_review(database, customerId, productId, rating, comment)
         success, msg = check_review_credentials({rating: rating, comment: comment})
 
@@ -730,25 +1026,51 @@ module Model
         end
     end
 
+
+    # Deletes a review from the database
+    #
+    # @param [String] database The name of the database to delete the review from
+    # @param [Integer] customerId The id of the customer who created the review
+    # @param [Integer] productId The id of the product the review is for
+    #
+    # @return [Array]
+    #   * [Boolean] True if the review was deleted else False
+    #   * [String] The error message
+    #
+    # @see Model#connect_to_db
     def delete_review(database, customerId, productId)
         db = connect_to_db(database)
         db.execute('DELETE FROM reviews WHERE customer_id = ? AND product_id = ?', customerId, productId)
         return [true, "Review successfully deleted!"]
     end
 
+
+    # Gets all reviews for a product
+    #
+    # @param [String] database The name of the database to get the reviews from
+    # @param [Integer] productId The id of the product to get the reviews for
+    #
+    # @return [Array] The reviews for the product
+    #
+    # @see Model#connect_to_db
     def get_reviews(database, productId)
         db = connect_to_db(database)
         return db.execute("SELECT * FROM reviews WHERE product_id = ?", productId)
     end
 
+
+    # Get the reviews for a product from a specific customer
+    #
+    # @param [String] database The name of the database to get the reviews from
+    # @param [Integer] customerId The id of the customer to get the reviews for
+    # @param [Integer] productId The id of the product to get the reviews for
+    #
+    # @return [Array] The reviews for the product from the customer
+    #
+    # @see Model#connect_to_db
     def get_user_review(database, customerId, productId)
         db = connect_to_db(database)
         return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).first
-    end
-
-    def get_cart(database, customerId)
-        db = connect_to_db(database)
-        return db.execute("SELECT product_id FROM carts WHERE customer_id = ?", customerId)
     end
 
 end

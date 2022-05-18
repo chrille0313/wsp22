@@ -274,7 +274,7 @@ post('/users/:id/update') do
 end
 
 
-# Delete an existing user
+# Delete an existing user (can only be done by admins or the user himself)
 #
 # @param [Integer] :id The id of the user
 #
