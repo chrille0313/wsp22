@@ -416,7 +416,6 @@ module Model
         
         # Address
         elsif str_contains_special_char(credentials[:address])
-            p credentials[:address]
             return [false, "Address can't contain special characters!"]
         elsif credentials[:address].length > MAX_ADDRESS_LENGTH
             return [false, "Address is too long!"]
