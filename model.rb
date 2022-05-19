@@ -1,3 +1,4 @@
+# The Model module represents contains all the relevant code for the Model part of the MVC architecture.
 module Model
 
     require "securerandom"
@@ -85,7 +86,7 @@ module Model
     #
     # @return [Boolean] True if the user contains a special character else False 
     def str_contains_special_char(str)
-        return (str =~ /[^a-zA-Z0-9]/) != nil
+        return (str =~ /[^a-zA-Z0-9\s]/) != nil
     end
 
 
@@ -101,7 +102,7 @@ module Model
 
     # Generates a unique random string with a given length
     #
-    # @param [Set] A set with the given
+    # @param [Set] used A set with the given
     # @param [Integer] length The length of the generated string in bits
     #
     # @return [String] The generated string
@@ -117,7 +118,7 @@ module Model
 
     # Get the size of a file in Mega Bytes
     #
-    # @param [File] The file to check the size of
+    # @param [File] file The file to check the size of
     #
     # @return [Float] The size of the given file in Mega Bytes
     def get_file_size_mb(file)
@@ -342,7 +343,7 @@ module Model
 
     # Validates the customer credentials
     # 
-    # @param [Database Object] The database to validate the credentials to
+    # @param [Database Object] db The database to validate the credentials to
     # @param [Hash] credentials The credentials to validate
     # @param [Boolean] updating Whether the user is updating their credentials
     #
@@ -377,13 +378,13 @@ module Model
             return [false, "No #{empty} provided!"]
 
         # FIRST NAME
-        elsif str_contains_nr(credentials[:fname])
+        elsif str_contains_nr(credentials[:fname]) or str_contains_special_char(credentials[:fname])
             return [false, "First name can't contain numbers!"]
         elsif credentials[:fname].length > MAX_NAME_LENGTH
             return [false, "First name is too long!"]
 
         # LAST NAME
-        elsif str_contains_nr(credentials[:lname])
+        elsif str_contains_nr(credentials[:lname]) or str_contains_special_char(credentials[:lname])
             return [false, "Last name can't contain numbers!"]
         elsif credentials[:lname].length > MAX_NAME_LENGTH
             return [false, "Last name is too long!"]
@@ -415,6 +416,7 @@ module Model
         
         # Address
         elsif str_contains_special_char(credentials[:address])
+            p credentials[:address]
             return [false, "Address can't contain special characters!"]
         elsif credentials[:address].length > MAX_ADDRESS_LENGTH
             return [false, "Address is too long!"]
@@ -625,8 +627,8 @@ module Model
 
     # Gets an account from the database
     #
+    # @param [Integer] id The id of the account to get
     # @param [String] database The name of the database to get the account from
-    # @param [Integer] accountId The id of the account to get
     #
     # @return [Array]
     #   * [Boolean] False if the account doesn't exist
@@ -651,15 +653,15 @@ module Model
     # Gets a customer from the database
     #
     # @param [String] database The name of the database to get the customer from
-    # @param [Integer] customerId The id of the customer to get
+    # @param [Integer] accountId The id of the customer to get
     #
     # @return [Hash] The customer details
     # @return nil If the customer doesn't exist
     #
     # @see Model#connect_to_db
-    def get_customer(database, account_id)
+    def get_customer(database, accountId)
         db = connect_to_db(database)
-        return db.execute("SELECT * FROM customers WHERE account_id = ?", account_id).first
+        return db.execute("SELECT * FROM customers WHERE account_id = ?", accountId).first
     end
 
 
@@ -672,9 +674,9 @@ module Model
     # @return nil If the customer doesn't exist
     #
     # @see Model#connect_to_db
-    def get_customer_details(database, customer_id)
+    def get_customer_details(database, customerId)
         db = connect_to_db(database)
-        return db.execute("SELECT * FROM customers WHERE id = ?", customer_id).first
+        return db.execute("SELECT * FROM customers WHERE id = ?", customerId).first
     end
 
 
