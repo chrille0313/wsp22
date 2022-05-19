@@ -85,7 +85,20 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The Model module represents contains all the relevant code for the Model part of the MVC architecture.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+
+
+</div>
 
 
 
@@ -117,7 +130,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Adds a product to the database.</p>
+</div></span>
   
 </li>
 
@@ -125,51 +140,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add_review-instance_method" title="#add_review (instance method)">#<strong>add_review</strong>(database, customerId, productId, rating, comment)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#authenticate_user-instance_method" title="#authenticate_user (instance method)">#<strong>authenticate_user</strong>(username, password)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#check_account_credentials-instance_method" title="#check_account_credentials (instance method)">#<strong>check_account_credentials</strong>(db, credentials, updating = false)  &#x21d2; Object </a>
+      <a href="#add_review-instance_method" title="#add_review (instance method)">#<strong>add_review</strong>(database, customerId, productId, rating, comment)  &#x21d2; Array </a>
     
 
     
@@ -184,7 +155,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>TODO: limit lengths.</p>
+<p>Creates a review.</p>
 </div></span>
   
 </li>
@@ -193,7 +164,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_customer_credentials-instance_method" title="#check_customer_credentials (instance method)">#<strong>check_customer_credentials</strong>(db, credentials, updating = false)  &#x21d2; Object </a>
+      <a href="#authenticate_user-instance_method" title="#authenticate_user (instance method)">#<strong>authenticate_user</strong>(username, password)  &#x21d2; Array </a>
     
 
     
@@ -207,7 +178,57 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Authenticates a user.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_account_credentials-instance_method" title="#check_account_credentials (instance method)">#<strong>check_account_credentials</strong>(db, credentials, updating = false)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Validates user inputed acount credentials.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_customer_credentials-instance_method" title="#check_customer_credentials (instance method)">#<strong>check_customer_credentials</strong>(db, credentials, updating = false)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Validates the customer credentials.</p>
+</div></span>
   
 </li>
 
@@ -239,7 +260,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_product_credentials-instance_method" title="#check_product_credentials (instance method)">#<strong>check_product_credentials</strong>(credentials, updating = false)  &#x21d2; Object </a>
+      <a href="#check_product_credentials-instance_method" title="#check_product_credentials (instance method)">#<strong>check_product_credentials</strong>(credentials, updating = false)  &#x21d2; Array </a>
     
 
     
@@ -253,7 +274,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Validates product credentials.</p>
+</div></span>
   
 </li>
 
@@ -261,7 +284,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_review_credentials-instance_method" title="#check_review_credentials (instance method)">#<strong>check_review_credentials</strong>(credentials)  &#x21d2; Object </a>
+      <a href="#check_review_credentials-instance_method" title="#check_review_credentials (instance method)">#<strong>check_review_credentials</strong>(credentials)  &#x21d2; Array </a>
     
 
     
@@ -275,7 +298,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Validates review credentials.</p>
+</div></span>
   
 </li>
 
@@ -355,7 +380,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create_product-instance_method" title="#create_product (instance method)">#<strong>create_product</strong>(database, image, name, brand, description, specification, price)  &#x21d2; Object </a>
+      <a href="#create_product-instance_method" title="#create_product (instance method)">#<strong>create_product</strong>(database, image, name, brand, description, specification, price)  &#x21d2; Array </a>
     
 
     
@@ -369,7 +394,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a product.</p>
+</div></span>
   
 </li>
 
@@ -377,7 +404,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delete_product-instance_method" title="#delete_product (instance method)">#<strong>delete_product</strong>(database, productId)  &#x21d2; Object </a>
+      <a href="#delete_product-instance_method" title="#delete_product (instance method)">#<strong>delete_product</strong>(database, productId)  &#x21d2; Array </a>
     
 
     
@@ -391,7 +418,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a product.</p>
+</div></span>
   
 </li>
 
@@ -399,7 +428,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delete_review-instance_method" title="#delete_review (instance method)">#<strong>delete_review</strong>(database, customerId, productId)  &#x21d2; Object </a>
+      <a href="#delete_review-instance_method" title="#delete_review (instance method)">#<strong>delete_review</strong>(database, customerId, productId)  &#x21d2; Array </a>
     
 
     
@@ -413,7 +442,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a review from the database.</p>
+</div></span>
   
 </li>
 
@@ -421,7 +452,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delete_user-instance_method" title="#delete_user (instance method)">#<strong>delete_user</strong>(database, accountId)  &#x21d2; Object </a>
+      <a href="#delete_user-instance_method" title="#delete_user (instance method)">#<strong>delete_user</strong>(database, accountId)  &#x21d2; Array </a>
     
 
     
@@ -435,7 +466,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a user.</p>
+</div></span>
   
 </li>
 
@@ -443,7 +476,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#download_image-instance_method" title="#download_image (instance method)">#<strong>download_image</strong>(image, subDir = &quot;&quot;, filename = &quot;&quot;)  &#x21d2; Object </a>
+      <a href="#download_image-instance_method" title="#download_image (instance method)">#<strong>download_image</strong>(image, subDir = &quot;&quot;, filename = &quot;&quot;)  &#x21d2; String </a>
     
 
     
@@ -467,7 +500,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#email_is_valid-instance_method" title="#email_is_valid (instance method)">#<strong>email_is_valid</strong>(email)  &#x21d2; Object </a>
+      <a href="#email_is_valid-instance_method" title="#email_is_valid (instance method)">#<strong>email_is_valid</strong>(email)  &#x21d2; Boolean </a>
     
 
     
@@ -481,7 +514,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if a given email addres is valid.</p>
+</div></span>
   
 </li>
 
@@ -513,7 +548,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_account-instance_method" title="#get_account (instance method)">#<strong>get_account</strong>(id, database)  &#x21d2; Object </a>
+      <a href="#get_account-instance_method" title="#get_account (instance method)">#<strong>get_account</strong>(id, database)  &#x21d2; Array </a>
     
 
     
@@ -527,7 +562,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets an account from the database.</p>
+</div></span>
   
 </li>
 
@@ -535,7 +572,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_cart-instance_method" title="#get_cart (instance method)">#<strong>get_cart</strong>(database, customerId)  &#x21d2; Object </a>
+      <a href="#get_customer-instance_method" title="#get_customer (instance method)">#<strong>get_customer</strong>(database, accountId)  &#x21d2; Hash </a>
     
 
     
@@ -549,7 +586,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a customer from the database.</p>
+</div></span>
   
 </li>
 
@@ -557,7 +596,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_customer-instance_method" title="#get_customer (instance method)">#<strong>get_customer</strong>(database, account_id)  &#x21d2; Object </a>
+      <a href="#get_customer_details-instance_method" title="#get_customer_details (instance method)">#<strong>get_customer_details</strong>(database, customerId)  &#x21d2; Hash </a>
     
 
     
@@ -571,29 +610,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#get_customer_details-instance_method" title="#get_customer_details (instance method)">#<strong>get_customer_details</strong>(database, customer_id)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a customer from the database.</p>
+</div></span>
   
 </li>
 
@@ -697,7 +716,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_product-instance_method" title="#get_product (instance method)">#<strong>get_product</strong>(database, id)  &#x21d2; Object </a>
+      <a href="#get_product-instance_method" title="#get_product (instance method)">#<strong>get_product</strong>(database, id)  &#x21d2; Array </a>
     
 
     
@@ -711,7 +730,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a product.</p>
+</div></span>
   
 </li>
 
@@ -719,7 +740,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_product_rating-instance_method" title="#get_product_rating (instance method)">#<strong>get_product_rating</strong>(database, productId)  &#x21d2; Object </a>
+      <a href="#get_product_rating-instance_method" title="#get_product_rating (instance method)">#<strong>get_product_rating</strong>(database, productId)  &#x21d2; Integer </a>
     
 
     
@@ -733,7 +754,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets a products rating.</p>
+</div></span>
   
 </li>
 
@@ -741,7 +764,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_products-instance_method" title="#get_products (instance method)">#<strong>get_products</strong>(database)  &#x21d2; Object </a>
+      <a href="#get_products-instance_method" title="#get_products (instance method)">#<strong>get_products</strong>(database)  &#x21d2; Array </a>
     
 
     
@@ -755,7 +778,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets all products.</p>
+</div></span>
   
 </li>
 
@@ -763,7 +788,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_reviews-instance_method" title="#get_reviews (instance method)">#<strong>get_reviews</strong>(database, productId)  &#x21d2; Object </a>
+      <a href="#get_reviews-instance_method" title="#get_reviews (instance method)">#<strong>get_reviews</strong>(database, productId)  &#x21d2; Array </a>
     
 
     
@@ -777,7 +802,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets all reviews for a product.</p>
+</div></span>
   
 </li>
 
@@ -785,7 +812,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_user_review-instance_method" title="#get_user_review (instance method)">#<strong>get_user_review</strong>(database, customerId, productId)  &#x21d2; Object </a>
+      <a href="#get_user_review-instance_method" title="#get_user_review (instance method)">#<strong>get_user_review</strong>(database, customerId, productId)  &#x21d2; Array </a>
     
 
     
@@ -799,7 +826,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Get the reviews for a product from a specific customer.</p>
+</div></span>
   
 </li>
 
@@ -807,7 +836,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_user_role-instance_method" title="#get_user_role (instance method)">#<strong>get_user_role</strong>(accountId)  &#x21d2; Object </a>
+      <a href="#get_user_role-instance_method" title="#get_user_role (instance method)">#<strong>get_user_role</strong>(accountId)  &#x21d2; Array </a>
     
 
     
@@ -821,7 +850,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the role of a user.</p>
+</div></span>
   
 </li>
 
@@ -829,7 +860,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_users-instance_method" title="#get_users (instance method)">#<strong>get_users</strong>(database)  &#x21d2; Object </a>
+      <a href="#get_users-instance_method" title="#get_users (instance method)">#<strong>get_users</strong>(database)  &#x21d2; Hash </a>
     
 
     
@@ -843,7 +874,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets all users from the database.</p>
+</div></span>
   
 </li>
 
@@ -851,7 +884,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#is_empty-instance_method" title="#is_empty (instance method)">#<strong>is_empty</strong>(str)  &#x21d2; Object </a>
+      <a href="#is_empty-instance_method" title="#is_empty (instance method)">#<strong>is_empty</strong>(str)  &#x21d2; Boolean </a>
     
 
     
@@ -865,7 +898,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if a string is empty.</p>
+</div></span>
   
 </li>
 
@@ -921,7 +956,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#password_is_strong-instance_method" title="#password_is_strong (instance method)">#<strong>password_is_strong</strong>(password)  &#x21d2; Object </a>
+      <a href="#password_is_strong-instance_method" title="#password_is_strong (instance method)">#<strong>password_is_strong</strong>(password)  &#x21d2; Boolean </a>
     
 
     
@@ -935,7 +970,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if a given password is strong.</p>
+</div></span>
   
 </li>
 
@@ -943,7 +980,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#register_account-instance_method" title="#register_account (instance method)">#<strong>register_account</strong>(db, username, password, role = )  &#x21d2; Object </a>
+      <a href="#register_account-instance_method" title="#register_account (instance method)">#<strong>register_account</strong>(db, username, password, role = )  &#x21d2; Integer </a>
     
 
     
@@ -957,7 +994,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Registers a user to the provided database.</p>
+</div></span>
   
 </li>
 
@@ -979,7 +1018,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Registers a customer to the provided database.</p>
+</div></span>
   
 </li>
 
@@ -987,7 +1028,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#register_user-instance_method" title="#register_user (instance method)">#<strong>register_user</strong>(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; Object </a>
+      <a href="#register_user-instance_method" title="#register_user (instance method)">#<strong>register_user</strong>(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; Array </a>
     
 
     
@@ -1001,7 +1042,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Registers a user.</p>
+</div></span>
   
 </li>
 
@@ -1119,7 +1162,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates an account.</p>
+</div></span>
   
 </li>
 
@@ -1141,7 +1186,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates a customer.</p>
+</div></span>
   
 </li>
 
@@ -1149,7 +1196,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_image-instance_method" title="#update_image (instance method)">#<strong>update_image</strong>(subDir, filename, newImage = nil)  &#x21d2; Object </a>
+      <a href="#update_image-instance_method" title="#update_image (instance method)">#<strong>update_image</strong>(subDir, filename, newImage = nil)  &#x21d2; String, Boolean </a>
     
 
     
@@ -1163,7 +1210,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates an image on the server.</p>
+</div></span>
   
 </li>
 
@@ -1171,7 +1220,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_product-instance_method" title="#update_product (instance method)">#<strong>update_product</strong>(database, productId, image, name, brand, description, specification, price)  &#x21d2; Object </a>
+      <a href="#update_product-instance_method" title="#update_product (instance method)">#<strong>update_product</strong>(database, productId, image, name, brand, description, specification, price)  &#x21d2; Array </a>
     
 
     
@@ -1185,7 +1234,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates a product.</p>
+</div></span>
   
 </li>
 
@@ -1193,7 +1244,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_user-instance_method" title="#update_user (instance method)">#<strong>update_user</strong>(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; Object </a>
+      <a href="#update_user-instance_method" title="#update_user (instance method)">#<strong>update_user</strong>(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; Array </a>
     
 
     
@@ -1207,7 +1258,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Updates a user.</p>
+</div></span>
   
 </li>
 
@@ -1215,7 +1268,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#user_has_reviewed_product-instance_method" title="#user_has_reviewed_product (instance method)">#<strong>user_has_reviewed_product</strong>(database, customerId, productId)  &#x21d2; Object </a>
+      <a href="#user_has_reviewed_product-instance_method" title="#user_has_reviewed_product (instance method)">#<strong>user_has_reviewed_product</strong>(database, customerId, productId)  &#x21d2; Boolean </a>
     
 
     
@@ -1229,7 +1282,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if a user has already reviewed a product.</p>
+</div></span>
   
 </li>
 
@@ -1252,18 +1307,147 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds a product to the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database object</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>imagePath</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to the image on the server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>brand</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The brand of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>description</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The description of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>specification</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The specification of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>price</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The price of the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-525
-526
-527</pre>
+779
+780
+781</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 525</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 779</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_product'>add_product</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_imagePath'>imagePath</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_brand'>brand</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_specification'>specification</span><span class='comma'>,</span> <span class='id identifier rubyid_price'>price</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INSERT INTO products (image_url, name, brand, description, specification, price) VALUES (?, ?, ?, ?, ?, ?)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_imagePath'>imagePath</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_brand'>brand</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_specification'>specification</span><span class='comma'>,</span> <span class='id identifier rubyid_price'>price</span><span class='rparen'>)</span>
@@ -1276,39 +1460,172 @@
       <div class="method_details ">
   <h3 class="signature " id="add_review-instance_method">
   
-    #<strong>add_review</strong>(database, customerId, productId, rating, comment)  &#x21d2; <tt>Object</tt> 
+    #<strong>add_review</strong>(database, customerId, productId, rating, comment)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a review</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to create the review in</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>customerId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer who created the review</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product the review is for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rating</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The rating of the review</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>comment</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The comment of the review</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the review was created else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_review_credentials-instance_method" title="Model#check_review_credentials (method)">#check_review_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#user_has_reviewed_product-instance_method" title="Model#user_has_reviewed_product (method)">#user_has_reviewed_product</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-644
-645
-646
-647
-648
-649
-650
-651
-652
-653
-654
-655
-656
-657
-658
-659
-660
-661</pre>
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 644</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 1011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_review'>add_review</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='comma'>,</span> <span class='id identifier rubyid_rating'>rating</span><span class='comma'>,</span> <span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_success'>success</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='id identifier rubyid_check_review_credentials'><span class='object_link'><a href="#check_review_credentials-instance_method" title="Model#check_review_credentials (method)">check_review_credentials</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='label'>rating:</span> <span class='id identifier rubyid_rating'>rating</span><span class='comma'>,</span> <span class='label'>comment:</span> <span class='id identifier rubyid_comment'>comment</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1336,33 +1653,142 @@
       <div class="method_details ">
   <h3 class="signature " id="authenticate_user-instance_method">
   
-    #<strong>authenticate_user</strong>(username, password)  &#x21d2; <tt>Object</tt> 
+    #<strong>authenticate_user</strong>(username, password)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Authenticates a user</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The password of the user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>False if the user could not be authenticated</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the user could be authenticated </p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>Hash
+<dd><ul><li><dl class="rdoc-list label-list"><dt>Integer
+<dd>
+<p>id The id of the user</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>Integer
+<dd>
+<p>role The role of the user</p>
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-417
-418
-419
-420
-421
-422
-423
-424
-425
-426
-427
-428</pre>
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 417</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 585</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authenticate_user'>authenticate_user</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>database</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1384,7 +1810,7 @@
       <div class="method_details ">
   <h3 class="signature " id="check_account_credentials-instance_method">
   
-    #<strong>check_account_credentials</strong>(db, credentials, updating = false)  &#x21d2; <tt>Object</tt> 
+    #<strong>check_account_credentials</strong>(db, credentials, updating = false)  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -1393,13 +1819,82 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>TODO: limit lengths</p>
+<p>Validates user inputed acount credentials</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>credentials</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user inputed credentials</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if all credentials passede the tests else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#is_empty-instance_method" title="Model#is_empty (method)">#is_empty</a></span></li>
+    
+      <li><span class='object_link'><a href="#string_is_int-instance_method" title="Model#string_is_int (method)">#string_is_int</a></span></li>
+    
+      <li><span class='object_link'><a href="#password_is_strong-instance_method" title="Model#password_is_strong (method)">#password_is_strong</a></span></li>
+    
+      <li><span class='object_link'><a href="#is_unique-instance_method" title="Model#is_unique (method)">#is_unique</a></span></li>
+    
+  </ul>
 
 
 
@@ -1409,35 +1904,35 @@
       <pre class="lines">
 
 
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271</pre>
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 300</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_account_credentials'>check_account_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='comma'>,</span> <span class='id identifier rubyid_updating'>updating</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_is_empty'><span class='object_link'><a href="#is_empty-instance_method" title="Model#is_empty (method)">is_empty</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -1473,87 +1968,196 @@
       <div class="method_details ">
   <h3 class="signature " id="check_customer_credentials-instance_method">
   
-    #<strong>check_customer_credentials</strong>(db, credentials, updating = false)  &#x21d2; <tt>Object</tt> 
+    #<strong>check_customer_credentials</strong>(db, credentials, updating = false)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Validates the customer credentials</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database to validate the credentials to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>credentials</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The credentials to validate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>updating</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the user is updating their credentials</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if all credentials passede the tests else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#is_empty-instance_method" title="Model#is_empty (method)">#is_empty</a></span></li>
+    
+      <li><span class='object_link'><a href="#str_contains_nr-instance_method" title="Model#str_contains_nr (method)">#str_contains_nr</a></span></li>
+    
+      <li><span class='object_link'><a href="#email_is_valid-instance_method" title="Model#email_is_valid (method)">#email_is_valid</a></span></li>
+    
+      <li><span class='object_link'><a href="#is_unique-instance_method" title="Model#is_unique (method)">#is_unique</a></span></li>
+    
+      <li><span class='object_link'><a href="#string_is_int-instance_method" title="Model#string_is_int (method)">#string_is_int</a></span></li>
+    
+      <li><span class='object_link'><a href="#str_contains_special_char-instance_method" title="Model#str_contains_special_char (method)">#str_contains_special_char</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345</pre>
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 360</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_customer_credentials'>check_customer_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='comma'>,</span> <span class='id identifier rubyid_updating'>updating</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_empty'>empty</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -1686,6 +2290,13 @@
   
 </ul>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#get_file_size_mb-instance_method" title="Model#get_file_size_mb (method)">#get_file_size_mb</a></span></li>
+    
+  </ul>
+
 
 
 </div><table class="source_code">
@@ -1694,9 +2305,6 @@
       <pre class="lines">
 
 
-176
-177
-178
 179
 180
 181
@@ -1704,10 +2312,13 @@
 183
 184
 185
-186</pre>
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_image'>check_image</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_image'>image</span> <span class='op'>==</span> <span class='kw'>nil</span>
@@ -1728,53 +2339,200 @@
       <div class="method_details ">
   <h3 class="signature " id="check_product_credentials-instance_method">
   
-    #<strong>check_product_credentials</strong>(credentials, updating = false)  &#x21d2; <tt>Object</tt> 
+    #<strong>check_product_credentials</strong>(credentials, updating = false)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Validates product credentials</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>credentials</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The credentials of the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>credentials</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:name</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The name of the product</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:description</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The description of the product</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:price</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The price of the product</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:image</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The image of the product</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:specification</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The specification of the product</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:brand</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The brand of the product</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the credentials are valid else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522</pre>
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 491</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 736</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_product_credentials'>check_product_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_credentials'>credentials</span><span class='comma'>,</span> <span class='id identifier rubyid_updating'>updating</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_is_empty'><span class='object_link'><a href="#is_empty-instance_method" title="Model#is_empty (method)">is_empty</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -1816,32 +2574,99 @@
       <div class="method_details ">
   <h3 class="signature " id="check_review_credentials-instance_method">
   
-    #<strong>check_review_credentials</strong>(credentials)  &#x21d2; <tt>Object</tt> 
+    #<strong>check_review_credentials</strong>(credentials)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Validates review credentials</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>credentials</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The review to validate</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the review is valid else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#string_is_int-instance_method" title="Model#string_is_int (method)">#string_is_int</a></span></li>
+    
+      <li><span class='object_link'><a href="#is_empty-instance_method" title="Model#is_empty (method)">#is_empty</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-626
-627
-628
-629
-630
-631
-632
-633
-634
-635
-636</pre>
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 626</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 968</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_review_credentials'>check_review_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_credentials'>credentials</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:rating</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='kw'>or</span> <span class='op'>!</span><span class='id identifier rubyid_string_is_int'><span class='object_link'><a href="#string_is_int-instance_method" title="Model#string_is_int (method)">string_is_int</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:rating</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:rating</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>or</span> <span class='id identifier rubyid_credentials'>credentials</span><span class='lbracket'>[</span><span class='symbol'>:rating</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>&gt;</span> <span class='int'>5</span>
@@ -1877,7 +2702,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>urls</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array of urls to combine</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1905,12 +2750,12 @@
       <pre class="lines">
 
 
-97
 98
-99</pre>
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_combine_urls'>combine_urls</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_urls'>urls</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_urls'>urls</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2004,14 +2849,14 @@
       <pre class="lines">
 
 
-25
 26
 27
 28
-29</pre>
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connect_to_db'>connect_to_db</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_rootDir'>rootDir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>db</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='const'>SQLite3</span><span class='op'>::</span><span class='const'>Database</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rootDir'>rootDir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.db</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2137,14 +2982,14 @@
       <pre class="lines">
 
 
-40
 41
 42
 43
-44</pre>
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_count_db'>count_db</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_table'>table</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_check'>check</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_table'>table</span><span class='embexpr_end'>}</span><span class='tstring_content'> WHERE </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute'>attribute</span><span class='embexpr_end'>}</span><span class='tstring_content'> = ?</span><span class='tstring_end'>&quot;</span></span>
@@ -2159,36 +3004,203 @@
       <div class="method_details ">
   <h3 class="signature " id="create_product-instance_method">
   
-    #<strong>create_product</strong>(database, image, name, brand, description, specification, price)  &#x21d2; <tt>Object</tt> 
+    #<strong>create_product</strong>(database, image, name, brand, description, specification, price)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to create the product in</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>image</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The image of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>brand</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The brand of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>description</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The description of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>specification</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The specification of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>price</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The price of the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the product was created else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_product_credentials-instance_method" title="Model#check_product_credentials (method)">#check_product_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#download_image-instance_method" title="Model#download_image (method)">#download_image</a></span></li>
+    
+      <li><span class='object_link'><a href="#add_product-instance_method" title="Model#add_product (method)">#add_product</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544</pre>
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 530</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 802</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_product'>create_product</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_brand'>brand</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_specification'>specification</span><span class='comma'>,</span> <span class='id identifier rubyid_price'>price</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -2213,45 +3225,128 @@
       <div class="method_details ">
   <h3 class="signature " id="delete_product-instance_method">
   
-    #<strong>delete_product</strong>(database, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>delete_product</strong>(database, productId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deletes a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to delete the product from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the product was deleted else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+      <li><span class='object_link'><a href="#get_product-instance_method" title="Model#get_product (method)">#get_product</a></span></li>
+    
+      <li><span class='object_link'><a href="#update_image-instance_method" title="Model#update_image (method)">#update_image</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-572
-573
-574
-575
-576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595</pre>
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 572</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 877</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_product'>delete_product</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -2260,8 +3355,6 @@
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELETE FROM likes WHERE product_id = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELETE FROM carts WHERE product_id = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
 
-    <span class='comment'># TODO: delete image corresponding to productId correctly
-</span>
     <span class='id identifier rubyid_success'>success</span><span class='comma'>,</span> <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='id identifier rubyid_get_product'><span class='object_link'><a href="#get_product-instance_method" title="Model#get_product (method)">get_product</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_success'>success</span>
@@ -2285,26 +3378,123 @@
       <div class="method_details ">
   <h3 class="signature " id="delete_review-instance_method">
   
-    #<strong>delete_review</strong>(database, customerId, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>delete_review</strong>(database, customerId, productId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deletes a review from the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to delete the review from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>customerId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer who created the review</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product the review is for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the review was deleted else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-663
-664
-665
-666
-667</pre>
+1042
+1043
+1044
+1045
+1046</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 663</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 1042</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_review'>delete_review</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -2319,37 +3509,118 @@
       <div class="method_details ">
   <h3 class="signature " id="delete_user-instance_method">
   
-    #<strong>delete_user</strong>(database, accountId)  &#x21d2; <tt>Object</tt> 
+    #<strong>delete_user</strong>(database, accountId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deletes a user</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to delete the user from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the user to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the user is deleted else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446</pre>
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 431</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 609</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_user'>delete_user</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -2375,7 +3646,7 @@
       <div class="method_details ">
   <h3 class="signature " id="download_image-instance_method">
   
-    #<strong>download_image</strong>(image, subDir = &quot;&quot;, filename = &quot;&quot;)  &#x21d2; <tt>Object</tt> 
+    #<strong>download_image</strong>(image, subDir = &quot;&quot;, filename = &quot;&quot;)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -2390,7 +3661,88 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>image</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user-submitted image to be downloaded</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subDir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The subdirectory to download the image to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the image file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to the image on the server</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#get_image_path-instance_method" title="Model#get_image_path (method)">#get_image_path</a></span></li>
+    
+  </ul>
 
 
 
@@ -2400,19 +3752,19 @@
       <pre class="lines">
 
 
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213</pre>
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_download_image'>download_image</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_subDir'>subDir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_image'>image</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tempfile</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -2432,24 +3784,75 @@
       <div class="method_details ">
   <h3 class="signature " id="email_is_valid-instance_method">
   
-    #<strong>email_is_valid</strong>(email)  &#x21d2; <tt>Object</tt> 
+    #<strong>email_is_valid</strong>(email)  &#x21d2; <tt>Boolean</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if a given email addres is valid</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The email to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the email is valid else False</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-236
-237
-238</pre>
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 272</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_email_is_valid'>email_is_valid</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([-!#-&#39;*+-9=?A-Z^-~]+(\.[-!#-&#39;*+-9=?A-Z^-~]+)*)@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -2482,16 +3885,18 @@
   
     <li>
       
-        <span class='name'>A</span>
+        <span class='name'>used</span>
       
       
         <span class='type'>(<tt>Set</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
         <div class='inline'>
-<p>set with the given</p>
+<p>A set with the given</p>
 </div>
       
     </li>
@@ -2543,17 +3948,17 @@
       <pre class="lines">
 
 
-108
 109
 110
 111
 112
 113
 114
-115</pre>
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_random_str'>generate_random_str</span><span class='lparen'>(</span><span class='id identifier rubyid_used'>used</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_length'>length</span><span class='op'>=</span><span class='int'>16</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_urlsafe_base64'>urlsafe_base64</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
@@ -2571,31 +3976,133 @@
       <div class="method_details ">
   <h3 class="signature " id="get_account-instance_method">
   
-    #<strong>get_account</strong>(id, database)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_account</strong>(id, database)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets an account from the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the account to get</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the account from</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>False if the account doesn&#39;t exist</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the account is found</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>Hash
+<dd>
+<p>The user credentials</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-449
-450
-451
-452
-453
-454
-455
-456
-457
-458</pre>
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 449</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 640</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_account'>get_account</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -2613,63 +4120,119 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="get_cart-instance_method">
-  
-    #<strong>get_cart</strong>(database, customerId)  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-679
-680
-681
-682</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 679</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_get_cart'>get_cart</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT product_id FROM carts WHERE customer_id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="get_customer-instance_method">
   
-    #<strong>get_customer</strong>(database, account_id)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_customer</strong>(database, accountId)  &#x21d2; <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets a customer from the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the customer from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer to get</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The customer details</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>nil If the customer doesn&#39;t exist</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-461
-462
-463
-464</pre>
+661
+662
+663
+664</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 461</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 661</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_customer'>get_customer</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_account_id'>account_id</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_customer'>get_customer</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM customers WHERE account_id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_account_id'>account_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM customers WHERE account_id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2679,29 +4242,117 @@
       <div class="method_details ">
   <h3 class="signature " id="get_customer_details-instance_method">
   
-    #<strong>get_customer_details</strong>(database, customer_id)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_customer_details</strong>(database, customerId)  &#x21d2; <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets a customer from the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the customer from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>customerId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer to get</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user details</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>nil If the customer doesn&#39;t exist</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-466
-467
-468
-469</pre>
+676
+677
+678
+679</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 466</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 676</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get_customer_details'>get_customer_details</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customer_id'>customer_id</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get_customer_details'>get_customer_details</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM customers WHERE id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_customer_id'>customer_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SELECT * FROM customers WHERE id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2774,12 +4425,12 @@
       <pre class="lines">
 
 
-133
 134
-135</pre>
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_ext'>get_file_ext</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
@@ -2812,7 +4463,7 @@
   
     <li>
       
-        <span class='name'>The</span>
+        <span class='name'>file</span>
       
       
         <span class='type'>(<tt>File</tt>)</span>
@@ -2821,7 +4472,7 @@
       
         &mdash;
         <div class='inline'>
-<p>file to check the size of</p>
+<p>The file to check the size of</p>
 </div>
       
     </li>
@@ -2855,12 +4506,12 @@
       <pre class="lines">
 
 
-123
 124
-125</pre>
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_size_mb'>get_file_size_mb</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='int'>1024000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
@@ -2936,12 +4587,12 @@
       <pre class="lines">
 
 
-143
 144
-145</pre>
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_files_in_dir'>get_files_in_dir</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dir'>dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/**/*.*</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='rbrace'>}</span>
@@ -2988,6 +4639,42 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>subDir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The subdirectory of the image file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the image file</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -3009,6 +4696,17 @@
   
 </ul>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#get_files_in_dir-instance_method" title="Model#get_files_in_dir (method)">#get_files_in_dir</a></span></li>
+    
+      <li><span class='object_link'><a href="#generate_random_str-instance_method" title="Model#generate_random_str (method)">#generate_random_str</a></span></li>
+    
+      <li><span class='object_link'><a href="#get_file_ext-instance_method" title="Model#get_file_ext (method)">#get_file_ext</a></span></li>
+    
+  </ul>
+
 
 
 </div><table class="source_code">
@@ -3017,14 +4715,14 @@
       <pre class="lines">
 
 
-196
-197
-198
-199
-200</pre>
+203
+204
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 196</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 203</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_image_path'>get_image_path</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_subDir'>subDir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_existingFiles'>existingFiles</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_get_files_in_dir'><span class='object_link'><a href="#get_files_in_dir-instance_method" title="Model#get_files_in_dir (method)">get_files_in_dir</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./public/uploads/img</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -3039,33 +4737,135 @@
       <div class="method_details ">
   <h3 class="signature " id="get_product-instance_method">
   
-    #<strong>get_product</strong>(database, id)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_product</strong>(database, id)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the product from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to get</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>False if the product was not found</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the product was found</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>Hash
+<dd>
+<p>The product details</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615
-616
-617</pre>
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 606</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 931</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_product'>get_product</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3087,26 +4887,93 @@
       <div class="method_details ">
   <h3 class="signature " id="get_product_rating-instance_method">
   
-    #<strong>get_product_rating</strong>(database, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_product_rating</strong>(database, productId)  &#x21d2; <tt>Integer</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets a products rating</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the product from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to get</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The rating of the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-619
-620
-621
-622
-623</pre>
+951
+952
+953
+954
+955</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 619</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 951</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_product_rating'>get_product_rating</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3121,29 +4988,87 @@
       <div class="method_details ">
   <h3 class="signature " id="get_products-instance_method">
   
-    #<strong>get_products</strong>(database)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_products</strong>(database)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets all products</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the products from</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The products</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-597
-598
-599
-600
-601
-602
-603
-604</pre>
+908
+909
+910
+911
+912
+913
+914
+915</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 597</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 908</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_products'>get_products</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3161,25 +5086,99 @@
       <div class="method_details ">
   <h3 class="signature " id="get_reviews-instance_method">
   
-    #<strong>get_reviews</strong>(database, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_reviews</strong>(database, productId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets all reviews for a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the reviews from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to get the reviews for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The reviews for the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-669
-670
-671
-672</pre>
+1057
+1058
+1059
+1060</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 669</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 1057</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_reviews'>get_reviews</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3193,25 +5192,115 @@
       <div class="method_details ">
   <h3 class="signature " id="get_user_review-instance_method">
   
-    #<strong>get_user_review</strong>(database, customerId, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_user_review</strong>(database, customerId, productId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get the reviews for a product from a specific customer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the reviews from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>customerId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer to get the reviews for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to get the reviews for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The reviews for the product from the customer</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-674
-675
-676
-677</pre>
+1072
+1073
+1074
+1075</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 674</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 1072</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_user_review'>get_user_review</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3225,31 +5314,117 @@
       <div class="method_details ">
   <h3 class="signature " id="get_user_role-instance_method">
   
-    #<strong>get_user_role</strong>(accountId)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_user_role</strong>(accountId)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets the role of a user</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>False if the user doesn&#39;t exist</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the user is found</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>Integer
+<dd>
+<p>The role of the user</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-479
-480
-481
-482
-483
-484
-485
-486
-487
-488</pre>
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 479</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 711</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_user_role'>get_user_role</span><span class='lparen'>(</span><span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>database</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -3269,27 +5444,92 @@
       <div class="method_details ">
   <h3 class="signature " id="get_users-instance_method">
   
-    #<strong>get_users</strong>(database)  &#x21d2; <tt>Object</tt> 
+    #<strong>get_users</strong>(database)  &#x21d2; <tt>Hash</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets all users from the database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the users from</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>:admins
+<dd>
+<p>The admins</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:customers
+<dd>
+<p>The customers</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-471
-472
-473
-474
-475
-476</pre>
+691
+692
+693
+694
+695
+696</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 471</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 691</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_users'>get_users</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -3305,24 +5545,75 @@
       <div class="method_details ">
   <h3 class="signature " id="is_empty-instance_method">
   
-    #<strong>is_empty</strong>(str)  &#x21d2; <tt>Object</tt> 
+    #<strong>is_empty</strong>(str)  &#x21d2; <tt>Boolean</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if a string is empty</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The string to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the string is empty else False</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-240
-241
-242</pre>
+282
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 282</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_empty'>is_empty</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^.*[^\s].*$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>nil</span>
@@ -3453,12 +5744,12 @@
       <pre class="lines">
 
 
-57
 58
-59</pre>
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_unique'>is_unique</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_table'>table</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_check'>check</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_count_db'><span class='object_link'><a href="#count_db-instance_method" title="Model#count_db (method)">count_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_table'>table</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_check'>check</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -3555,7 +5846,6 @@
       <pre class="lines">
 
 
-157
 158
 159
 160
@@ -3564,10 +5854,11 @@
 163
 164
 165
-166</pre>
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_notification'>make_notification</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_alertIcons'>alertIcons</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -3587,31 +5878,77 @@
       <div class="method_details ">
   <h3 class="signature " id="password_is_strong-instance_method">
   
-    #<strong>password_is_strong</strong>(password)  &#x21d2; <tt>Object</tt> 
+    #<strong>password_is_strong</strong>(password)  &#x21d2; <tt>Boolean</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if a given password is strong</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the password is strong else False</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234</pre>
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_password_is_strong'>password_is_strong</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
     <span class='comment'># ^                 Start anchor
@@ -3631,27 +5968,128 @@
       <div class="method_details ">
   <h3 class="signature " id="register_account-instance_method">
   
-    #<strong>register_account</strong>(db, username, password, role = )  &#x21d2; <tt>Object</tt> 
+    #<strong>register_account</strong>(db, username, password, role = )  &#x21d2; <tt>Integer</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Registers a user to the provided database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database to register the user to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The password of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt></tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The role of the user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the created user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-273
-274
-275
-276
-277
-278</pre>
+336
+337
+338
+339
+340
+341</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_account'>register_account</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span><span class='op'>=</span><span class='const'>ROLES</span><span class='lbracket'>[</span><span class='symbol'>:customer</span><span class='rbracket'>]</span><span class='rparen'>)</span> 
     <span class='id identifier rubyid_passwordDigest'>passwordDigest</span> <span class='op'>=</span> <span class='const'>BCrypt</span><span class='op'>::</span><span class='const'>Password</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
@@ -3673,18 +6111,163 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Registers a customer to the provided database</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database to register the customer to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the account to register the customer to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The first name of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The last name of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The email of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The address of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>city</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The city of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>postalCode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The postal code of the customer</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-348
-349
-350</pre>
+438
+439
+440</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 438</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_customer'>register_customer</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='rparen'>)</span> 
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INSERT INTO customers (account_id, fname, lname, email, address, city, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='rparen'>)</span>
@@ -3697,45 +6280,262 @@
       <div class="method_details ">
   <h3 class="signature " id="register_user-instance_method">
   
-    #<strong>register_user</strong>(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; <tt>Object</tt> 
+    #<strong>register_user</strong>(username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Registers a user</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The password of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>confirmPassword</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The confirmation of the password</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The first name of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The last name of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The email of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The address of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>city</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The city of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>postalCode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The postal code of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt></tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The role of the user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if all credentials passede the tests else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#check_account_credentials-instance_method" title="Model#check_account_credentials (method)">#check_account_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_customer_credentials-instance_method" title="Model#check_customer_credentials (method)">#check_customer_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#register_account-instance_method" title="Model#register_account (method)">#register_account</a></span></li>
+    
+      <li><span class='object_link'><a href="#register_customer-instance_method" title="Model#register_customer (method)">#register_customer</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375</pre>
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 352</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 464</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_user'>register_user</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_confirmPassword'>confirmPassword</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span><span class='op'>=</span><span class='const'>ROLES</span><span class='lbracket'>[</span><span class='symbol'>:customer</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>database</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -3832,12 +6632,12 @@
       <pre class="lines">
 
 
-14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_round_to_nearest_half'>round_to_nearest_half</span><span class='lparen'>(</span><span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span> <span class='op'>/</span> <span class='float'>2.0</span>
@@ -3913,12 +6713,12 @@
       <pre class="lines">
 
 
-77
 78
-79</pre>
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_str_contains_nr'>str_contains_nr</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[0-9]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -3994,12 +6794,12 @@
       <pre class="lines">
 
 
-87
 88
-89</pre>
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_str_contains_special_char'>str_contains_special_char</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^a-zA-Z0-9]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -4075,12 +6875,12 @@
       <pre class="lines">
 
 
-67
 68
-69</pre>
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_is_int'>string_is_int</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>||</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='id identifier rubyid_str'>str</span>
@@ -4099,23 +6899,120 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates an account</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database to update the account in</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the account to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username of the account</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The password of the account</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The role of the account</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-377
-378
-379
-380
-381
-382
-383
-384</pre>
+497
+498
+499
+500
+501
+502
+503
+504</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 377</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 497</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_account'>update_account</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UPDATE accounts SET username = ?, role = ? WHERE id = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span>
@@ -4139,18 +7036,163 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates a customer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>db</span>
+      
+      
+        <span class='type'>(<tt>Database Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The database to update the customer in</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The first name of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The last name of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The email of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The address of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>city</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The city of the customer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>postalCode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The postal code of the customer</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-387
-388
-389</pre>
+517
+518
+519</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 387</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 517</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_customer'>update_customer</span><span class='lparen'>(</span><span class='id identifier rubyid_db'>db</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UPDATE customers SET fname = ?, lname = ?, email = ?, address = ?, city = ?, postal_code = ? WHERE account_id = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='comma'>,</span> <span class='id identifier rubyid_accountId'>accountId</span><span class='rparen'>)</span>
@@ -4163,30 +7205,129 @@
       <div class="method_details ">
   <h3 class="signature " id="update_image-instance_method">
   
-    #<strong>update_image</strong>(subDir, filename, newImage = nil)  &#x21d2; <tt>Object</tt> 
+    #<strong>update_image</strong>(subDir, filename, newImage = nil)  &#x21d2; <tt>String</tt>, <tt>Boolean</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates an image on the server</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subDir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The subdirectory that the image lies in on the server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the file on the server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>newImage</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether to replace the image with a new one. If set to nil, the old image will be deleted.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to the image on the server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>False if no new image is provided</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-215
-216
-217
-218
-219
-220
-221
-222
-223</pre>
+239
+240
+241
+242
+243
+244
+245
+246
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_image'>update_image</span><span class='lparen'>(</span><span class='id identifier rubyid_subDir'>subDir</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_newImage'>newImage</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_newImage'>newImage</span> <span class='op'>!=</span> <span class='kw'>nil</span>
@@ -4205,46 +7346,229 @@
       <div class="method_details ">
   <h3 class="signature " id="update_product-instance_method">
   
-    #<strong>update_product</strong>(database, productId, image, name, brand, description, specification, price)  &#x21d2; <tt>Object</tt> 
+    #<strong>update_product</strong>(database, productId, image, name, brand, description, specification, price)  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to update the product in</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>image</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The image of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>brand</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The brand of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>description</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The description of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>specification</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The specification of the product</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>price</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The price of the product</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if the product was updated else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_product_credentials-instance_method" title="Model#check_product_credentials (method)">#check_product_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#get_product-instance_method" title="Model#get_product (method)">#get_product</a></span></li>
+    
+      <li><span class='object_link'><a href="#update_image-instance_method" title="Model#update_image (method)">#update_image</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-546
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567
-568
-569
-570</pre>
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 546</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 838</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_product'>update_product</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='comma'>,</span> <span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_brand'>brand</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_specification'>specification</span><span class='comma'>,</span> <span class='id identifier rubyid_price'>price</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -4279,44 +7603,279 @@
       <div class="method_details ">
   <h3 class="signature " id="update_user-instance_method">
   
-    #<strong>update_user</strong>(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; <tt>Object</tt> 
+    #<strong>update_user</strong>(accountId, username, password, confirmPassword, fname, lname, email, address, city, postalCode, role = )  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Updates a user</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>accountId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the user to update</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The username of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The password of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>confirmPassword</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The confirmation of the password</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The first name of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The last name of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The email of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The address of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>city</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The city of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>postalCode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The postal code of the user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt></tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The role of the user</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul><li><dl class="rdoc-list label-list"><dt>Boolean
+<dd>
+<p>True if all credentials passede the tests else False</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>String
+<dd>
+<p>The error message</p>
+</dd></dl>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_account_credentials-instance_method" title="Model#check_account_credentials (method)">#check_account_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#check_customer_credentials-instance_method" title="Model#check_customer_credentials (method)">#check_customer_credentials</a></span></li>
+    
+      <li><span class='object_link'><a href="#update_account-instance_method" title="Model#update_account (method)">#update_account</a></span></li>
+    
+      <li><span class='object_link'><a href="#update_customer-instance_method" title="Model#update_customer (method)">#update_customer</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-392
-393
-394
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406
-407
-408
-409
-410
-411
-412
-413
-414</pre>
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 392</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 545</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_user'>update_user</span><span class='lparen'>(</span><span class='id identifier rubyid_accountId'>accountId</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_confirmPassword'>confirmPassword</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='comma'>,</span> <span class='id identifier rubyid_lname'>lname</span><span class='comma'>,</span> <span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='id identifier rubyid_city'>city</span><span class='comma'>,</span> <span class='id identifier rubyid_postalCode'>postalCode</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span><span class='op'>=</span><span class='const'>ROLES</span><span class='lbracket'>[</span><span class='symbol'>:customer</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>database</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -4349,25 +7908,115 @@
       <div class="method_details ">
   <h3 class="signature " id="user_has_reviewed_product-instance_method">
   
-    #<strong>user_has_reviewed_product</strong>(database, customerId, productId)  &#x21d2; <tt>Object</tt> 
+    #<strong>user_has_reviewed_product</strong>(database, customerId, productId)  &#x21d2; <tt>Boolean</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if a user has already reviewed a product</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the database to get the product from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>customerId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the customer to check</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>productId</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The id of the product to check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the user has already reviewed the product else False</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">#connect_to_db</a></span></li>
+    
+  </ul>
+
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-638
-639
-640
-641</pre>
+990
+991
+992
+993</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'model.rb', line 638</span>
+      <pre class="code"><span class="info file"># File 'model.rb', line 990</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_has_reviewed_product'>user_has_reviewed_product</span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='comma'>,</span> <span class='id identifier rubyid_customerId'>customerId</span><span class='comma'>,</span> <span class='id identifier rubyid_productId'>productId</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_db'>db</span> <span class='op'>=</span> <span class='id identifier rubyid_connect_to_db'><span class='object_link'><a href="#connect_to_db-instance_method" title="Model#connect_to_db (method)">connect_to_db</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_database'>database</span><span class='rparen'>)</span>
@@ -4383,7 +8032,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 18 10:46:14 2022 by
+  Generated on Thu May 19 01:47:44 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.2).
 </div>
