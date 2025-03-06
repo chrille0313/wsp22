@@ -335,7 +335,7 @@ module Model
     # @return [Integer] The id of the created user
     def register_account(db, username, password, role=ROLES[:customer]) 
         passwordDigest = BCrypt::Password.create(password)
-        db.execute('INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)', username, passwordDigest, role)
+        db.execute('INSERT INTO accounts (username, password, role) VALUES (?, ?, ?)', [username, passwordDigest, role])
         accountId = db.execute('SELECT id FROM accounts WHERE username = ?', username).first
         return accountId["id"]
     end
@@ -436,7 +436,7 @@ module Model
     # @param [String] city The city of the customer
     # @param [String] postalCode The postal code of the customer
     def register_customer(db, accountId, fname, lname, email, address, city, postalCode) 
-        db.execute('INSERT INTO customers (account_id, fname, lname, email, address, city, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)', accountId, fname, lname, email, address, city, postalCode)
+        db.execute('INSERT INTO customers (account_id, fname, lname, email, address, city, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)', [accountId, fname, lname, email, address, city, postalCode])
     end
 
 
@@ -495,11 +495,11 @@ module Model
     # @param [String] password The password of the account
     # @param [Integer] role The role of the account
     def update_account(db, accountId, username, password, role)
-        db.execute('UPDATE accounts SET username = ?, role = ? WHERE id = ?', username, role, accountId)
+        db.execute('UPDATE accounts SET username = ?, role = ? WHERE id = ?', [username, role, accountId])
 
         if password != ""
             passwordDigest = BCrypt::Password.create(password)
-            db.execute('UPDATE accounts SET password = ? WHERE id = ?', passwordDigest, accountId)
+            db.execute('UPDATE accounts SET password = ? WHERE id = ?', [passwordDigest, accountId])
         end
     end
 
@@ -515,7 +515,7 @@ module Model
     # @param [String] city The city of the customer
     # @param [String] postalCode The postal code of the customer
     def update_customer(db, accountId, fname, lname, email, address, city, postalCode)
-        db.execute('UPDATE customers SET fname = ?, lname = ?, email = ?, address = ?, city = ?, postal_code = ? WHERE account_id = ?', fname, lname, email, address, city, postalCode, accountId)
+        db.execute('UPDATE customers SET fname = ?, lname = ?, email = ?, address = ?, city = ?, postal_code = ? WHERE account_id = ?', [fname, lname, email, address, city, postalCode, accountId])
     end
 
 
@@ -777,7 +777,7 @@ module Model
     # @param [String] specification The specification of the product
     # @param [String] price The price of the product
     def add_product(db, imagePath, name, brand, description, specification, price)
-        db.execute('INSERT INTO products (image_url, name, brand, description, specification, price) VALUES (?, ?, ?, ?, ?, ?)', imagePath, name, brand, description, specification, price)
+        db.execute('INSERT INTO products (image_url, name, brand, description, specification, price) VALUES (?, ?, ?, ?, ?, ?)', [imagePath, name, brand, description, specification, price])
     end
 
 
@@ -853,10 +853,10 @@ module Model
 
             filename = product["image_url"].delete_prefix("/uploads/img/products/")
             path = update_image("products", filename, image)
-            db.execute('UPDATE products SET image_url = ? WHERE id = ?', path, productId)
+            db.execute('UPDATE products SET image_url = ? WHERE id = ?', [path, productId])
         end
 
-        db.execute('UPDATE products SET name = ?, brand = ?, description = ?, specification = ?, price = ? WHERE id = ?', name, brand, description, specification, price, productId)
+        db.execute('UPDATE products SET name = ?, brand = ?, description = ?, specification = ?, price = ? WHERE id = ?', [name, brand, description, specification, price, productId])
 
         return [true, "Product successfully updated!"]
     end
@@ -989,7 +989,7 @@ module Model
     # @see Model#connect_to_db
     def user_has_reviewed_product(database, customerId, productId)
         db = connect_to_db(database)
-        return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).any?
+        return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", [customerId, productId]).any?
     end
 
 
@@ -1018,10 +1018,10 @@ module Model
             date = Time.now.strftime("%Y-%m-%d")
 
             if user_has_reviewed_product(database, customerId, productId)
-                db.execute('UPDATE reviews SET date = ?, rating = ?, comment = ? WHERE customer_id = ? AND product_id = ?', date, rating, comment, customerId, productId)
+                db.execute('UPDATE reviews SET date = ?, rating = ?, comment = ? WHERE customer_id = ? AND product_id = ?', [date, rating, comment, customerId, productId])
                 return [true, "Review successfully updated!"]
             else
-                db.execute('INSERT INTO reviews (customer_id, product_id, date, rating, comment) VALUES (?, ?, ?, ?, ?)', customerId, productId, date, rating, comment)
+                db.execute('INSERT INTO reviews (customer_id, product_id, date, rating, comment) VALUES (?, ?, ?, ?, ?)', [customerId, productId, date, rating, comment])
                 return [true, "Review successfully added!"]
             end
         end
@@ -1041,7 +1041,7 @@ module Model
     # @see Model#connect_to_db
     def delete_review(database, customerId, productId)
         db = connect_to_db(database)
-        db.execute('DELETE FROM reviews WHERE customer_id = ? AND product_id = ?', customerId, productId)
+        db.execute('DELETE FROM reviews WHERE customer_id = ? AND product_id = ?', [customerId, productId])
         return [true, "Review successfully deleted!"]
     end
 
@@ -1071,7 +1071,7 @@ module Model
     # @see Model#connect_to_db
     def get_user_review(database, customerId, productId)
         db = connect_to_db(database)
-        return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", customerId, productId).first
+        return db.execute("SELECT * FROM reviews WHERE customer_id = ? AND product_id = ?", [customerId, productId]).first
     end
 
 end
