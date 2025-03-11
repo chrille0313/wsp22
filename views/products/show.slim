@@ -53,7 +53,7 @@ main id="product-display"
                         section.form-button
                             input type="submit" value="Update review"
                         section.form-button
-                            button type="button" class="popup-trigger" Delete
+                            button type="button" class="popup-trigger" Delete Review
                 - else
                     - if session[:auto_fill] != nil
                         section.form-field
@@ -89,14 +89,27 @@ main id="product-display"
                     p.review-text #{review["comment"]}
                 div.divider-horizontal
 
+    - if is_admin()
+        div.popup
+            form class="popup-content" action="/products/#{product["id"]}/delete" method="POST"
+                h2 Are you sure?
+                p Are you sure you want to delete this product?
+                p This action cannot be undone.
+                section.adjacent
+                    section.button
+                        button type="submit" Delete Product
+
+                    section.button
+                        button type="button" class="popup-close" Cancel
+    
     div.popup
-        form class="popup-content" action="/products/#{product["id"]}/delete" method="POST"
+        form class="popup-content" action="/products/#{product["id"]}/reviews/delete" method="POST"
             h2 Are you sure?
-            p Are you sure you want to delete this product?
+            p Are you sure you want to delete this review?
             p This action cannot be undone.
             section.adjacent
                 section.button
-                    button type="submit" Delete Product
+                    button type="submit" Delete Review
 
                 section.button
                     button type="button" class="popup-close" Cancel
